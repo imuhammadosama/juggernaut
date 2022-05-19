@@ -1,0 +1,24 @@
+{
+  "id": "000000002",
+  "name": "Muhammad Osama",
+  "father_name": "Muhammad Iqbal",
+  "phone": "+923352522522",
+  "cnic": "3710399118315",
+  "email": "imuhammadosama1@icloud.com",
+  "password": "deadLock1@3$.",
+  "type": "Billing / Invoice",
+  "designation": "Billing Officer",
+  "address": {
+    "line1": "Jammia Masjid Abu Bakar Blue Area,",
+    "line2": "Service Rd, Block G G 7/3 Blue Area",
+    "city": "Karachi",
+    "province": "Sindh",
+    "zipcode": 44000
+  },
+  "emergency": {
+    "name": "Muhammad Iqbal",
+    "relation": "Father",
+    "phone": "+923352522522"
+  },
+  "other_details": { "added_by": "123456789" }
+}

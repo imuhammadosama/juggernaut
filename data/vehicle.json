@@ -1,0 +1,29 @@
+{
+  "id": "",
+  "status": "",
+  "make": "",
+  "year": "",
+  "trailer_type": "",
+  "trailer_axles": "",
+  "registeration_number": "",
+  // Min 4, Max 8, String
+  "chasis_number": "",
+  // Min 8, Max 25, String
+  "engine_number": "",
+  // Min 8, Max 25, String
+  "insurance_policy": "",
+  "uploads": {
+    "vehicle_picture": {
+      "path": ""
+    },
+    "registeration_document": {
+      "path": ""
+    }
+  },
+  "terms": true,
+  "other_details": {
+    "shipper_id": "",
+    "approved_by": "",
+    "rejected_by": ""
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "_id": {
+    "$oid": "62850eced3dc9c46f0366870"
+  },
+  "id": "123",
+  "status": "Pending",
+  "name": "Muhammad Osama",
+  "father_name": "Muhammad Iqbal",
+  "phone": "+923352522522",
+  "driver_licence_category": "LTV",
+  "driver_licence_expiry": "",
+  "insurance_policy": "",
+  "uploads": {
+    "cnic": "#",
+    "drivers_licence": "#"
+  },
+  "other_details": {
+    "shipper_id": "12345",
+    "approved_by": "12345",
+    "rejected_by": "12345"
+  }
+}

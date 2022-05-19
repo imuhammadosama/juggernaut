@@ -1,0 +1,45 @@
+DELETE /loads/61e0b6a84289bd1e071ac0db
+
+
+#
+
+GET /loads
+
+#
+
+POST /clients/signup HTTP/1.1
+content-type: application/json
+
+{
+    "id": '',
+    "status": '',
+    "type": '',
+    "name": '',
+    "ntn": '',
+    "strn": '',
+    "email": '',
+    "address": {
+      "line1": '',
+      "line2": '',
+      "city": '',
+      "province": '',
+      "zipcode": 0,
+    },
+    "authorize_person": {
+      "name": '',
+      "phone": '',
+    },
+    "commodity": [],
+    "isSuspended": {
+      "status": false,
+      "suspended_period": '',
+    },
+    "isBlacklisted: {
+      "status": "false",
+    },
+    "other_details": {
+      "approved_by": '',
+      "suspended_by": '',
+      "blacklisted_by": '',
+    },
+}

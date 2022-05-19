@@ -1,0 +1,143 @@
+<script>
+  let selectedRepair = '';
+  let selectedRepairText = document.getElementById('repair-problem');
+  const brokenScreen = document.querySelectorAll(
+    '#broken-screen>.elementor-widget-wrap.elementor-element-populated'
+  )[0];
+  const waterDamage = document.querySelectorAll(
+    '#water-damage>.elementor-widget-wrap.elementor-element-populated'
+  )[0];
+  const shortBatteryLife = document.querySelectorAll(
+    '#short-battery-life>.elementor-widget-wrap.elementor-element-populated'
+  )[0];
+  const wontCharge = document.querySelectorAll(
+    '#wont-charge>.elementor-widget-wrap.elementor-element-populated'
+  )[0];
+  const unlockSoftware = document.querySelectorAll(
+    '#unlock-software>.elementor-widget-wrap.elementor-element-populated'
+  )[0];
+  const cameraProblem = document.querySelectorAll(
+    '#camera-problem>.elementor-widget-wrap.elementor-element-populated'
+  )[0];
+  const backDamage = document.querySelectorAll(
+    '#back-damage>.elementor-widget-wrap.elementor-element-populated'
+  )[0];
+  const somethingElse = document.querySelectorAll(
+    '#something-else>.elementor-widget-wrap.elementor-element-populated'
+  )[0];
+
+  const nextButton = document.getElementById('next-button');
+
+  brokenScreen.onclick = function () {
+    brokenScreen.style.border = '2px solid #F95103';
+    waterDamage.style.border = '2px solid white';
+    shortBatteryLife.style.border = '2px solid white';
+    wontCharge.style.border = '2px solid white';
+    unlockSoftware.style.border = '2px solid white';
+    cameraProblem.style.border = '2px solid white';
+    backDamage.style.border = '2px solid white';
+    somethingElse.style.border = '2px solid white';
+    selectedRepair = 'Broken Screen';
+    selectedRepairText.innerHTML = 'Broken Screen';
+    nextButton.style.background = '#F95103';
+    nextButton.style.cursor = 'Pointer';
+  };
+  waterDamage.onclick = function () {
+    brokenScreen.style.border = '2px solid white';
+    waterDamage.style.border = '2px solid #F95103';
+    shortBatteryLife.style.border = '2px solid white';
+    wontCharge.style.border = '2px solid white';
+    unlockSoftware.style.border = '2px solid white';
+    cameraProblem.style.border = '2px solid white';
+    backDamage.style.border = '2px solid white';
+    somethingElse.style.border = '2px solid white';
+    selectedRepair = 'Water Damage';
+    selectedRepairText.innerHTML = 'Water Damage';
+    nextButton.style.background = '#F95103';
+    nextButton.style.cursor = 'Pointer';
+  };
+  shortBatteryLife.onclick = function () {
+    brokenScreen.style.border = '2px solid white';
+    waterDamage.style.border = '2px solid white';
+    shortBatteryLife.style.border = '2px solid #F95103';
+    wontCharge.style.border = '2px solid white';
+    unlockSoftware.style.border = '2px solid white';
+    cameraProblem.style.border = '2px solid white';
+    backDamage.style.border = '2px solid white';
+    somethingElse.style.border = '2px solid white';
+    selectedRepair = 'Short Battery Life';
+    selectedRepairText.innerHTML = 'Short Battery Life';
+    nextButton.style.background = '#F95103';
+    nextButton.style.cursor = 'Pointer';
+  };
+  wontCharge.onclick = function () {
+    brokenScreen.style.border = '2px solid white';
+    waterDamage.style.border = '2px solid white';
+    shortBatteryLife.style.border = '2px solid white';
+    wontCharge.style.border = '2px solid #F95103';
+    unlockSoftware.style.border = '2px solid white';
+    cameraProblem.style.border = '2px solid white';
+    backDamage.style.border = '2px solid white';
+    somethingElse.style.border = '2px solid white';
+    selectedRepair = 'Wont Charge';
+    selectedRepairText.innerHTML = 'Wont Charge';
+    nextButton.style.background = '#F95103';
+    nextButton.style.cursor = 'Pointer';
+  };
+  unlockSoftware.onclick = function () {
+    brokenScreen.style.border = '2px solid white';
+    waterDamage.style.border = '2px solid white';
+    shortBatteryLife.style.border = '2px solid white';
+    wontCharge.style.border = '2px solid white';
+    unlockSoftware.style.border = '2px solid #F95103';
+    cameraProblem.style.border = '2px solid white';
+    backDamage.style.border = '2px solid white';
+    somethingElse.style.border = '2px solid white';
+    selectedRepair = 'Unlock Software';
+    selectedRepairText.innerHTML = 'Unlock Software';
+    nextButton.style.background = '#F95103';
+    nextButton.style.cursor = 'Pointer';
+  };
+  cameraProblem.onclick = function () {
+    brokenScreen.style.border = '2px solid white';
+    waterDamage.style.border = '2px solid white';
+    shortBatteryLife.style.border = '2px solid white';
+    wontCharge.style.border = '2px solid white';
+    unlockSoftware.style.border = '2px solid white';
+    cameraProblem.style.border = '2px solid #F95103';
+    backDamage.style.border = '2px solid white';
+    somethingElse.style.border = '2px solid white';
+    selectedRepair = 'Camera Problem';
+    selectedRepairText.innerHTML = 'Camera Problem';
+    nextButton.style.background = '#F95103';
+    nextButton.style.cursor = 'Pointer';
+  };
+  backDamage.onclick = function () {
+    brokenScreen.style.border = '2px solid white';
+    waterDamage.style.border = '2px solid white';
+    shortBatteryLife.style.border = '2px solid white';
+    wontCharge.style.border = '2px solid white';
+    unlockSoftware.style.border = '2px solid white';
+    cameraProblem.style.border = '2px solid white';
+    backDamage.style.border = '2px solid #F95103';
+    somethingElse.style.border = '2px solid white';
+    selectedRepair = 'Back Damage';
+    selectedRepairText.innerHTML = 'Back Damage';
+    nextButton.style.background = '#F95103';
+    nextButton.style.cursor = 'Pointer';
+  };
+  somethingElse.onclick = function () {
+    brokenScreen.style.border = '2px solid white';
+    waterDamage.style.border = '2px solid white';
+    shortBatteryLife.style.border = '2px solid white';
+    wontCharge.style.border = '2px solid white';
+    unlockSoftware.style.border = '2px solid white';
+    cameraProblem.style.border = '2px solid white';
+    backDamage.style.border = '2px solid white';
+    somethingElse.style.border = '2px solid #F95103';
+    selectedRepair = 'Something Else';
+    selectedRepairText.innerHTML = 'Something Else';
+    nextButton.style.background = '#F95103';
+    nextButton.style.cursor = 'Pointer';
+  };
+</script>

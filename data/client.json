@@ -1,0 +1,34 @@
+{
+  "id": "123456789",
+  "status": "Pending",
+  "type": "Business",
+  "name": "Tritrans LLC",
+  "ntn": "123456789",
+  "strn": "123456789",
+  "email": "admin@triaransllc.com",
+  "password": "pass",
+  "address": {
+    "line1": "Jammia Masjid Abu Bakar Blue Area",
+    "line2": "Service Rd, Block G G 7/3 Blue Area",
+    "city": "Karachi",
+    "province": "Sindh",
+    "zipcode": 44000
+  },
+  "authorize_person": {
+    "name": "Muhammad Ali",
+    "phone": "+923352522522"
+  },
+  "commodity": ["Oil & Gas", "Textile"],
+  "isSuspended": {
+    "status": false,
+    "suspended_period": "Thu, 13 Jan 2022 22:20:26 GMT"
+  },
+  "isBlacklisted": {
+    "status": false
+  },
+  "other_details": {
+    "approved_by": "123456789",
+    "suspended_by": "123456789",
+    "blacklisted_by": "123456789"
+  }
+}
