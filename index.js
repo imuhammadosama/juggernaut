@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import multer from 'multer';
+
+// Route Imports
 import userRoute from './routes/user.routes.js';
 import clientRoute from './routes/client.routes.js';
 import loadRoute from './routes/load.routes.js';

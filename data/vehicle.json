@@ -1,29 +1,19 @@
 {
-  "id": "",
-  "status": "",
-  "make": "",
-  "year": "",
-  "trailer_type": "",
-  "trailer_axles": "",
-  "registeration_number": "",
-  // Min 4, Max 8, String
-  "chasis_number": "",
-  // Min 8, Max 25, String
-  "engine_number": "",
-  // Min 8, Max 25, String
-  "insurance_policy": "",
-  "uploads": {
-    "vehicle_picture": {
-      "path": ""
-    },
-    "registeration_document": {
-      "path": ""
-    }
+  "status": "Pending",
+  "make": "Velvo",
+  "year": "2015",
+  "trailer_type": "Container",
+  "trailer_axles": "2",
+  "registeration_number": "1234566",
+  "chasis_number": "12345678",
+  "engine_number": "1234578",
+  "insurance_policy": "none",
+  "upload_images": ["0"],
+  "upload_documents": ["0"],
+  "client": {
+    "id": "625d1321b1cf433d3ac4432c",
+    "name": "Dairy Farm Products"
   },
-  "terms": true,
-  "other_details": {
-    "shipper_id": "",
-    "approved_by": "",
-    "rejected_by": ""
-  }
+  "approved_by": "1234567",
+  "rejected_by": ""
 }

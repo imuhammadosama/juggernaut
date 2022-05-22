@@ -16,12 +16,64 @@ router.get('/', async (req, res) => {
 });
 
 // Getting single driver
-router.get('/:driverId', async (req, res) => {
+router.get('/:driverCnic', async (req, res) => {
   try {
-    const data = await Driver.findOne({ _id: req.params.loadId });
+    const data = await Driver.findOne({ _id: req.params.cnic });
+    console.log(data);
     res.json({ message: 'Found!', status: 'ok', data });
   } catch (error) {
     res.json({ message: error, status: 'no' });
+  }
+});
+
+// Find Drivers by ClientId
+router.get('/client/:clientId', async (req, res) => {
+  try {
+    const data = await Driver.find({
+      'client.id': req.params.clientId,
+    });
+    console.log(req.params.clientId);
+    res.json({ message: 'Found!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
+// Posting a Vehicle
+router.route('/').post(async (req, res) => {
+  const driver = new Driver({
+    cnic: req.body.cnic,
+    status: 'Pending',
+    name: req.body.name,
+    father_name: req.body.father_name,
+    phone: req.body.phone,
+    licence_category: req.body.licence_category,
+    licence_expiry: req.body.licence_expiry,
+    insurance_policy: req.body.insurance_policy,
+    health_condition: req.body.health_condition,
+    upload_cnic: [''],
+    upload_licence: [''],
+    client: {
+      id: req.body.client.id,
+      name: req.body.client.name,
+    },
+    approved_by: '0',
+    rejected_by: '0',
+  });
+  console.log(req.body.client);
+  try {
+    const driverExists = await Driver.findOne({
+      cnic: req.body.cnic,
+    });
+    if (driverExists) {
+      res.json({ message: 'CNIC is already registered!', status: 'no' });
+    } else {
+      const data = await driver.save().then();
+      res.json({ message: 'Succesfully Registered!', status: 'ok', data });
+    }
+  } catch (error) {
+    res.json({ message: error });
+    console.log(error);
   }
 });
 
