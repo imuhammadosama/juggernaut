@@ -1,0 +1,35 @@
+.print-page {
+  border: 1px solid black;
+  max-width: 800px;
+  padding: 48px;
+  margin: 12px;
+}
+
+.print-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.print-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 16px;
+}
+
+#print-logo {
+  width: 150px;
+}
+
+.print-borders {
+  border: 2px solid black;
+}
+
+.pickup-details,
+.delivery-details {
+  border: 2px solid #e2e2e2;
+}
+
+.width-40 {
+  width: 49%;
+}

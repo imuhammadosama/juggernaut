@@ -1,0 +1,17 @@
+.login-title {
+  font-weight: bold;
+  font-size: 28px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.errorMessage {
+  color: var(--pending);
+  font-size: 12px;
+  padding: 0px;
+  margin-top: -6px;
+}
+
+.forgot-password {
+  color: var(--brand);
+}

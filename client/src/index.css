@@ -1,0 +1,623 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --active: #2caec9;
+  --active-hover: #2caec910;
+  --brand: #0060be;
+  --brand-hover: #0060be10;
+  --primary: #0e324a;
+  --primary-hover: #0e324a10;
+  --secondary: #bc0000;
+  --secondary-hover: #bc000010;
+  --pending: #f80f10;
+  --pending-hover: #f80f1010;
+  --dispatched: #31a02f;
+  --dispatched-hover: #31a02f10;
+  --completed: #06098c;
+  --completed-hover: #06098c10;
+  --cancelled: #0060be;
+  --cancelled-hover: #0060be10;
+  --black: #000000;
+  --line: #f5f5f5;
+  --border: #26262615;
+  --dark-grey: #a9a9a9;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: x-large;
+}
+
+.hideMe {
+  display: none;
+}
+
+input {
+  padding: 12px 24px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px !important;
+  font-family: 'Inter';
+}
+
+input[type='date'] {
+  padding: 11px 24px;
+}
+
+select,
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type='Submit'] {
+  width: unset;
+}
+
+.react-dropdown-select-input {
+  padding: 8px 0px !important;
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+  border: 1px solid var(--border);
+  font-size: 14px !important;
+  font-family: 'Inter' !important;
+}
+
+.css-wmw4vi-ReactDropdownSelect * {
+  align-items: center;
+  padding-left: 4px;
+}
+
+.react-dropdown-select-dropdown-position-bottom {
+  align-items: baseline;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+.unset-width {
+  width: unset !important;
+}
+
+.unset-height {
+  height: unset !important;
+}
+
+.primary-button {
+  width: fit-content;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  background: var(--primary);
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-1.5px);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 4px 12px;
+}
+
+.primary-button:active {
+  transform: translateY(1.5px);
+  box-shadow: none;
+}
+
+.secondary-button {
+  width: fit-content;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  background: var(--secondary);
+  padding: 8px 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.tertiary-button {
+  font-family: 'Inter', sans-serif;
+  border: inset 1px #0e324a;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  background: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.mr-4 {
+  margin-right: 4px;
+}
+
+.mr-16 {
+  margin-right: 16px;
+}
+
+select {
+  padding: 12px 24px !important;
+  margin-bottom: 8px;
+  border: 1px solid var(--border) !important;
+  font-size: 14px;
+  font-family: 'Inter';
+}
+
+.react-dropdown-select,
+css-wmw4vi-ReactDropdownSelect {
+  padding: 12px 24px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-family: 'Inter';
+}
+
+.css-148o527-ItemComponent {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #fff;
+  width: 100%;
+  text-align: start;
+}
+
+nav {
+  display: flex;
+  background-color: var(--primary);
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-item {
+  color: white;
+  text-decoration: none;
+  margin-left: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+table {
+  width: 100% !important;
+}
+
+.table {
+  display: table;
+  padding: 0px 40px;
+  flex: 0.7;
+}
+
+.table-button {
+  padding: 6px 16px;
+  font-size: 14px;
+}
+
+.active-pending-load {
+  background: var(--pending) !important;
+}
+
+.nm {
+  margin: 0px;
+}
+
+.time {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #c9c9c9;
+  margin-bottom: 0px;
+}
+
+.small-title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #c9c9c9;
+}
+
+.small-bold-title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.small-bold-title-grey {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: grey;
+}
+
+.row {
+  flex-direction: row;
+}
+.column {
+  flex-direction: column;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--border);
+}
+
+.border-bottom-white {
+  border-bottom: 0.2px solid #ffffff40;
+}
+
+.border-right-grey {
+  border-right: 0.2px solid #4f4f4f;
+}
+
+.border-top {
+  border-top: 1px solid var(--border);
+}
+
+.border-radius-10 {
+  border-radius: 10px;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.brand {
+  color: var(--brand);
+}
+
+.id-tag {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 12px;
+  background-color: var(--brand);
+  padding: 4px 16px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.selected-tag {
+  cursor: pointer;
+  font-family: 'Inter';
+  background-color: var(--brand);
+  color: white;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 2px solid var(--brand);
+}
+
+.tag {
+  cursor: pointer;
+  font-family: 'Inter';
+  background-color: white;
+  color: var(--brand);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 2px solid var(--brand);
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+  width: 600px;
+}
+.right-inputs {
+  flex-grow: 1;
+}
+
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+
+.head-label {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.red {
+  color: red;
+}
+
+.eight {
+  font-size: 8px;
+}
+.ten {
+  font-size: 10px;
+}
+
+/* Loads */
+.pending-load:hover {
+  background-color: var(--pending-hover);
+}
+.active-load:hover {
+  background-color: var(--active-hover);
+}
+.dispatched-load:hover {
+  background-color: var(--dispatched-hover);
+}
+.completed-load:hover {
+  background-color: var(--completed-hover);
+}
+.cancelled-load:hover {
+  background-color: var(--brand-hover);
+}
+
+.pending-load-selected {
+  background-color: var(--pending-hover);
+}
+
+.active-load-selected {
+  background-color: var(--active-hover);
+}
+.dispatched-load-selected {
+  background-color: var(--dispatched-hover);
+}
+.completed-load-selected {
+  background-color: var(--completed-hover);
+}
+.cancelled-load-selected {
+  background-color: var(--cancelled-hover);
+}
+
+.pending-load-selected:hover {
+  background-color: var(--pending-hover);
+}
+
+.active-load-selected:hover {
+  background-color: var(--active-hover);
+}
+.dispatched-load-selected:hover {
+  background-color: var(--dispatched-hover);
+}
+.completed-load-selected:hover {
+  background-color: var(--completed-hover);
+}
+.cancelled-load-selected:hover {
+  background-color: var(--cancelled-hover);
+}
+
+.destination {
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-right {
+  height: 100vh;
+  overflow: scroll;
+}
+.sidebar-left {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.loader {
+  justify-content: center;
+  height: 80vh;
+}
+
+.left-inputs {
+  flex-grow: 1;
+}
+
+.div-center {
+  position: fixed;
+  top: 32%;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* Font Sizes */
+.sixteen {
+  font-size: 16px;
+}
+
+.twenty-four {
+  font-size: 24px;
+}
+
+.fourty {
+  font-size: 40px;
+}
+
+.sixty-four {
+  font-size: 64px;
+}
+
+/* Font Weights */
+.bold {
+  font-weight: bold;
+}
+
+/* Font Cases */
+.uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.success-message {
+  color: var(--dispatched);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+.flex-end {
+  justify-content: flex-start;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.m-0 {
+  margin: 0px;
+}
+
+.width-350 {
+  width: 350px;
+}
+
+.input-box {
+  position: relative;
+}
+
+.search-input {
+  display: block;
+  padding: 6px 32px;
+}
+
+.unit {
+  position: absolute;
+  display: block;
+  left: 10px;
+  top: 8px;
+  z-index: 9;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url('./assets/images/chev-down.svg');
+  background-repeat: no-repeat;
+  background-position-x: 90%;
+  background-position-y: 12px;
+}
+
+.width-188 {
+  width: 188px;
+}
+
+.droper {
+  padding: 12px 24px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px !important;
+  font-family: 'Inter';
+  background-color: white;
+}
+
+.bg-pending {
+  background-color: var(--pending);
+}
+.bg-active {
+  background-color: var(--active);
+}
+.bg-dispatched {
+  background-color: var(--dispatched);
+}
+.bg-completed {
+  background-color: var(--completed);
+}
+.bg-cancelled {
+  background-color: var(--cancelled);
+}
+.bg-white {
+  background-color: white;
+}
+
+.white {
+  color: white;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.accept-button {
+  padding: 13.2px 24px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrolls::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrolls {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollable {
+  overflow: scroll;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+textarea {
+  padding: 12px 24px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px !important;
+  font-family: 'Inter';
+  width: -webkit-fill-available;
+  height: 120px;
+}

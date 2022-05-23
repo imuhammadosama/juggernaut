@@ -1,0 +1,77 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-bar-content-link {
+  color: white;
+  text-decoration: none;
+}
+.top-bar-content-link:first-child {
+  padding-right: 20px;
+}
+
+.top-bar-content-link:hover {
+  text-decoration: underline;
+}
+
+.menu-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.menu-parent {
+  position: relative;
+}
+
+.menu-child {
+  position: absolute;
+  display: none;
+  top: 24;
+  right: 0;
+  background-color: white;
+  padding: 16px 24px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+}
+
+.menu-child-container {
+  display: flex;
+}
+
+.menu-child-column-one {
+  padding-right: 80px;
+}
+
+.menu-child-icon {
+  padding-right: 8px;
+}
+
+.menu-child-item {
+  padding-bottom: 10px;
+}
+
+.menu-child-item:hover {
+  text-decoration: underline;
+}
+
+.menu-child-businesses {
+  width: 360px;
+}
+
+.menu-child-services {
+  width: 120px;
+}
+
+.menu-parent:hover .menu-child {
+  display: block;
+}
+
+.menu-parent:hover .menu-icon {
+  transform: rotate(180deg);
+}
+
+.menu-child-href {
+  text-decoration: none;
+  color: black;
+}

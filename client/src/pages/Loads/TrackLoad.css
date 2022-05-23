@@ -1,0 +1,15 @@
+.tracking-details {
+  background-color: white;
+  padding-top: 16px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-bottom: 16px;
+}
+
+.tracking-modal {
+  align-items: center;
+}
+
+.tracking-modal-container {
+  height: unset;
+}

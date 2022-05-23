@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+}
+
+.pagination-item {
+  display: inline;
+}
+
+.pagination-number-active {
+  font-weight: 600;
+  color: white;
+  background-color: var(--primary);
+  cursor: pointer;
+  border: 1px solid var(--primary);
+}
+
+.pagination-number {
+  border: 1px solid var(--primary);
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+}
+.pagination-number:hover {
+  transform: translateY(-1.5px);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 4px 12px;
+}
+
+.pagination-number:active {
+  transform: translateY(1.5px);
+  box-shadow: none;
+}

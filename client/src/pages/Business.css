@@ -1,0 +1,20 @@
+.business-row {
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Poppins';
+  padding: 80px 0px;
+}
+
+.business-column-left {
+  display: flex;
+  flex-direction: column;
+  padding-right: 48px;
+  justify-content: center;
+}
+
+.business-column-right {
+  display: flex;
+  flex-direction: column;
+  padding-left: 48px;
+  justify-content: center;
+}
