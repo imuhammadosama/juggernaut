@@ -69,6 +69,19 @@ router.get('/:loadId', async (req, res) => {
   }
 });
 
+// Getting single load
+router.get('/origin/:city', async (req, res) => {
+  try {
+    const data = await Load.find({
+      // prettier-ignore
+      'origin.address.city': req.params.city,
+    });
+    res.json({ message: 'Found!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 // Accept load
 router.put('/accept/:loadId', async (req, res) => {
   try {
@@ -77,6 +90,24 @@ router.put('/accept/:loadId', async (req, res) => {
       { $set: { amount: req.body.amount, status: 'Active' } }
     );
     res.json({ message: 'Load is now active!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
+// Accept load
+router.put('/pick/:loadId', async (req, res) => {
+  try {
+    const data = await Load.updateOne(
+      { _id: req.params.loadId },
+      {
+        $set: {
+          status: 'Dispatched',
+          other_details: { shipper_id: req.body.client_id },
+        },
+      }
+    );
+    res.json({ message: 'Load is now dispatched!', status: 'ok', data });
   } catch (error) {
     res.json({ message: error, status: 'no' });
   }
