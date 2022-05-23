@@ -73,7 +73,7 @@ router.put('/accept/:clientId', async (req, res) => {
   }
 });
 
-// Accept load
+// Suspend Client
 router.put('/suspend/:clientId', async (req, res) => {
   try {
     const data = await Client.updateOne(
