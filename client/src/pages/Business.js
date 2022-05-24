@@ -21,14 +21,14 @@ export default function Business() {
           our dedicated team can help you manage the entire process of
           transportation of Oil and Gas.
         </div>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/PHhOla5.jpg' />
         </div>
       </div>
       <div class='border-bottom' />
       <div />
       <div class='flex business-row'>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/oarpVXo.jpg' />
         </div>
         <div class='business-column-right center' id='textile'>
@@ -67,14 +67,14 @@ export default function Business() {
           build solutions tailored to your products and needs, by understanding
           the market and the change in consumer preferences.
         </div>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/bLGBQY4.jpg' />
         </div>
       </div>
       <div class='border-bottom' />
       <div />
       <div class='flex business-row'>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/KPLkVig.jpg' />
         </div>
         <div class='business-column-right center' id='auto'>
@@ -105,14 +105,14 @@ export default function Business() {
           is facilitated through our Smart e-portal to get their goods delivered
           meeting the right handling requirements.
         </div>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/mgS8bu4.jpg' />
         </div>
       </div>
       <div class='border-bottom' />
       <div />
       <div class='flex business-row'>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/GvI5Lt7.jpg' />
         </div>
         <div class='business-column-right center' id='beverages'>
@@ -149,14 +149,14 @@ export default function Business() {
           Juggernaut let the cement cargoes be transported through the suitable
           cement carriers to avoid any loss of goods and time.
         </div>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/JtaF1Ve.jpg' />
         </div>
       </div>
       <div class='border-bottom' />
       <div />
       <div class='flex business-row'>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/GvI5Lt7.jpg' />
         </div>
         <div class='business-column-right center' id='general-goods'>
@@ -191,14 +191,14 @@ export default function Business() {
           Dental industry, Nutritional related industries, Veterinary and animal
           care industry, Orthopedic industry, etc.
         </div>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/u89sXeB.jpg' />
         </div>
       </div>
       <div class='border-bottom' />
       <div />
       <div class='flex business-row'>
-        <div>
+        <div className='business-image'>
           <img src='https://i.imgur.com/hUmoOPN.jpg' />
         </div>
         <div class='business-column-right center' id='agriculture'>

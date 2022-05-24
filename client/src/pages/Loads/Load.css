@@ -180,3 +180,8 @@ select.mb-24 {
   font-weight: 600;
   text-transform: uppercase;
 }
+
+.roboto {
+  font-family: 'Roboto Flex';
+  font-weight: 600;
+}

@@ -117,7 +117,7 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                       </div>
                       <div className='flex column p-16'>
                         <div className='small-title pb-4'>Support</div>
-                        <div className='small-bold-title'>+92 309 929 3394</div>
+                        <div className='small-bold-title'>+92 321 929 3394</div>
                       </div>
                     </div>
                   </div>

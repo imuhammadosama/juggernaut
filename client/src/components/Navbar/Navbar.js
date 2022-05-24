@@ -53,7 +53,7 @@ function Navigation(props) {
         )}
         <div className='top-bar'>
           <div className='top-bar-content'>
-            <div className='pt-4'>+92 309 929 3394</div>
+            <div className='pt-4 roboto bold'>+92 21 3432 5999</div>
             {userExists ? (
               <div>
                 <a href='/loads' className='top-bar-content-link'>
@@ -118,7 +118,7 @@ function Navigation(props) {
                   </a>
                 </li>
                 <li>
-                  <a className='menu-link'>About us</a>
+                  <a className='menu-link'>About Us</a>
                 </li>
                 <li>
                   <span className='menu-link menu-parent'>

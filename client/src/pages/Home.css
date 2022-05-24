@@ -14,7 +14,7 @@
   justify-content: space-between;
   margin: auto;
   color: white;
-  padding: 8px 0px;
+  padding: 4px 0px;
 }
 
 .signup-button {
@@ -23,7 +23,7 @@
   border-radius: 10px;
   border-color: white;
   color: #182028;
-  padding: 6px 24px;
+  padding: 3px 16px;
   outline: none;
   font-size: 14px;
   font-family: 'Poppins';
@@ -37,7 +37,7 @@
   border-radius: 10px;
   border-color: white;
   color: white;
-  padding: 6px 24px;
+  padding: 3px 16px;
   outline: none;
   font-size: 14px;
   font-family: 'Poppins';
@@ -102,7 +102,7 @@
 }
 
 .about-section-column {
-  padding: 120px 60px;
+  padding: 80px 60px;
   display: flex;
   width: 50%;
   justify-content: center;
@@ -130,6 +130,7 @@
   margin: 0px;
   padding-top: 12px;
   padding-bottom: 24px;
+  text-align: justify;
 }
 
 .dashboard-section {
@@ -140,7 +141,7 @@
 }
 
 .dashboard-section-column {
-  padding: 120px 60px;
+  padding: 80px 60px;
   display: flex;
   width: 50%;
   justify-content: center;
@@ -159,6 +160,7 @@
   margin: 0px;
   padding-top: 12px;
   padding-bottom: 24px;
+  text-align: justify;
 }
 
 .dashboard-section-tag {
@@ -178,7 +180,7 @@
 }
 
 .mission-section-column {
-  padding: 120px 60px;
+  padding: 80px 60px 120px 60px;
   display: flex;
   width: 50%;
   justify-content: center;
@@ -197,6 +199,7 @@
   margin: 0px;
   padding-top: 12px;
   padding-bottom: 24px;
+  text-align: justify;
 }
 
 .mission-section-tag {
@@ -217,10 +220,16 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 13.4286px 26.8571px;
+  padding: 8px 16px;
   border: 2px solid #0060be;
   box-sizing: border-box;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+.home-button:hover {
+  background-color: #0060be;
+  color: white;
 }
 
 .cards {
@@ -235,7 +244,7 @@
   margin-left: 5px;
 }
 .card-active {
-  height: 120px;
+  height: 80px;
 }
 
 .cities {
@@ -259,6 +268,9 @@
   max-width: 100%;
   margin-right: 24px;
   margin-left: 24px;
+  padding: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .city-active {
@@ -267,7 +279,7 @@
 
 .footer {
   background-color: #454545;
-  padding: 120px 0px 24px 0px;
+  padding: 80px 0px 24px 0px;
 }
 
 .footer-content {
@@ -341,7 +353,7 @@
 }
 
 .home-dropdown {
-  overflow: hidden;
+  /* overflow: hidden; */
   padding-top: 4px;
 }
 

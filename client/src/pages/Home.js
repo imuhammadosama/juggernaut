@@ -58,7 +58,7 @@ export default function Home() {
       <div className='border-bottom'></div>
       <div className='dashboard-section'>
         <div className='dashboard-section-column'>
-          <img src='https://i.imgur.com/wLoz0i8.png' />
+          <img src='https://i.imgur.com/wLoz0i8.png' width={'360px'} />
         </div>
         <div className='dashboard-section-column'>
           <div>
@@ -90,6 +90,7 @@ export default function Home() {
         <div className='mission-section-column'>
           <img
             src='https://i.imgur.com/LDNv9FJ.png'
+            width={'360px'}
             onClick={() => setOpenModal(true)}
             className='home-video'
           />
