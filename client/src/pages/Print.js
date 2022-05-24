@@ -341,29 +341,36 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                         </div>
                         <div className='full-width pl-16'>
                           <div className='flex space-between pb-8'>
-                            <div className='grey uppercase bold'>Subtotal:</div>
-                            <div className='uppercase bold'>{load.amount}</div>
-                          </div>
-                          <div className='flex space-between pb-8'>
-                            <div className='grey bold'>Service Charges @5:</div>
+                            <div className='active uppercase bold'>
+                              Subtotal:
+                            </div>
                             <div className='uppercase bold'>
-                              {(load.amount * 5) / 100}
+                              {load.amount} PKR
                             </div>
                           </div>
                           <div className='flex space-between pb-8'>
-                            <div className='grey bold'>Sales Taxes @3:</div>
+                            <div className='active bold'>
+                              Service Charges @5:
+                            </div>
                             <div className='uppercase bold'>
-                              {(load.amount * 3) / 100}
+                              {(load.amount * 5) / 100} PKR
                             </div>
                           </div>
-                          <div className='flex space-between pb-8'>
-                            <div className='grey uppercase bold'>
+                          <div className='flex space-between pb-8 br-b-grey-1'>
+                            <div className='active bold'>Sales Taxes @3:</div>
+                            <div className='uppercase bold'>
+                              {(load.amount * 3) / 100} PKR
+                            </div>
+                          </div>
+                          <div className='flex space-between pb-8 pt-8'>
+                            <div className='active uppercase bold'>
                               Grand Total:
                             </div>
                             <div className='uppercase bold'>
                               {(load.amount * 5) / 100 +
                                 (load.amount * 5) / 100 +
-                                load.amount}
+                                load.amount}{' '}
+                              PKR
                             </div>
                           </div>
                         </div>

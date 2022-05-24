@@ -996,7 +996,9 @@ const Loads = () => {
               <div className='bg-dispatched'>
                 <div className='flex space-between border-bottom-white px-16'>
                   <div className='white bold py-16 amount-distance'>
-                    50,000 PKR
+                    {`${selectedLoad.amount
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} PKR`}
                   </div>
                   <div className='white bold py-16 amount-distance uppercase'>
                     {selectedLoad.details.distance}
@@ -1033,7 +1035,9 @@ const Loads = () => {
               <div className='bg-completed'>
                 <div className='flex space-between border-bottom-white px-16'>
                   <div className='white bold py-16 amount-distance'>
-                    50,000 PKR
+                    {`${selectedLoad.amount
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} PKR`}
                   </div>
                   <div className='white bold py-16 amount-distance uppercase'>
                     {selectedLoad.details.distance}

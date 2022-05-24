@@ -800,6 +800,10 @@
   color: #e2e2e2;
 }
 
+.active {
+  color: var(--active);
+}
+
 .brand-bg {
   background-color: var(--brand);
 }
