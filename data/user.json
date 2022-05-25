@@ -13,7 +13,7 @@
     "line2": "Service Rd, Block G G 7/3 Blue Area",
     "city": "Karachi",
     "province": "Sindh",
-    "zipcode": 44000
+    "postalcode": 44000
   },
   "emergency": {
     "name": "Muhammad Iqbal",

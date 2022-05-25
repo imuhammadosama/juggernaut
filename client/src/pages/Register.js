@@ -22,7 +22,7 @@ function Register({ closeModal, type }) {
       line2: '',
       city: '',
       province: '',
-      zipcode: 0,
+      postalcode: 0,
     },
     authorize_person_name: '',
     authorize_person_phone: '',
@@ -108,10 +108,10 @@ function Register({ closeModal, type }) {
               ? client.address.province
               : value[0].province
             : client.address.province,
-        zipcode:
-          field === 'Address ZipCode'
+        postalcode:
+          field === 'Address Postal Code'
             ? value.target.value
-            : client.address.zipcode,
+            : client.address.postalcode,
       },
 
       authorize_person_name:
@@ -253,10 +253,12 @@ function Register({ closeModal, type }) {
                 </div>
                 <div className='right-inputs'>
                   <input
-                    value={client.address.zipcode || ''}
-                    onChange={(value) => updateState(value, 'Address ZipCode')}
+                    value={client.address.postalcode || ''}
+                    onChange={(value) =>
+                      updateState(value, 'Address Postal Code')
+                    }
                     type='number'
-                    placeholder='ZipCode'
+                    placeholder='Postal Code'
                   />
                   <br />
                 </div>
@@ -450,10 +452,12 @@ function Register({ closeModal, type }) {
                 </div>
                 <div className='right-inputs'>
                   <input
-                    value={client.address.zipcode || ''}
-                    onChange={(value) => updateState(value, 'Address ZipCode')}
+                    value={client.address.postalcode || ''}
+                    onChange={(value) =>
+                      updateState(value, 'Address Postal Code')
+                    }
                     type='number'
-                    placeholder='ZipCode'
+                    placeholder='Postal Code'
                   />
                   <br />
                 </div>

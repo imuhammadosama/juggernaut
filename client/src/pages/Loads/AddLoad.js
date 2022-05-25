@@ -27,7 +27,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
         line2: '',
         city: '',
         province: '',
-        zipcode: 0,
+        postalcode: 0,
       },
       date: '',
       time: '',
@@ -38,7 +38,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
         line2: '',
         city: '',
         province: '',
-        zipcode: 0,
+        postalcode: 0,
       },
       date: '',
       time: '',
@@ -166,10 +166,10 @@ function AddLoad({ closeOpenAddLoadModal }) {
                 ? load.origin.address.province
                 : value[0].province
               : load.origin.address.province,
-          zipcode:
-            field === 'Origin Address ZipCode'
+          postalcode:
+            field === 'Origin Address Postal Code'
               ? value.target.value
-              : load.origin.address.zipcode,
+              : load.origin.address.postalcode,
         },
         date: field === 'Origin Date' ? value.target.value : load.origin.date,
         time: field === 'Origin Time' ? value.target.value : load.origin.time,
@@ -197,10 +197,10 @@ function AddLoad({ closeOpenAddLoadModal }) {
                 ? load.destination.address.province
                 : value[0].province
               : load.destination.address.province,
-          zipcode:
-            field === 'Destination Address ZipCode'
+          postalcode:
+            field === 'Destination Address Postal Code'
               ? value.target.value
-              : load.destination.address.zipcode,
+              : load.destination.address.postalcode,
         },
         date:
           field === 'Destination Date'
@@ -409,12 +409,12 @@ function AddLoad({ closeOpenAddLoadModal }) {
                   <div className='left-inputs'>
                     <div className='text-left head-label pb-8'>
                       <input
-                        value={load.origin.address.zipcode || ''}
+                        value={load.origin.address.postalcode || ''}
                         onChange={(value) =>
-                          updateState(value, 'Origin Address ZipCode')
+                          updateState(value, 'Origin Address Postal Code')
                         }
                         type='text'
-                        placeholder='ZipCode'
+                        placeholder='Postal Code'
                       />
                     </div>
                   </div>
@@ -539,12 +539,12 @@ function AddLoad({ closeOpenAddLoadModal }) {
                   <div className='left-inputs'>
                     <div className='text-left head-label pb-8'>
                       <input
-                        value={load.destination.address.zipcode || ''}
+                        value={load.destination.address.postalcode || ''}
                         onChange={(value) =>
-                          updateState(value, 'Destination Address ZipCode')
+                          updateState(value, 'Destination Address Postal Code')
                         }
                         type='text'
-                        placeholder='ZipCode'
+                        placeholder='Postal Code'
                       />
                     </div>
                   </div>

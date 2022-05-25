@@ -8,7 +8,7 @@
       "line2": "Gulshan Colony",
       "city": "Lahore",
       "province": "Punjab",
-      "zipcode": 75300
+      "postalcode": 75300
     },
     "date": "2022-01-01T00:00:00.511Z",
     "time": "2022-01-01T00:00:00.511Z"
@@ -19,7 +19,7 @@
       "line2": "Main Clifton Road, Opposite 2 Talwar",
       "city": "Karachi",
       "province": "Sindh",
-      "zipcode": 74000
+      "postalcode": 74000
     },
     "date": "2022-01-02T00:00:00.511Z",
     "time": "2022-01-02T00:00:00.511Z"

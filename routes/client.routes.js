@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
       line2: req.body.address.line2,
       city: req.body.address.city,
       province: req.body.address.province,
-      zipcode: req.body.address.zipcode,
+      postalcode: req.body.address.postalcode,
     },
     authorize_person_name: req.body.authorize_person_name,
     authorize_person_phone: req.body.authorize_person_phone,

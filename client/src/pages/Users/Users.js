@@ -129,7 +129,7 @@ export default function Users() {
             line2: 'N/A',
             city: 'N/A',
             province: 'N/A',
-            zipcode: 'N/A',
+            postalcode: 'N/A',
           },
           emergency: {
             name: 'N/A',
@@ -631,7 +631,7 @@ export default function Users() {
                 <div>{selectedUser.address.line2}</div>
                 <div>{selectedUser.address.city}</div>
                 <div>{selectedUser.address.province}</div>
-                <div>{selectedUser.address.zipcode}</div>
+                <div>{selectedUser.address.postalcode}</div>
               </div>
             </div>
             <div className='border-bottom p-48'>

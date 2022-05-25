@@ -13,7 +13,7 @@ const clientSchema = mongoose.Schema({
     line2: { type: String, required: true },
     city: { type: String, required: true },
     province: { type: String, required: true },
-    zipcode: { type: Number, required: false },
+    postalcode: { type: Number, required: false },
   },
   authorize_person_name: { type: String, required: true },
   authorize_person_phone: { type: String, required: true },

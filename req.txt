@@ -23,7 +23,7 @@ content-type: application/json
       "line2": '',
       "city": '',
       "province": '',
-      "zipcode": 0,
+      "postalcode": 0,
     },
     "authorize_person": {
       "name": '',

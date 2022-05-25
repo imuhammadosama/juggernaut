@@ -32,7 +32,7 @@ router.route('/register').post(async (req, res) => {
       line2: req.body.address.line2,
       city: req.body.address.city,
       province: req.body.address.province,
-      zipcode: req.body.address.zipcode,
+      postalcode: req.body.address.postalcode,
     },
     emergency: {
       name: req.body.emergency.name,

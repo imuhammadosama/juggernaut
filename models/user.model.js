@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
     line2: { type: String, required: true },
     city: { type: String, required: true },
     province: { type: String, required: true },
-    zipcode: { type: Number, required: true },
+    postalcode: { type: Number, required: true },
   },
   emergency: {
     type: Object,

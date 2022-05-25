@@ -21,7 +21,7 @@ export default function AddUser({ closeModal }) {
     line2: '',
     city: '',
     province: '',
-    zipcode: '',
+    postalcode: '',
     emergencyName: '',
     emergencyRelation: '',
     emergencyPhone: '',
@@ -91,7 +91,7 @@ export default function AddUser({ closeModal }) {
         line2: formValues.line2,
         city: formValues.city,
         province: formValues.province,
-        zipcode: formValues.zipcode,
+        postalcode: formValues.postalcode,
       },
       emergency: {
         name: formValues.emergencyName,
@@ -326,10 +326,10 @@ export default function AddUser({ closeModal }) {
                 {formErrors.city}
               </p>
               <input
-                name='zipcode'
-                value={formValues.zipcode}
+                name='postalcode'
+                value={formValues.postalcode}
                 type='number'
-                placeholder='Zipcode'
+                placeholder='Postal Code'
                 onChange={handleChange}
               />
               <input
