@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Select from 'react-dropdown-select';
 import { cities } from '../../data/cities.data';
 import { toast } from 'react-toastify';
-import Cross from '../../assets/images/cross.png';
 
 toast.configure();
 
@@ -146,9 +145,12 @@ export default function AddUser({ closeModal }) {
             <div>
               <h1>Add New User</h1>
             </div>
-            <div onClick={() => closeModal(false)} className='clickable'>
-              <img src={Cross} alt='cross' />
-            </div>
+            <button
+              onClick={() => closeModal(false)}
+              className='secondary-button'
+            >
+              Close
+            </button>
           </div>
           <div>
             <form onSubmit={registerUser} className='px-40'>

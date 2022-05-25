@@ -5,7 +5,6 @@ import Moment from 'react-moment';
 import moment from 'moment';
 import ReactToPrint from 'react-to-print';
 import './Print.css';
-import Cross from '../assets/images/cross.png';
 
 const Print = ({ closePrintModal, selectedLoad, printType }) => {
   const componentRef = useRef();
@@ -85,9 +84,12 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                 )}
                 content={() => componentRef.current}
               />
-              <div onClick={() => closePrintModal(false)} className='clickable'>
-                <img src={Cross} alt='cross' />
-              </div>
+              <button
+                onClick={() => closePrintModal(false)}
+                className='secondary-button'
+              >
+                Close
+              </button>
             </div>
             <div ref={componentRef} className='print-page '>
               <div className='align-center'>

@@ -181,3 +181,45 @@ select.mb-24 {
   font-family: 'Roboto Flex';
   font-weight: 600;
 }
+
+.origin-icon {
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+  position: relative;
+  border-left: 1.5px solid#e0e0e0;
+  margin-top: 32px;
+}
+
+.origin-icon::before {
+  content: '';
+  display: block;
+  background: url('https://svgur.com/i/hh1.svg') no-repeat;
+  width: 8px;
+  height: 8px;
+  float: left;
+  margin-top: -17px;
+  margin-left: -4.5px;
+}
+
+.origin-icon::after {
+  content: '';
+  display: block;
+  background: url('https://svgur.com/i/hiy.svg') no-repeat;
+  width: 8px;
+  height: 8px;
+  float: left;
+  margin-left: -4.5px;
+  margin-top: 64px;
+}
+
+.route-spacer {
+  width: 180px;
+  position: absolute;
+  padding-right: 20px;
+  margin-right: 20px;
+  border-top: 1.5px solid #e0e0e0;
+  margin-top: 10px;
+  margin-left: -8px;
+}

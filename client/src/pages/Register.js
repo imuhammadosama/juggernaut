@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { cities } from '../data/cities.data';
 import Select from 'react-dropdown-select';
 import { useNavigate } from 'react-router-dom';
-import Cross from '../assets/images/cross.png';
 import { toast } from 'react-toastify';
 toast.configure();
 
@@ -149,9 +148,12 @@ function Register({ closeModal, type }) {
               <div>
                 <h1>Business Sign Up</h1>
               </div>
-              <div onClick={() => closeModal(false)} className='clickable'>
-                <img src={Cross} alt='cross' />
-              </div>
+              <button
+                onClick={() => closeModal(false)}
+                className='secondary-button'
+              >
+                Close
+              </button>
             </div>
             <form onSubmit={registerUser} className='px-40'>
               <div className='flex'>
@@ -351,9 +353,12 @@ function Register({ closeModal, type }) {
               <div>
                 <h1>Carrier Sign Up</h1>
               </div>
-              <div onClick={() => closeModal(false)} className='clickable'>
-                <img src={Cross} alt='cross' />
-              </div>
+              <button
+                onClick={() => closeModal(false)}
+                className='secondary-button'
+              >
+                Close
+              </button>
             </div>
             <form onSubmit={registerUser} className='px-40'>
               <div className='flex'>

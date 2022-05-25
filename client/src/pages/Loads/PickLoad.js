@@ -1,7 +1,6 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './PickLoad.css';
-import Cross from '../../assets/images/cross.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import getAuth from '../../services/auth.service.js';
@@ -112,12 +111,12 @@ function PickLoad({ closePickModal, selectedLoad }) {
                   <div>
                     <h1>Pick Load</h1>
                   </div>
-                  <div
+                  <button
                     onClick={() => closePickModal(false)}
-                    className='clickable'
+                    className='secondary-button'
                   >
-                    <img src={Cross} alt='cross' />
-                  </div>
+                    Close
+                  </button>
                 </div>
                 <div className='flex'>
                   <div className='right-inputs pr-24'>

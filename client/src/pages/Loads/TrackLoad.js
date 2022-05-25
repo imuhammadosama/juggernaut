@@ -6,7 +6,6 @@ import './TrackLoad.css';
 import Checked from '../../assets/images/checked.svg';
 import UnChecked from '../../assets/images/unchecked.svg';
 import Line from '../../assets/images/line.svg';
-import Cross from '../../assets/images/cross.png';
 import { useEffect, useState } from 'react';
 
 export default function TrackLoad({ closeTrackModal, load }) {
@@ -37,9 +36,12 @@ export default function TrackLoad({ closeTrackModal, load }) {
               <div>
                 <h1 className='primary pr-64'>Tracking Details</h1>
               </div>
-              <div onClick={() => closeTrackModal(false)} className='clickable'>
-                <img src={Cross} alt='cross' />
-              </div>
+              <button
+                onClick={() => closeTrackModal(false)}
+                className='secondary-button'
+              >
+                Close
+              </button>
             </div>
             <div className='flex flex-item'>
               <div>

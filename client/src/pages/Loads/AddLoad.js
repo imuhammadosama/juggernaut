@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './AddLoad.css';
 import getAuth from '../../services/auth.service';
-import Cross from '../../assets/images/cross.png';
 
 toast.configure();
 

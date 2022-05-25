@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import Cross from '../../assets/images/cross.png';
 import getAuth from '../../services/auth.service';
 
 toast.configure();
@@ -111,9 +110,12 @@ export default function ({ closeModal }) {
             <div>
               <h2>Add New Vehicle</h2>
             </div>
-            <div onClick={() => closeModal(false)} className='clickable'>
-              <img src={Cross} alt='cross' />
-            </div>
+            <button
+              onClick={() => closeModal(false)}
+              className='secondary-button'
+            >
+              Close
+            </button>
           </div>
           <div>
             <form onSubmit={registerVehicle} className='px-40'>

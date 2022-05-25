@@ -48,9 +48,11 @@
 @keyframes modal {
   from {
     top: -1000px;
+    transform: scale(0);
   }
   to {
     top: 20px;
+    transform: scale(1);
   }
 }
 

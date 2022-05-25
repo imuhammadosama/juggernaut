@@ -9,7 +9,6 @@ import { cities } from '../../data/cities.data';
 import Checked from '../../assets/images/checked.svg';
 import UnChecked from '../../assets/images/unchecked.svg';
 import Line from '../../assets/images/line.svg';
-import Cross from '../../assets/images/cross.png';
 
 export default function UpdateTracking({ closeUpdateTrackingModal, load }) {
   const [selectedCity, setSelectedCity] = useState(false);
@@ -68,12 +67,12 @@ export default function UpdateTracking({ closeUpdateTrackingModal, load }) {
               <div>
                 <h1 className='primary pr-64'>Update Tracking</h1>
               </div>
-              <div
+              <button
                 onClick={() => closeUpdateTrackingModal(false)}
-                className='clickable'
+                className='secondary-button'
               >
-                <img src={Cross} alt='cross' />
-              </div>
+                Close
+              </button>
             </div>
             <h3 className='primary'>
               Select City <span className='red'>*</span>

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Cross from '../assets/images/cross.png';
 import './Login.css';
 
 export default function Login({ closeModal }) {
@@ -48,9 +47,12 @@ export default function Login({ closeModal }) {
         <div className='pt-8 pb-16'>
           <div className='flex flex-item space-between px-40 py-16'>
             <p className='login-title'>Login</p>
-            <div onClick={() => closeModal(false)} className='clickable'>
-              <img src={Cross} alt='cross' />
-            </div>
+            <button
+              onClick={() => closeModal(false)}
+              className='secondary-button'
+            >
+              Close
+            </button>
           </div>
           <form onSubmit={loginUser} className='px-40'>
             <input

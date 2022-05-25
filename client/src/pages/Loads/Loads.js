@@ -1115,37 +1115,43 @@ const Loads = () => {
               <div></div>
             )}
             <div className='border-bottom px-32 pt-32 pb-16'>
-              <div className='flex'>
+              <div className='flex '>
+                <div className='origin-icon'></div>
                 <div className='details-left'>
-                  <div>
-                    {selectedLoad.origin.address.city}
-                    <span className='mr-4'>,</span>
-                    {selectedLoad.origin.address.province}
-                    <br />
-                    <p className='small-title'>
-                      <Moment format='ddd d/M'>
-                        {selectedLoad.origin.date}
-                      </Moment>
-                      <span className='mr-4'></span>
-                      {
-                        <Moment format='hh:mm'>
-                          {selectedLoad.origin.time}
-                        </Moment>
-                      }
-                      <span> - </span>
-                      {
-                        <Moment
-                          format='hh:mm'
-                          add={(10, 'minutes')}
-                          date={moment(selectedLoad.origin.time).add(
-                            2,
-                            'hours'
-                          )}
-                        />
-                      }
-                    </p>
+                  <div className=''>
+                    <div className='flex space-between pl-12'>
+                      <div>
+                        {selectedLoad.origin.address.city}
+                        <span className='mr-4'>,</span>
+                        {selectedLoad.origin.address.province}
+                        <br />
+                        <p className='small-title'>
+                          <Moment format='ddd d/M'>
+                            {selectedLoad.origin.date}
+                          </Moment>
+                          <span className='mr-4'></span>
+                          {
+                            <Moment format='hh:mm'>
+                              {selectedLoad.origin.time}
+                            </Moment>
+                          }
+                          <span> - </span>
+                          {
+                            <Moment
+                              format='hh:mm'
+                              add={(10, 'minutes')}
+                              date={moment(selectedLoad.origin.time).add(
+                                2,
+                                'hours'
+                              )}
+                            />
+                          }
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
+                  <div className='route-spacer'></div>
+                  <div className='pt-32 pl-12'>
                     {selectedLoad.destination.address.city}
                     <span className='mr-4'>,</span>
                     {selectedLoad.destination.address.province}
