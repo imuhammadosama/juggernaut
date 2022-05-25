@@ -419,11 +419,11 @@ table {
 
 .sidebar-right {
   height: 100vh;
-  /* overflow: scroll; */
+  overflow: scroll;
 }
 .sidebar-left {
   height: 100vh;
-  /* overflow: scroll; */
+  overflow: scroll;
 }
 
 .loader {

@@ -103,10 +103,6 @@
   display: block;
 }
 
-.all-loads::-webkit-scrollbar {
-  display: none;
-}
-
 /* Filters */
 select.mb-24 {
   padding: 4px !important;

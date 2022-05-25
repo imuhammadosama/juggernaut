@@ -873,3 +873,7 @@ align-center {
 .z-index-1 {
   z-index: 1;
 }
+
+.align-item-baseline {
+  align-items: baseline;
+}

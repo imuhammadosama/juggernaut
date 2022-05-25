@@ -342,21 +342,21 @@ function AddLoad({ closeOpenAddLoadModal }) {
   return (
     <div className='modal-background flex flex-item bg-pending modal-animation'>
       <div
-        className='modal-container mx-144 flex-item text-left modal-container-animation unset-height absolute modal-container-scroll'
+        className='modal-container pt-40 pb-40 text-left modal-container-animation absolute height-eighty modal-container-scroll'
         style={{ backgroundColor: 'none', width: '600px' }}
       >
         <div className='flex flex-item'>
-          <div className='table '>
+          <div className='table'>
             <div className='flex flex-item space-between'>
               <div>
                 <h1>Add New Load</h1>
               </div>
-              <div
+              <button
                 onClick={() => closeOpenAddLoadModal(false)}
-                className='clickable'
+                className='secondary-button'
               >
-                <img src={Cross} alt='cross' />
-              </div>
+                Close
+              </button>
             </div>
             <form onSubmit={submitLoad}>
               <div>
@@ -449,8 +449,6 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       type='time'
                       id='appt'
                       name='appt'
-                      min='09:00'
-                      max='18:00'
                       required
                     />
                   </div>
@@ -583,8 +581,6 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       type='time'
                       id='appt'
                       name='appt'
-                      min='09:00'
-                      max='18:00'
                       required
                     />
                   </div>
