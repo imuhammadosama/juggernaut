@@ -28,7 +28,7 @@ export default function UpdateTracking({ closeUpdateTrackingModal, load }) {
   // Main Function
   const updateLocation = async () => {
     await axios
-      .put(`/loads/updateTrack/${selectedLoad.id}`, {
+      .put(`/loads/updateTrack/${selectedLoad._id}`, {
         tracking_details: {
           city: selectedCity,
           province: '',
@@ -37,21 +37,36 @@ export default function UpdateTracking({ closeUpdateTrackingModal, load }) {
         },
       })
       .then((response) => {
-        console.log(response);
+        // window.location.reload(false);
       });
-    const res = await axios.get(`/loads/${selectedLoad.id}`, {
+    const res = await axios.get(`/loads/${selectedLoad._id}`, {
       method: 'GET',
     });
     setSelectedLoad(res.data.data);
     selectedLoad.destination.address.city === selectedCity
       ? await axios
-          .put(`/loads/complete/${selectedLoad.id}`, {
+          .put(`/loads/complete/${selectedLoad._id}`, {
             status: 'Completed',
           })
           .then((response) => {
             window.location.reload(false);
           })
-      : console.log('Apple2');
+      : console.log('');
+  };
+
+  // Main Function
+  const completeLoad = async () => {
+    await axios
+      .put(`/loads/complete/${selectedLoad._id}`, {
+        status: 'Completed',
+      })
+      .then((response) => {
+        window.location.reload(false);
+      });
+    const res = await axios.get(`/loads/${selectedLoad._id}`, {
+      method: 'GET',
+    });
+    setSelectedLoad(res.data.data);
   };
 
   if (loading) return <div></div>;
@@ -227,7 +242,12 @@ export default function UpdateTracking({ closeUpdateTrackingModal, load }) {
               >
                 Update
               </button>
-              <button className='tertiary-button'>Complete</button>
+              <button
+                className='tertiary-button'
+                onClick={() => completeLoad()}
+              >
+                Complete
+              </button>
             </div>
           </div>
         </div>

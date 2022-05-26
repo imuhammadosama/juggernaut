@@ -17,31 +17,29 @@
   padding: 4px 0px;
 }
 
+.login-button,
 .signup-button {
   text-transform: uppercase;
-  background-color: white;
-  border-radius: 10px;
-  border-color: white;
-  color: #182028;
+  border-radius: 2px;
   padding: 3px 16px;
   outline: none;
-  font-size: 14px;
+  font-size: 12px;
   font-family: 'Poppins';
-  margin-right: 8px;
+
   cursor: pointer;
+  border: none;
+  font-weight: 500;
+}
+
+.signup-button {
+  background-color: white;
+  color: #182028;
+  margin-right: 8px;
 }
 
 .login-button {
-  text-transform: uppercase;
   background-color: var(--brand);
-  border-radius: 10px;
-  border-color: white;
   color: white;
-  padding: 3px 16px;
-  outline: none;
-  font-size: 14px;
-  font-family: 'Poppins';
-  cursor: pointer;
 }
 
 .menu-bar {
@@ -237,11 +235,11 @@
   margin: auto;
   justify-content: center;
   align-items: center;
-  max-width: 1200px;
 }
 .card {
   margin-right: 5px;
   margin-left: 5px;
+  width: 190px;
 }
 .card-active {
   height: 80px;
@@ -350,11 +348,6 @@
 
 .border-line {
   border-top: 1px solid #e2e2e2;
-}
-
-.home-dropdown {
-  /* overflow: hidden; */
-  padding-top: 4px;
 }
 
 .home-dropdown-content {

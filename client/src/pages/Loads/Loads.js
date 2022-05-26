@@ -48,7 +48,7 @@ const Loads = () => {
   const [loading, setLoading] = useState(false);
   const [selectedLoad, setSelectedLoad] = useState(false);
   const [loadAmount, setLoadAmount] = useState(0);
-  const [selectedFilter, setSelectedFilter] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('pending');
   const [printType, setPrintType] = useState('');
 
   // Pagination
@@ -80,6 +80,7 @@ const Loads = () => {
   };
 
   useEffect(() => {
+    // filterPending();
     const loggedUser = getAuth();
     setUser(loggedUser);
 
@@ -100,8 +101,12 @@ const Loads = () => {
           ? await axios.get(`/loads/carrier`)
           : // Add Carrier ID
             await axios.get('/loads');
-
-      setLoads(res.data.data);
+      const l = res.data.data;
+      if (user.type === 'Management') {
+        const p = preLoads.filter((load) => load.status === 'Pending');
+        setLoads(p);
+      }
+      setLoads(l);
 
       setPreLoads(res.data.data);
 
@@ -131,16 +136,41 @@ const Loads = () => {
   const handleSearch = (event) => {
     setSearch(true);
     if (event.target.value) {
-      if (loads.filter((load) => load.id === event.target.value).length === 0) {
-        setLoads(preLoads);
+      if (
+        preLoads.filter((load) => load.id === event.target.value).length === 0
+      ) {
+        if (selectedFilter === 'pending') {
+          filterPending();
+        }
+        if (selectedFilter === 'active') {
+          filterActive();
+        }
+        if (selectedFilter === 'dispatched') {
+          filterDispatched();
+        }
+        if (selectedFilter === 'completed') {
+          filterCompleted();
+        }
         setSearchMessage(<p className='errorMessage m-0'>Load Not Found</p>);
       } else {
-        setLoads(loads.filter((load) => load.id === event.target.value));
+        setLoads(preLoads.filter((load) => load.id === event.target.value));
         setSearchMessage(<p className='success-message m-0'>Load Found</p>);
       }
     } else {
       setSearchMessage('');
-      setLoads(preLoads);
+      if (selectedFilter === 'pending') {
+        filterPending();
+      }
+      if (selectedFilter === 'active') {
+        filterActive();
+      }
+      if (selectedFilter === 'dispatched') {
+        filterDispatched();
+      }
+      if (selectedFilter === 'completed') {
+        filterCompleted();
+      }
+      // setLoads(preLoads);
       setSearch(false);
     }
   };
@@ -205,8 +235,8 @@ const Loads = () => {
     const res = await axios.get(`/loads`, {
       method: 'GET',
     });
-    const loads = res.data;
-    setLoads(loads);
+    const loads = res.data.data;
+    setPreLoads(loads);
   };
 
   const handlePrintSelected = () => {
@@ -216,7 +246,7 @@ const Loads = () => {
   async function acceptLoad(event) {
     event.preventDefault();
     await axios
-      .put(`/loads/accept/${selectedLoad.id}`, {
+      .put(`/loads/accept/${selectedLoad._id}`, {
         amount: loadAmount,
       })
       .then((response) => {
@@ -234,8 +264,10 @@ const Loads = () => {
     const res = await axios.get(`/loads`, {
       method: 'GET',
     });
-    const loads = res.data;
+
+    const loads = res.data.data;
     setLoads(loads);
+    setPreLoads(loads);
   }
 
   const filterPending = () => {
@@ -662,9 +694,6 @@ const Loads = () => {
           {loads.length === 0 ? (
             <div className='text-center'>
               <h1>Load not found!</h1>
-              <p>Recheck Load ID</p>
-              <br />
-              <span>Clear search!</span>
             </div>
           ) : (
             <table>
@@ -886,7 +915,7 @@ const Loads = () => {
                     </td>
                     <td>{load.details.trailer_type}</td>
                     <td>{load.details.distance}</td>
-                    <td>
+                    <td className='table-status'>
                       <div
                         className={`load-tag ${
                           load.status === 'Pending'
@@ -1116,7 +1145,15 @@ const Loads = () => {
             )}
             <div className='border-bottom px-32 pt-32 pb-16'>
               <div className='flex '>
-                <div className='origin-icon'></div>
+                <div
+                  className={
+                    selectedLoad.status === 'Completed'
+                      ? 'completed-icon'
+                      : selectedLoad.status === 'Cancelled'
+                      ? 'cancelled-icon'
+                      : 'origin-icon'
+                  }
+                ></div>
                 <div className='details-left'>
                   <div className=''>
                     <div className='flex space-between pl-12'>
@@ -1183,9 +1220,9 @@ const Loads = () => {
               </div>
             </div>
             {selectedLoad.status === 'Active' && user.type === 'Carrier' ? (
-              <div className='border-bottom py-40 px-80'>
+              <div className='border-bottom py-16 flex-item'>
                 <button
-                  className='primary-button full-width'
+                  className='primary-button'
                   onClick={() => setOpenPickModal(true)}
                 >
                   PICK LOAD

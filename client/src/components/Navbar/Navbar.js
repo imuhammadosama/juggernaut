@@ -60,15 +60,13 @@ function Navigation(props) {
                   Dashboard
                 </a>
                 <a onClick={logout} className='top-bar-content-link' href='#'>
-                  Logout <img src={logoutIcon} />
+                  Logout
                 </a>
               </div>
             ) : (
               <div className='flex'>
                 <div className='home-dropdown'>
-                  <a className='signup-button'>
-                    Signup <img src={downArrow} />
-                  </a>
+                  <button className='signup-button'>Signup</button>
                   <div className='home-dropdown-content'>
                     <li>
                       <a
@@ -92,14 +90,14 @@ function Navigation(props) {
                     </li>
                   </div>
                 </div>
-                <a
+                <button
                   className='login-button'
                   onClick={() => {
                     setOpenLogin(true);
                   }}
                 >
-                  Login <img className='login-arrow' src={loginArrow} />
-                </a>
+                  Login
+                </button>
               </div>
             )}
           </div>

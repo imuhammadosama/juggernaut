@@ -15,7 +15,6 @@ function AddLoad({ closeOpenAddLoadModal }) {
   useEffect(() => {
     const loggedUser = getAuth();
     setUser(loggedUser);
-    console.log(loggedUser);
   }, []);
   const [load, setLoad] = useState({
     status: 'Pending',
@@ -123,6 +122,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
           draggable: true,
           progress: undefined,
         });
+        window.location.reload(false);
       })
       .catch((error) => {
         toast.error(error.message, {

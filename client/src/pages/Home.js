@@ -97,13 +97,13 @@ export default function Home() {
         </div>
       </div>
       <div className='cards'>
-        <img src={roundedLeftArrow} />
-        <img className='card' src='https://i.imgur.com/o9Ne6wi.png' />
-        <img className='card' src='https://i.imgur.com/YgEeHwj.png' />
-        <img className='card' src='https://i.imgur.com/cXTxcqO.png' />
-        <img className='card' src='https://i.imgur.com/9ffIWgr.png' />
-        <img className='card' src='https://i.imgur.com/ZDdYba6.png' />
-        <img src={roundedRightArrow} />
+        <img src={roundedLeftArrow} className='pr-16' />
+        <img className='card' src='https://i.imgur.com/2T6O5Oa.png' />
+        <img className='card' src='https://i.imgur.com/vQIHCdg.png' />
+        <img className='card' src='https://i.imgur.com/g0WtB8G.png' />
+        <img className='card' src='https://i.imgur.com/RKFIX5h.png' />
+        <img className='card' src='https://i.imgur.com/XuhtbM0.png' />
+        <img src={roundedRightArrow} className='pl-16' />
       </div>
       <div className='cities'>
         <img src={leftArrow} />

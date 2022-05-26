@@ -64,3 +64,12 @@
 .show {
   display: block;
 }
+
+.react-dropdown-select-dropdown {
+  width: 100%;
+}
+
+.css-93ilmd-DropDown {
+  width: 100% !important;
+  top: 50px !important;
+}

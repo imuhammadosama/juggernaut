@@ -65,7 +65,7 @@ router.get('/:loadId', async (req, res) => {
     const data = await Load.findOne({ _id: req.params.loadId });
     res.json({ message: 'Found!', status: 'ok', data });
   } catch (error) {
-    res.json({ message: error, status: 'no' });
+    res.json({ message: error, status: 'no', data });
   }
 });
 
@@ -86,7 +86,7 @@ router.get('/origin/:city', async (req, res) => {
 router.put('/accept/:loadId', async (req, res) => {
   try {
     const data = await Load.updateOne(
-      { id: req.params.loadId },
+      { _id: req.params.loadId },
       { $set: { amount: req.body.amount, status: 'Active' } }
     );
     res.json({ message: 'Load is now active!', status: 'ok', data });
@@ -117,7 +117,7 @@ router.put('/pick/:loadId', async (req, res) => {
 router.put('/complete/:loadId', async (req, res) => {
   try {
     const data = await Load.updateOne(
-      { id: req.params.loadId },
+      { _id: req.params.loadId },
       { $set: { status: 'Completed' } }
     );
     res.json({ message: 'Load is complete!', status: 'ok', data });
@@ -165,7 +165,7 @@ router.route('/updateTrack/:loadId').put(async (req, res) => {
   console.log('Run');
   try {
     const data = await Load.updateOne(
-      { id: req.params.loadId },
+      { _id: req.params.loadId },
       {
         $push: {
           tracking_details: {
@@ -219,7 +219,7 @@ router.post('/', async (req, res) => {
         line1: req.body.destination.address.line1,
         line2: req.body.destination.address.line2,
         city: req.body.destination.address.city,
-        province: req.body.destination.adddress.province,
+        province: req.body.destination.address.province,
         postalcode: req.body.destination.postalcode,
       },
       date: req.body.destination.date,

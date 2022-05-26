@@ -54,7 +54,7 @@ export default function Login({ closeModal }) {
               Close
             </button>
           </div>
-          <form onSubmit={loginUser} className='px-40'>
+          <form onSubmit={loginUser} className='px-40 text-left'>
             <input
               value={email}
               onChange={(e) => {

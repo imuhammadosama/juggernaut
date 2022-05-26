@@ -45,6 +45,7 @@ input {
   padding: 12px 24px;
   margin-bottom: 8px;
   border: 1px solid var(--border);
+  border-radius: 6px;
   font-size: 14px !important;
   font-family: 'Inter';
 }
@@ -61,6 +62,10 @@ input {
 
 input[type='Submit'] {
   width: unset;
+}
+
+textarea {
+  border-radius: 6px;
 }
 
 .react-dropdown-select-input {
@@ -102,7 +107,8 @@ h1 {
   color: white;
   text-transform: uppercase;
   background: var(--primary);
-  padding: 8px 16px;
+  padding: 5px 24px;
+  border-radius: 2px;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
@@ -128,7 +134,8 @@ h1 {
   color: white;
   text-transform: uppercase;
   background: var(--secondary);
-  padding: 8px 16px;
+  padding: 5px 24px;
+  border-radius: 2px;
   cursor: pointer;
   text-align: center;
 }
@@ -141,7 +148,8 @@ h1 {
   color: var(--primary);
   text-transform: uppercase;
   background: white;
-  padding: 8px 16px;
+  padding: 5px 24px;
+  border-radius: 2px;
   cursor: pointer;
   text-align: center;
 }
@@ -361,6 +369,26 @@ table {
   font-size: 10px;
 }
 
+.pending-load {
+  transition: 0.3s;
+}
+
+.active-load {
+  transition: 0.3s;
+}
+
+.dispatched-load {
+  transition: 0.3s;
+}
+
+.completed-load {
+  transition: 0.3s;
+}
+
+.cancelled-load {
+  transition: 0.3s;
+}
+
 /* Loads */
 .pending-load:hover {
   background-color: var(--pending-hover);
@@ -410,10 +438,6 @@ table {
 }
 .cancelled-load-selected:hover {
   background-color: var(--cancelled-hover);
-}
-
-.destination {
-  justify-content: center;
 }
 
 .sidebar-right {
@@ -535,13 +559,29 @@ table {
 }
 
 select {
+  padding: 4px !important;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: transparent;
   background-image: url('./assets/images/chev-down.svg');
   background-repeat: no-repeat;
-  background-position-x: 90%;
-  background-position-y: 12px;
+  background-position-x: 95%;
+  background-position-y: 9px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.filter-select {
+  padding: 4px !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url('./assets/images/chev-down.svg');
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 9px;
+  font-size: 12px;
+  border-radius: 6px;
 }
 
 .width-188 {

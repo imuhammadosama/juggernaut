@@ -103,34 +103,29 @@
   display: block;
 }
 
-/* Filters */
-select.mb-24 {
-  padding: 4px !important;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: transparent;
-  background-image: url('../../assets/images/chev-down.svg');
-  background-repeat: no-repeat;
-  background-position-x: 95%;
-  background-position-y: 12px;
-  font-size: 12px;
-}
-
 .load-tag {
   color: white;
   background-color: var(--primary);
-  padding: 8px 10px;
-  min-width: 80px;
+  padding: 4px 10px;
+  border-radius: 2px;
   text-transform: uppercase;
   text-align: center;
+  display: inline;
+  font-weight: 900;
+  font-size: 12px;
+  /* position: absolute; */
+  width: 80px;
 }
 
 .load-tag-pending {
   background-color: var(--pending);
+
+  padding: 4px 20px;
 }
 
 .load-tag-active {
   background-color: var(--active);
+  padding: 4px 25.5px;
 }
 
 .load-tag-dispatched {
@@ -214,6 +209,70 @@ select.mb-24 {
   margin-top: 64px;
 }
 
+.completed-icon {
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+  position: relative;
+  border-left: 1.5px solid#e0e0e0;
+  margin-top: 32px;
+}
+
+.completed-icon::before {
+  content: '';
+  display: block;
+  background: url('https://svgur.com/i/hh1.svg') no-repeat;
+  width: 8px;
+  height: 8px;
+  float: left;
+  margin-top: -17px;
+  margin-left: -4.5px;
+}
+
+.completed-icon::after {
+  content: '';
+  display: block;
+  background: url('https://svgur.com/i/hh1.svg') no-repeat;
+  width: 8px;
+  height: 8px;
+  float: left;
+  margin-left: -4.5px;
+  margin-top: 64px;
+}
+
+.cancelled-icon {
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+  position: relative;
+  border-left: 1.5px solid#e0e0e0;
+  margin-top: 32px;
+}
+
+.cancelled-icon::before {
+  content: '';
+  display: block;
+  background: url('https://svgur.com/i/hh1.svg') no-repeat;
+  width: 8px;
+  height: 8px;
+  float: left;
+  margin-top: -17px;
+  margin-left: -4.5px;
+}
+
+.cancelled-icon::after {
+  content: '';
+  display: block;
+  background: url('https://svgur.com/i/hiX.svg') no-repeat;
+  width: 8px;
+  height: 8px;
+  float: left;
+  margin-left: -4.5px;
+  margin-top: 64px;
+}
+
 .route-spacer {
   width: 180px;
   position: absolute;
@@ -222,4 +281,8 @@ select.mb-24 {
   border-top: 1.5px solid #e0e0e0;
   margin-top: 10px;
   margin-left: -8px;
+}
+
+.table-status {
+  padding-right: 64px !important;
 }
