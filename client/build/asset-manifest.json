@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.fdaebf28.css",
-    "main.js": "/static/js/main.d9e25688.js",
+    "main.css": "/static/css/main.583f1e5e.css",
+    "main.js": "/static/js/main.a39c9b22.js",
     "static/js/498.587cec44.chunk.js": "/static/js/498.587cec44.chunk.js",
     "static/js/703.52a32a35.chunk.js": "/static/js/703.52a32a35.chunk.js",
-    "static/js/377.c1e4c113.chunk.js": "/static/js/377.c1e4c113.chunk.js",
-    "static/media/not-selected.svg": "/static/media/not-selected.584c9e1ef11dfbf2e727dc9e4eceae4c.svg",
+    "static/js/598.179ded07.chunk.js": "/static/js/598.179ded07.chunk.js",
+    "static/media/not-selected.svg": "/static/media/not-selected.33307d1d3c8daccbe257e01d7485d6ad.svg",
     "static/media/404.svg": "/static/media/404.eb79317198d1611b3c544982bf4fe97e.svg",
     "static/media/Instagram.svg": "/static/media/Instagram.7c53a2b500bd13cfdca7871298d3b1c4.svg",
     "static/media/fmcg.svg": "/static/media/fmcg.71193ed8b81a3e9888aceda9cdecb73f.svg",
@@ -25,29 +25,29 @@
     "static/media/agriculture.svg": "/static/media/agriculture.b063ddc93dc6d908a14a49b9df5e8764.svg",
     "static/media/login-arrow.svg": "/static/media/login-arrow.f892b0f54e6ec3ff5b7f89d529e82832.svg",
     "static/media/auto.svg": "/static/media/auto.a5c7a84c0cf4bb4b621d3d0c06452c63.svg",
+    "static/media/left-arrow.svg": "/static/media/left-arrow.d62b893f52f3c68e94addf98de171aa6.svg",
+    "static/media/right-arrow.svg": "/static/media/right-arrow.38d14d8e11d31aecd9a38e3cf9bde3b8.svg",
+    "static/media/rounded-left-arrow.svg": "/static/media/rounded-left-arrow.047005b38eb9cbe08316a8311fb1af4b.svg",
+    "static/media/rounded-right-arrow.svg": "/static/media/rounded-right-arrow.df433c2ff00ded243e7b4884b8250d8c.svg",
     "static/media/down-arrow.svg": "/static/media/down-arrow.675847e64d18fa8eda31993f25760916.svg",
     "static/media/loading.svg": "/static/media/loading.5b3f26296c61dffb500265ef0f13b7fc.svg",
     "static/media/cement.svg": "/static/media/cement.43ea6133ba66e3badbf3e43d72b10aae.svg",
-    "static/media/rounded-left-arrow.svg": "/static/media/rounded-left-arrow.1316de035387cee7cf7f898a846e9402.svg",
     "static/media/pharmaceutical.svg": "/static/media/pharmaceutical.3deb6738bbd5af7a302dbafdcc745618.svg",
-    "static/media/rounded-right-arrow.svg": "/static/media/rounded-right-arrow.a42c60e15dc87a06d599b0d6f49f93a5.svg",
     "static/media/search-icon.svg": "/static/media/search-icon.7c4c691db27e4dd97109c36a14e2e5bd.svg",
     "static/media/general-goods.svg": "/static/media/general-goods.ed324fe7db22ac7f3c415864026c3483.svg",
     "index.html": "/index.html",
-    "static/media/left-arrow.svg": "/static/media/left-arrow.bfe69aa5c36ea5679120df5c1eb2b446.svg",
     "static/media/checked.svg": "/static/media/checked.7168939ef396cfa95bfb7791270e9edb.svg",
-    "static/media/chev-down.svg": "/static/media/chev-down.faf2501563f7d9edcf92.svg",
-    "static/media/right-arrow.svg": "/static/media/right-arrow.d4d6c5473ff067a4e2a7ca06984e55c8.svg",
+    "static/media/chev-down.svg": "/static/media/chev-down.293d7ea943e066361882a9ebec793a18.svg",
     "static/media/line.svg": "/static/media/line.a927e977a18b52d808ebaf346124f3cd.svg",
     "static/media/unchecked.svg": "/static/media/unchecked.59d1008acc2ea9c7c1cd78365c340506.svg",
-    "main.fdaebf28.css.map": "/static/css/main.fdaebf28.css.map",
-    "main.d9e25688.js.map": "/static/js/main.d9e25688.js.map",
+    "main.583f1e5e.css.map": "/static/css/main.583f1e5e.css.map",
+    "main.a39c9b22.js.map": "/static/js/main.a39c9b22.js.map",
     "498.587cec44.chunk.js.map": "/static/js/498.587cec44.chunk.js.map",
     "703.52a32a35.chunk.js.map": "/static/js/703.52a32a35.chunk.js.map",
-    "377.c1e4c113.chunk.js.map": "/static/js/377.c1e4c113.chunk.js.map"
+    "598.179ded07.chunk.js.map": "/static/js/598.179ded07.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fdaebf28.css",
-    "static/js/main.d9e25688.js"
+    "static/css/main.583f1e5e.css",
+    "static/js/main.a39c9b22.js"
   ]
 }

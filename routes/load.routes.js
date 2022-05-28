@@ -65,7 +65,7 @@ router.get('/:loadId', async (req, res) => {
     const data = await Load.findOne({ _id: req.params.loadId });
     res.json({ message: 'Found!', status: 'ok', data });
   } catch (error) {
-    res.json({ message: error, status: 'no', data });
+    res.json({ message: error, status: 'no' });
   }
 });
 
@@ -75,6 +75,19 @@ router.get('/origin/:city', async (req, res) => {
     const data = await Load.find({
       // prettier-ignore
       'origin.address.city': req.params.city,
+    });
+    res.json({ message: 'Found!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
+// Getting single load
+router.get('/destination/:city', async (req, res) => {
+  try {
+    const data = await Load.find({
+      // prettier-ignore
+      'destination.address.city': req.params.city,
     });
     res.json({ message: 'Found!', status: 'ok', data });
   } catch (error) {

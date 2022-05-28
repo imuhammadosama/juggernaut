@@ -1,0 +1,83 @@
+.card-content {
+  position: absolute;
+  bottom: 40px;
+}
+
+.comodity-slider-title {
+  color: white;
+  font-weight: bold;
+  font-family: 'Poppins';
+  font-size: 20px;
+}
+.comodity-slider-details {
+  color: white;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+.card-slider-one {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/ep6bN3O.png');
+  background-repeat: no-repeat;
+}
+
+.card-slider-two {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/qXBJaIa.png');
+  background-repeat: no-repeat;
+}
+
+.card-slider-three {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/rYswiFY.png');
+  background-repeat: no-repeat;
+}
+.card-slider-four {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/qr9Ky9e.png');
+  background-repeat: no-repeat;
+}
+.card-slider-five {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/ejTST8l.png');
+  background-repeat: no-repeat;
+}
+.card-slider-six {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/IH3Y8of.png');
+  background-repeat: no-repeat;
+}
+.card-slider-seven {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/9P3VEvT.png');
+  background-repeat: no-repeat;
+}
+.card-slider-eight {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/CJ55HzG.png');
+  background-repeat: no-repeat;
+}
+.card-slider-nine {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/I3R8pfR.png');
+  background-repeat: no-repeat;
+}
+.card-slider-ten {
+  height: 282px;
+  width: 190px !important;
+  background: url('https://i.imgur.com/tT8RWmp.png');
+  background-repeat: no-repeat;
+}
+
+.title-PHARMACEUTICALS {
+  font-size: 16px;
+}

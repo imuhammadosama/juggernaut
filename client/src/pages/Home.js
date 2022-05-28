@@ -1,41 +1,17 @@
 import './Home.css';
 
-// Icons
-import rightArrow from '../assets/icons/right-arrow.svg';
-import leftArrow from '../assets/icons/left-arrow.svg';
-
-import roundedRightArrow from '../assets/icons/rounded-right-arrow.svg';
-import roundedLeftArrow from '../assets/icons/rounded-left-arrow.svg';
-
 import Footer from '../components/Footer/Footer';
 
-import Video from '../components/Modal/Video/Video';
 import { useState } from 'react';
 
+import Slider from '../components/Sliders/Slider';
+import CardSlider from '../components/CardSlider/CardSlider';
+import CitiesSlider from '../components/CitiesSlider/CitiesSlider';
+
 export default function Home() {
-  const [openModal, setOpenModal] = useState(false);
-
-  function slide() {
-    const slider = document.getElementById('slider');
-    slider.src === 'https://i.imgur.com/JGlqMPT.jpg'
-      ? (slider.src = 'https://i.imgur.com/zUOlo9y.jpg')
-      : (slider.src = 'https://i.imgur.com/JGlqMPT.jpg');
-  }
-
   return (
     <div>
-      {openModal && <Video closeModal={setOpenModal} />}
-      <div className='sliders'>
-        <img src='https://i.imgur.com/JGlqMPT.jpg' id='slider' />
-        <div className='slider-content'>
-          <div id='slider-previous' className='pl-120' onClick={slide}>
-            <img src={leftArrow} />
-          </div>
-          <div id='slider-next' className='pr-120' onClick={slide}>
-            <img src={rightArrow} />
-          </div>
-        </div>
-      </div>
+      <Slider />
       <div className='home-content'>
         <div className='about-section'>
           <div className='about-section-column'>
@@ -87,33 +63,17 @@ export default function Home() {
             <button className='home-button'>Find details</button>
           </div>
         </div>
-        <div className='mission-section-column'>
-          <img
-            src='https://i.imgur.com/LDNv9FJ.png'
-            width={'360px'}
-            onClick={() => setOpenModal(true)}
-            className='home-video'
-          />
-        </div>
+        <div className='mission-section-column'></div>
       </div>
-      <div className='cards'>
-        <img src={roundedLeftArrow} className='pr-16' />
-        <img className='card' src='https://i.imgur.com/2T6O5Oa.png' />
-        <img className='card' src='https://i.imgur.com/vQIHCdg.png' />
-        <img className='card' src='https://i.imgur.com/g0WtB8G.png' />
-        <img className='card' src='https://i.imgur.com/RKFIX5h.png' />
-        <img className='card' src='https://i.imgur.com/XuhtbM0.png' />
-        <img src={roundedRightArrow} className='pl-16' />
+      <div className='max-width-1200'>
+        <CardSlider />
       </div>
       <div className='cities'>
-        <img src={leftArrow} />
-        <p className='city'>Karachi</p>
-        <p className='city'>Lahore</p>
-        <p className='city city-active'>Islamabad</p>
-        <p className='city'>Rawalpindi</p>
-        <p className='city'>Peshawar</p>
-        <img src={rightArrow} />
+        <div className='max-width-1200'>
+          <CitiesSlider />
+        </div>
       </div>
+
       <Footer />
     </div>
   );

@@ -1,0 +1,23 @@
+.cities-slider-title {
+  color: white;
+  font-weight: bold;
+  font-family: 'Poppins';
+  font-size: 20px;
+}
+.cities-slider-details {
+  color: white;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+.cities-slider {
+  height: 80px;
+  width: 190px !important;
+}
+
+.mySwiper3 > .swiper-pagination-horizontal {
+  display: none;
+}
+
+.mySwiper3 > .swiper-wrapper {
+}

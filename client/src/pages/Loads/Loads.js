@@ -68,9 +68,9 @@ const Loads = () => {
   const [destination, setDestination] = useState('');
 
   // Filter loads
-  const handleFilterOrigin = async (e) => {
+  const handleFilter = async (e) => {
     console.log(e.target.value);
-    if (e.target.value !== 'Select') {
+    if (e.target.value !== 'All') {
       setOrigin(e.target.value);
       const res = await axios.get(`/loads/origin/${e.target.value}`);
       setLoads(res.data.data);
@@ -373,10 +373,10 @@ const Loads = () => {
           <div className='small-title pb-8'>Origin</div>
           <select
             style={{ backgroundColor: 'White' }}
-            className='mb-24'
-            onChange={handleFilterOrigin}
+            className='mb-24 full-width'
+            onChange={handleFilter}
           >
-            <option>Select</option>
+            <option value='All'>All</option>
             {preLoads
               .map((load) => load.origin.address.city)
               .filter((value, index, self) => self.indexOf(value) === index)
@@ -385,7 +385,11 @@ const Loads = () => {
               })}
           </select>
           <div className='small-title pb-8'>Destination</div>
-          <select style={{ backgroundColor: 'White' }} className='mb-24'>
+          <select
+            style={{ backgroundColor: 'White' }}
+            className='mb-24 full-width'
+          >
+            <option value='All'>All</option>
             {preLoads
               .map((load) => load.destination.address.city)
               .filter((value, index, self) => self.indexOf(value) === index)
@@ -394,212 +398,17 @@ const Loads = () => {
               })}
           </select>
         </div>
-        <div className='p-16 border-bottom-white'>
-          <div className='bold pb-16'>Business</div>
-          <select style={{ backgroundColor: 'White' }} className='mb-24'>
-            {preLoads
-              .map((load) => load.other_details.business_name)
-              .filter((value, index, self) => self.indexOf(value) === index)
-              .map((location, index) => {
-                return <option key={index}>{location}</option>;
-              })}
-          </select>
-        </div>
-        <div className='p-16 border-bottom-white'>
-          <div className='bold pb-16'>Carrier</div>
-          <select style={{ backgroundColor: 'White' }} className='mb-24'>
-            {preLoads
-              .map((load) => load.other_details.carrier_name)
-              .filter((value, index, self) => self.indexOf(value) === index)
-              .map((location, index) => {
-                return <option key={index}>{location}</option>;
-              })}
-          </select>
-        </div>
+
         <div className='p-16 border-bottom-white'>
           <div className='bold pb-16'>Vehicle</div>
-          <input
-            type='checkbox'
-            id='container'
-            name='Container'
-            value='Container'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='container'>
-            {' '}
-            Container
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='container'
-            name='Container'
-            value='Container'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='container'>
-            {' '}
-            Dry Van / Enclosed Trailer{' '}
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='container'
-            name='Container'
-            value='Container'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='container'>
-            {' '}
-            Flatbed
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='container'
-            name='Container'
-            value='Container'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='container'>
-            {' '}
-            Lowboy Trailer
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='container'
-            name='Container'
-            value='Container'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='container'>
-            {' '}
-            Oil Tanker
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='container'
-            name='Container'
-            value='Container'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='container'>
-            {' '}
-            Reefer
-          </label>
+          <input type='checkbox' value='Container' />
+          Container
           <br />
         </div>
-        <div className='p-16 pb-120 border-bottom-white'>
+        <div className='p-16 '>
           <div className='bold pb-16'>Commodity</div>
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            Auto
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            Beverages
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            Cement
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            Chemical
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            FMCG
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            General Goods
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            Oil & Gas
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            Pharmaceutical
-          </label>
-          <br />
-          <input
-            type='checkbox'
-            id='auto'
-            name='Auto'
-            value='Auto'
-            style={{ width: 'unset' }}
-          />
-          <label className='filter-checkbox' htmlFor='auto'>
-            {' '}
-            Textile
-          </label>
+          <input type='checkbox' value='Auto' />
+          Auto
           <br />
         </div>
       </div>

@@ -1,0 +1,88 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mySwiper > .swiper-pagination {
+  padding-bottom: 32px;
+}
+
+.home-slider-one {
+  background: linear-gradient(180deg, #4084cf 42.71%, #004993 100%);
+  height: 700px;
+}
+
+.home-slider-two {
+  background: url('https://i.imgur.com/XBM3Aew.png') no-repeat;
+  background-size: cover;
+  height: 700px;
+}
+.home-slider-three {
+  background: url('https://i.imgur.com/sxEEGez.png') no-repeat;
+  background-size: cover;
+  height: 700px;
+}
+.home-slider-four {
+  background: url('https://i.imgur.com/6I8ykag.png') no-repeat;
+  background-size: cover;
+  height: 700px;
+}
+
+.home-slider-one-content {
+  color: white;
+  min-width: 1200px;
+}
+
+.home-slider-one-content-title {
+  font-family: 'Poppins';
+  font-size: 40px;
+  letter-spacing: -1.5px;
+}
+
+.home-slider-one-content-description {
+  font-family: 'Poppins';
+  font-size: 24px;
+  letter-spacing: -0.5px;
+}
+
+.home-slider-one-content-button {
+  background-color: white;
+  font-family: 'Poppins';
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  padding: 8px 16px;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 8px;
+  cursor: pointer;
+}

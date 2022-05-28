@@ -18,6 +18,7 @@ import Invoice from './components/Printables/Invoice';
 import Business from './pages/Business';
 import PickLoad from './pages/Loads/PickLoad';
 import Print from './pages/Print';
+import Slider from './components/Sliders/Slider';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route exact path='/vehicle/add' element={<AddVehicle />} />
         <Route exact path='/invoice' element={<Invoice />} />
         <Route exact path='/print' element={<Print />} />
+        <Route exact path='/slider' element={<Slider />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
