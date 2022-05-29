@@ -73,6 +73,7 @@ function Register({ closeModal, type }) {
           draggable: true,
           progress: undefined,
         });
+        closeModal(false);
       })
       .catch((error) => {
         console.log(error);
@@ -166,12 +167,13 @@ function Register({ closeModal, type }) {
                   </div>
                   <input
                     value={(client.type = 'Business')}
-                    className='hideMe'
+                    className='hideMe full-width'
                   />
                   <input
                     value={client.name || ''}
                     onChange={(value) => updateState(value, 'Name')}
                     type='text'
+                    className='full-width'
                     placeholder='Business Name'
                   />
                   <br />
@@ -186,6 +188,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) => updateState(value, 'STRN')}
                     type='text'
                     placeholder='Business STRN'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -201,6 +204,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) => updateState(value, 'NTN')}
                     type='text'
                     placeholder='Business NTN'
+                    className='full-width'
                   />
                   <br />
                   <div className='text-left head-label pb-8 pt-16'>
@@ -214,6 +218,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) => updateState(value, 'Email')}
                     type='email'
                     placeholder='Buisness Email'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -229,6 +234,7 @@ function Register({ closeModal, type }) {
                 onChange={(value) => updateState(value, 'Address Line1')}
                 type='text'
                 placeholder='Line 1'
+                className='full-width'
               />
               <br />
               <input
@@ -236,6 +242,7 @@ function Register({ closeModal, type }) {
                 onChange={(value) => updateState(value, 'Address Line2')}
                 type='text'
                 placeholder='Line 2'
+                className='full-width'
               />
               <br />
               <div className='flex flex-wrap'>
@@ -251,6 +258,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) => {
                       updateState(value, 'Address City');
                     }}
+                    className='full-width'
                   />
                 </div>
                 <div className='right-inputs'>
@@ -261,6 +269,7 @@ function Register({ closeModal, type }) {
                     }
                     type='number'
                     placeholder='Postal Code'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -281,6 +290,7 @@ function Register({ closeModal, type }) {
                     }
                     type='text'
                     placeholder='Name'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -298,6 +308,7 @@ function Register({ closeModal, type }) {
                     }
                     type='number'
                     placeholder='Phone'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -375,6 +386,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) => updateState(value, 'Name')}
                     type='text'
                     placeholder='Company Name'
+                    className='full-width'
                   />
                   <br />
                   <div className='text-left head-label pb-8 pt-16'>
@@ -388,6 +400,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) => updateState(value, 'STRN')}
                     type='text'
                     placeholder='Company STRN'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -403,6 +416,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) => updateState(value, 'NTN')}
                     type='text'
                     placeholder='Company NTN'
+                    className='full-width'
                   />
                   <br />
                   <div className='text-left head-label pb-8 pt-16'>
@@ -416,6 +430,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) => updateState(value, 'Email')}
                     type='email'
                     placeholder='Company Email'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -431,6 +446,7 @@ function Register({ closeModal, type }) {
                 onChange={(value) => updateState(value, 'Address Line1')}
                 type='text'
                 placeholder='Line 1'
+                className='full-width'
               />
               <br />
               <input
@@ -438,6 +454,7 @@ function Register({ closeModal, type }) {
                 onChange={(value) => updateState(value, 'Address Line2')}
                 type='text'
                 placeholder='Line 2'
+                className='full-width'
               />
               <br />
               <div className='flex flex-wrap'>
@@ -463,6 +480,7 @@ function Register({ closeModal, type }) {
                     }
                     type='number'
                     placeholder='Postal Code'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -483,6 +501,7 @@ function Register({ closeModal, type }) {
                     }
                     type='text'
                     placeholder='Name'
+                    className='full-width'
                   />
                   <br />
                 </div>
@@ -500,6 +519,7 @@ function Register({ closeModal, type }) {
                     }
                     type='number'
                     placeholder='Phone'
+                    className='full-width'
                   />
                   <br />
                 </div>

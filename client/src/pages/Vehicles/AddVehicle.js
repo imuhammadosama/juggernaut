@@ -103,7 +103,7 @@ export default function ({ closeModal }) {
     <div className='modal-background flex flex-item bg-pending'>
       <div
         className='modal-container mx-144 flex-item absolute modal-container-animation modal-container-scroll'
-        style={{ backgroundColor: 'none', width: '600px' }}
+        style={{ backgroundColor: 'none', width: '550px' }}
       >
         <div className='pt-8 pb-16 modal-content'>
           <div className='flex flex-item space-between px-40 py-16'>
@@ -133,6 +133,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='Daewo'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p className={formErrors.make ? 'errorMessage' : 'hideMe'}>
                     {formErrors.make}
@@ -151,6 +152,7 @@ export default function ({ closeModal }) {
                     type='date'
                     placeholder='Year'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p className={formErrors.year ? 'errorMessage' : 'hideMe'}>
                     {formErrors.year}
@@ -171,6 +173,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='i.e. Container'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p
                     className={
@@ -193,6 +196,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='2 Axles'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p
                     className={
@@ -217,6 +221,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='i.e. ABC12345.....'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p
                     className={
@@ -241,6 +246,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='i.e. ABC12345.....'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p
                     className={
@@ -265,6 +271,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='i.e. ABC12345.....'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p
                     className={
@@ -287,6 +294,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='i.e. ABC12345.....'
                     onChange={handleChange}
+                    // className='full-width'
                   />
                   <p
                     className={
@@ -312,6 +320,7 @@ export default function ({ closeModal }) {
                     type='file'
                     placeholder='Vehicle Picture'
                     onChange={handleChange}
+                    className='full-width'
                     multiple
                     accept='image/png, image/jpg, image/jpeg'
                   />
@@ -336,6 +345,7 @@ export default function ({ closeModal }) {
                     type='file'
                     placeholder='Registeration Documents'
                     onChange={handleChange}
+                    className='full-width'
                     multiple
                     accept='document/pdf'
                   />

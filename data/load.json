@@ -1,103 +1,63 @@
 {
-  "id": "1234567",
-  "status": "Pending, Active, Dispatched, Completed, Cancelled",
+  "id": "0",
+  "status": "Pending",
   "start_date": "2020-01-01T00:00:00.511Z",
+  "amount": 0,
   "origin": {
     "address": {
-      "line1": "Walton Road",
-      "line2": "Gulshan Colony",
-      "city": "Lahore",
-      "province": "Punjab",
-      "postalcode": 75300
+      "line1": "1",
+      "line2": "1",
+      "city": "1",
+      "province": "1",
+      "postalcode": "1"
     },
-    "date": "2022-01-01T00:00:00.511Z",
-    "time": "2022-01-01T00:00:00.511Z"
+    "date_and_time": "2020-01-01T00:00:00.511Z"
   },
   "destination": {
     "address": {
-      "line1": "12th Floor, Emerald Tower",
-      "line2": "Main Clifton Road, Opposite 2 Talwar",
-      "city": "Karachi",
-      "province": "Sindh",
-      "postalcode": 74000
+      "line1": "1",
+      "line2": "1",
+      "city": "1",
+      "province": "1",
+      "postalcode": "1"
     },
-    "date": "2022-01-02T00:00:00.511Z",
-    "time": "2022-01-02T00:00:00.511Z"
+    "date_and_time": "2020-01-01T00:00:00.511Z"
   },
-  "calculated_distance": 200,
+  "distance": 0,
   "details": {
-    "distance": "200km",
-    "trailer_type": "Container",
-    "trailer_axle": 2,
-    "full_or_partial": "Full",
+    "trailer_type": "1",
+    "trailer_axle": "1",
+    "full_or_partial": "1",
     "capacity": {
-      "value": "10",
-      "unit": "ltrs"
+      "value": 1,
+      "unit": "1"
     },
-    "quantity": 10,
+    "quantity": 1,
     "weight": {
-      "value": "10",
-      "unit": "kgs"
+      "value": 1,
+      "unit": "1"
     },
-    "volume": { "value": "10", "unit": "cubicmeter" },
-    "comodity_description": "",
-    "quantity_description": "Cartons",
-    "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porttitor massa viverra risus feugiat blandit. Sed accumsan dui at hendrerit volutpat."
+    "volume": {
+      "value": 1,
+      "unit": "1"
+    },
+    "comodity_description": "1",
+    "quantity_description": "1",
+    "notes": "1"
   },
   "consignor": {
-    "name": "Muhammad Ali",
-    "phone": "+92 335 252 2522"
+    "name": "1",
+    "phone": "1"
   },
   "consignee": {
-    "name": "Muhammad Osama",
-    "phone": "+92 300 204 2345"
-  },
-  "dispatched_document": {
-    "path": "loads/dispatch_documents/jan/2021/dispatch_001.pdf"
-  },
-  "invoice_document": {
-    "path": "loads/invoice_documents/jan/2021/invoice_001.pdf"
+    "name": "1",
+    "phone": "1"
   },
   "tracking_details": {
-    "locations": [
-      {
-        "origin": {
-          "city": "Lahore",
-          "province": "Punjab",
-          "date": "2022-01-01T00:00:00.511Z",
-          "time": "2022-01-01T00:00:00.511Z"
-        }
-      },
-      {
-        "destination": {
-          "city": "Karachi",
-          "province": "Sindh",
-          "date": "2022-01-01T00:00:00.511Z",
-          "time": "2022-01-01T00:00:00.511Z"
-        }
-      },
-      {
-        "location1": {
-          "city": "Multan",
-          "province": "Punjab",
-          "date": "2022-01-01T00:00:00.511Z",
-          "time": "2022-01-01T00:00:00.511Z"
-        }
-      },
-      {
-        "location2": {
-          "city": "Hyderabad",
-          "province": "Sindh",
-          "date": "2022-01-01T00:00:00.511Z",
-          "time": "2022-01-01T00:00:00.511Z"
-        }
-      }
-    ]
+    "locations": [{}]
   },
-  "other_details": {
-    "business_id": "123456789",
-    "shipper_id": "1234567",
-    "amount_set_by": "1234567",
-    "tracked_by": "1234567"
-  }
+  "business_id": "1",
+  "shipper_id": "1",
+  "amount_set_by": "1",
+  "tracked_by": "1"
 }

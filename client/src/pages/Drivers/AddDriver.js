@@ -107,7 +107,7 @@ export default function ({ closeModal }) {
     <div className='modal-background flex flex-item bg-pending modal-animation'>
       <div
         className='modal-container mx-144 flex-item text-left modal-container-animation unset-height absolute modal-container-scroll'
-        style={{ backgroundColor: 'none', width: '600px' }}
+        style={{ backgroundColor: 'none', width: '580px' }}
       >
         <div className='pt-8 pb-16 modal-content'>
           <div className='flex flex-item space-between px-40 py-16'>
@@ -137,6 +137,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='Enter driver’s name'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p className={formErrors.name ? 'errorMessage' : 'hideMe'}>
                     {formErrors.name}
@@ -155,6 +156,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='Enter driver’s father name'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p
                     className={
@@ -179,6 +181,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='00000-0000000-0'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p className={formErrors.cnic ? 'errorMessage' : 'hideMe'}>
                     {formErrors.cnic}
@@ -197,6 +200,7 @@ export default function ({ closeModal }) {
                     type='text'
                     placeholder='0000-000-000-0000'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p className={formErrors.phone ? 'errorMessage' : 'hideMe'}>
                     {formErrors.phone}
@@ -215,6 +219,7 @@ export default function ({ closeModal }) {
                     name='licence_category'
                     value={formValues.licence_category}
                     onChange={handleChange}
+                    className='full-width'
                   >
                     <option>HTV</option>
                     <option>LTV</option>
@@ -239,6 +244,7 @@ export default function ({ closeModal }) {
                     value={formValues.licence_expiry}
                     type='date'
                     onChange={handleChange}
+                    className='full-width'
                   />
                   <p
                     className={
@@ -309,6 +315,7 @@ export default function ({ closeModal }) {
                     value={formValues.upload_cnic}
                     type='file'
                     onChange={handleChange}
+                    className='full-width'
                     multiple
                     accept='image/png, image/jpg, image/jpeg'
                   />
@@ -332,6 +339,7 @@ export default function ({ closeModal }) {
                     value={formValues.upload_licence}
                     type='file'
                     onChange={handleChange}
+                    className='full-width'
                     multiple
                     accept='document/pdf'
                   />

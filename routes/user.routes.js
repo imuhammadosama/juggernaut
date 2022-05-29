@@ -13,12 +13,14 @@ router.route('/').get(async (req, res) => {
 });
 
 router.route('/register').post(async (req, res) => {
+  const lastLoad = await User.find({}).sort({ _id: -1 }).limit(1);
+  const lastId = parseInt(lastLoad[0].id);
+  const uniqueId = lastId + 1;
   const user = new User({
-    id: '123456789',
-    company: {
-      id: req.body.company.id,
-      name: req.body.company.name,
-    },
+    id: uniqueId,
+    status: 'Active',
+    company_id: req.body.company_id,
+    company_name: req.body.company_name,
     name: req.body.name,
     cnic: req.body.cnic,
     father_name: req.body.father_name,
@@ -39,7 +41,7 @@ router.route('/register').post(async (req, res) => {
       relation: req.body.emergency.relation,
       phone: req.body.emergency.phone,
     },
-    other_details: { added_by: req.body.other_details.added_by },
+    added_by: req.body.added_by,
   });
   try {
     const userExists = await User.findOne({ email: req.body.email });
@@ -60,14 +62,17 @@ router.route('/login').post(async (req, res) => {
     const user = await User.findOne({
       email: req.body.email,
       password: req.body.password,
+      status: 'Active',
     });
     if (user) {
       const token = jwt.sign(
         {
+          status: user.status,
+          id: user.id,
           name: user.name,
           email: user.email,
           type: user.type,
-          company: user.company.id,
+          company: user.company_id,
         },
         'secret123'
       );

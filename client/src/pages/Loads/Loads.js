@@ -42,12 +42,13 @@ const Loads = () => {
   const [openPickModal, setOpenPickModal] = useState(false);
 
   // General States
-  const [user, setUser] = useState({});
+  const user = getAuth();
   const [loads, setLoads] = useState([]);
   const [preLoads, setPreLoads] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedLoad, setSelectedLoad] = useState(false);
   const [loadAmount, setLoadAmount] = useState(0);
+  const [loadDistance, setLoadDistance] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState('pending');
   const [printType, setPrintType] = useState('');
 
@@ -81,23 +82,22 @@ const Loads = () => {
 
   useEffect(() => {
     // filterPending();
-    const loggedUser = getAuth();
-    setUser(loggedUser);
-
+    getAuth();
+    console.log(user);
     fetch = async () => {
       setLoading(true);
 
       const res =
-        loggedUser.type === 'Management'
+        user.type === 'Management'
           ? await axios.get('/loads')
-          : loggedUser.type === 'Dispatch / Tracking'
+          : user.type === 'Dispatch / Tracking'
           ? await axios.get('/loads/dispatchTracking')
-          : loggedUser.type === 'Billing / Invoice'
+          : user.type === 'Billing / Invoice'
           ? await axios.get('/loads/billingInvoice')
-          : loggedUser.type === 'Business'
+          : user.type === 'Business'
           ? // Add Carrier ID
-            await axios.get('/loads/business')
-          : loggedUser.type === 'Carrier'
+            await axios.get(`loads/business/${user.company}`)
+          : user.type === 'Carrier'
           ? await axios.get(`/loads/carrier`)
           : // Add Carrier ID
             await axios.get('/loads');
@@ -248,6 +248,8 @@ const Loads = () => {
     await axios
       .put(`/loads/accept/${selectedLoad._id}`, {
         amount: loadAmount,
+        distance: loadDistance,
+        amount_set_by: user.id,
       })
       .then((response) => {
         setSelectedLoad(false);
@@ -356,7 +358,7 @@ const Loads = () => {
           <input type='date' />
           <input type='date' />
         </div> */}
-        {user.type === 'Business' ? (
+        {user.type === 'Business' || user.type === 'Management' ? (
           <div className='p-16 border-bottom-white flex flex-item bg-white border-right-grey'>
             <button
               onClick={() => setOpenAddLoadModal(true)}
@@ -534,17 +536,27 @@ const Loads = () => {
                       {load.origin.address.province}
                       <br />
                       <p className='time'>
-                        <Moment format='ddd d/M'>{load.origin.date}</Moment>
+                        <Moment format='ddd d/M'>
+                          {load.origin.date_and_time}
+                        </Moment>
                         <span className='mr-4'></span>
-                        {<Moment format='hh:mm'>{load.origin.time}</Moment>}
+                        {
+                          <Moment format='hh:mm'>
+                            {load.origin.date_and_time}
+                          </Moment>
+                        }
                         <span> - </span>
                         {
                           <Moment
                             format='hh:mm'
                             add={(10, 'minutes')}
-                            date={moment(load.origin.time).add(2, 'hours')}
+                            date={moment(load.origin.date_and_time).add(
+                              2,
+                              'hours'
+                            )}
                           />
                         }
+                        &nbsp;HRS
                       </p>
                     </td>
                     <td>
@@ -557,28 +569,30 @@ const Loads = () => {
                           <br />
                           <p className='time'>
                             <Moment format='ddd d/M'>
-                              {load.destination.date}
+                              {load.destination.date_and_time}
                             </Moment>
                             <span className='mr-4'></span>
-                            {
-                              <Moment format='hh:mm'>
-                                {load.destination.time}
-                              </Moment>
-                            }
+                            <Moment format='hh:mm'>
+                              {load.destination.date_and_time}
+                            </Moment>{' '}
                             <span> - </span>
                             {
                               <Moment
                                 format='hh:mm'
                                 add={(10, 'minutes')}
-                                date={moment(load.origin.time).add(2, 'hours')}
+                                date={moment(load.origin.date_and_time).add(
+                                  2,
+                                  'hours'
+                                )}
                               />
                             }
+                            &nbsp;HRS
                           </p>
                         </div>
                       </div>
                     </td>
                     <td>{load.details.trailer_type}</td>
-                    <td>{load.details.distance}</td>
+                    <td>{load.distance}</td>
                     <td>
                       <button
                         className='secondary-button'
@@ -645,9 +659,6 @@ const Loads = () => {
           {loads.length === 0 ? (
             <div className='text-center'>
               <h1>Load not found!</h1>
-              <p>Recheck Load ID</p>
-              <br />
-              <span>Clear search!</span>
             </div>
           ) : (
             <table>
@@ -723,7 +734,7 @@ const Loads = () => {
                       </div>
                     </td>
                     <td>{load.details.trailer_type}</td>
-                    <td>{load.details.distance}</td>
+                    <td>{load.distance}</td>
                     <td className='table-status'>
                       <div
                         className={`load-tag ${
@@ -765,23 +776,35 @@ const Loads = () => {
                 user.type === 'Management' ? (
                   <div className='py-16 bg-pending flex flex-column px-16'>
                     <div className='white bold pb-16'>Accept Load</div>
-                    <div className='white pb-12  uppercase bold'>Amount</div>
                     <div>
-                      <form className='flex' onSubmit={acceptLoad}>
+                      <form onSubmit={acceptLoad}>
                         <div>
-                          <input
-                            type='number'
-                            placeholder='50,000 PKR'
-                            onChange={(event) =>
-                              setLoadAmount(event.target.value)
-                            }
-                          />
+                          <div>
+                            <input
+                              type='number'
+                              placeholder='Amount'
+                              onChange={(event) =>
+                                setLoadAmount(event.target.value)
+                              }
+                              className='full-width'
+                            />
+                          </div>
+                          <div>
+                            <input
+                              type='number'
+                              placeholder='Distance'
+                              onChange={(event) =>
+                                setLoadDistance(event.target.value)
+                              }
+                              className='full-width'
+                            />
+                          </div>
                         </div>
                         <div>
                           <input
                             type='submit'
                             value='Accept'
-                            className='primary-button accept-button'
+                            className='primary-button full-width'
                           />
                         </div>
                       </form>
@@ -800,7 +823,7 @@ const Loads = () => {
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} PKR`}
                   </div>
                   <div className='white bold py-16 amount-distance uppercase'>
-                    {selectedLoad.details.distance}
+                    {selectedLoad.distance}
                   </div>
                 </div>
                 <div className='flex flex-center'>
@@ -839,7 +862,7 @@ const Loads = () => {
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} PKR`}
                   </div>
                   <div className='white bold py-16 amount-distance uppercase'>
-                    {selectedLoad.details.distance}
+                    {selectedLoad.distance}
                   </div>
                 </div>
                 <div className='flex flex-center'>
@@ -878,19 +901,19 @@ const Loads = () => {
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} PKR`}
                   </div>
                   <div className='white bold py-16 amount-distance uppercase'>
-                    {selectedLoad.details.distance}
+                    {selectedLoad.distance}
                   </div>
                 </div>
                 <div className='flex flex-center'>
                   <div className='white bold pb-8 '>
                     <p className='white'>
                       <Moment format='ddd d/M'>
-                        {selectedLoad.origin.date}
+                        {selectedLoad.origin.date_and_time}
                       </Moment>
                       <span className='mr-4'></span>
                       {
                         <Moment format='hh:mm'>
-                          {selectedLoad.origin.time}
+                          {selectedLoad.origin.date_and_time}
                         </Moment>
                       }
                       <span> - </span>
@@ -898,7 +921,7 @@ const Loads = () => {
                         <Moment
                           format='hh:mm'
                           add={(10, 'minutes')}
-                          date={moment(selectedLoad.origin.time).add(
+                          date={moment(selectedLoad.origin.date_and_time).add(
                             2,
                             'hours'
                           )}
@@ -918,19 +941,19 @@ const Loads = () => {
                       {`${selectedLoad.amount} PKR`}
                     </div>
                     <div className='white twenty-four bold py-16 uppercase'>
-                      {selectedLoad.details.distance}
+                      {selectedLoad.distance}
                     </div>
                   </div>
                   <div className='flex flex-center'>
                     <div className='white twenty-four bold pb-8 '>
                       <p className='white'>
                         <Moment format='ddd d/M'>
-                          {selectedLoad.origin.date}
+                          {selectedLoad.origin.date_and_time}
                         </Moment>
                         <span className='mr-4'></span>
                         {
                           <Moment format='hh:mm'>
-                            {selectedLoad.origin.time}
+                            {selectedLoad.origin.date_and_time}
                           </Moment>
                         }
                         <span> - </span>
@@ -938,12 +961,13 @@ const Loads = () => {
                           <Moment
                             format='hh:mm'
                             add={(10, 'minutes')}
-                            date={moment(selectedLoad.origin.time).add(
+                            date={moment(selectedLoad.origin.date_and_time).add(
                               2,
                               'hours'
                             )}
                           />
                         }
+                        &nbsp;HRS
                       </p>
                     </div>
                   </div>
@@ -973,12 +997,12 @@ const Loads = () => {
                         <br />
                         <p className='small-title'>
                           <Moment format='ddd d/M'>
-                            {selectedLoad.origin.date}
+                            {selectedLoad.origin.date_and_time}
                           </Moment>
                           <span className='mr-4'></span>
                           {
                             <Moment format='hh:mm'>
-                              {selectedLoad.origin.time}
+                              {selectedLoad.origin.date_and_time}
                             </Moment>
                           }
                           <span> - </span>
@@ -986,12 +1010,12 @@ const Loads = () => {
                             <Moment
                               format='hh:mm'
                               add={(10, 'minutes')}
-                              date={moment(selectedLoad.origin.time).add(
-                                2,
-                                'hours'
-                              )}
+                              date={moment(
+                                selectedLoad.origin.date_and_time
+                              ).add(2, 'hours')}
                             />
                           }
+                          &nbsp;HRS
                         </p>
                       </div>
                     </div>
@@ -1004,12 +1028,12 @@ const Loads = () => {
                     <br />
                     <p className='small-title'>
                       <Moment format='ddd d/M'>
-                        {selectedLoad.destination.date}
+                        {selectedLoad.destination.date_and_time}
                       </Moment>
                       <span className='mr-4'></span>
                       {
                         <Moment format='hh:mm'>
-                          {selectedLoad.destination.time}
+                          {selectedLoad.destination.date_and_time}
                         </Moment>
                       }
                       <span> - </span>
@@ -1017,12 +1041,13 @@ const Loads = () => {
                         <Moment
                           format='hh:mm'
                           add={(10, 'minutes')}
-                          date={moment(selectedLoad.origin.time).add(
+                          date={moment(selectedLoad.origin.date_and_time).add(
                             2,
                             'hours'
                           )}
                         />
                       }
+                      &nbsp;HRS
                     </p>
                   </div>
                 </div>
@@ -1192,7 +1217,7 @@ const Loads = () => {
               </div>
               <div className='flex mt-16'>
                 <div className='details-left'>
-                  <div className='pr-32'>
+                  <div className='pr-32 pb-64'>
                     <p className='small-title'>Delivery Address</p>
                     <div>
                       {selectedLoad.destination.address.line1}
@@ -1219,7 +1244,7 @@ const Loads = () => {
                 <div className='flex'>
                   <div className='details-left'>
                     <p className='small-title'>Amount set</p>
-                    <p className='id-tag'>{`ID - ${selectedLoad.other_details.amount_set_by}`}</p>
+                    <p className='id-tag'>{`ID - ${selectedLoad.amount_set_by}`}</p>
                   </div>
                   <div className='details-right'></div>
                 </div>
@@ -1227,13 +1252,13 @@ const Loads = () => {
             ) : (
               <div></div>
             )}
-            {selectedLoad.other_details.tracked_by ? (
+            {selectedLoad.tracked_by !== 'Not set yet!' ? (
               <div className='border-bottom px-32 py-16 '>
                 <div className='flex'>
                   <div className='details-left pb-80'>
                     <p className='small-title'>Tracked by</p>
                     <p className='id-tag'>
-                      {`ID - ${selectedLoad.other_details.tracked_by}`}
+                      {`ID - ${selectedLoad.tracked_by}`}
                     </p>
                   </div>
                   <div className='details-right'></div>

@@ -359,31 +359,41 @@
   display: none;
   position: absolute;
   font-family: 'Poppins';
-  font-size: 16px;
+  font-size: 12px;
+
+  font-weight: bold;
   font-weight: normal;
   background-color: white;
   color: black;
-  padding: 16px 32px;
-  border-radius: 10px;
+  border-radius: 4px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  margin-top: 5px;
+  margin-top: 1px;
   list-style-type: none;
   float: right;
   z-index: 999;
+  padding: 2px 2px;
 }
 
 .home-dropdown-content > li {
-  padding-bottom: 12px;
+  transform: uppercase;
+  padding: 8px 16px;
 }
 
-.home-dropdown-content > li:last-child {
-  padding-bottom: 0px;
+.home-dropdown-content > li > a {
+  text-transform: uppercase;
+  font-family: 'Poppins';
+  font-weight: 500;
+  color: #182028;
 }
 
 .home-dropdown-content > li:hover {
-  text-decoration: underline;
-
   cursor: pointer;
+  background-color: #0060be;
+  border-radius: 4px;
+}
+
+.signup-list:hover .signup-item {
+  color: #fff;
 }
 
 .home-dropdown:hover .home-dropdown-content {

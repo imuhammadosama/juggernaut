@@ -7,7 +7,7 @@ import getAuth from '../../services/auth.service';
 
 toast.configure();
 
-export default function AddUser({ closeModal }) {
+export default function EditUser({ closeModal }) {
   const loggedUser = getAuth();
   useEffect(() => {
     getAuth();

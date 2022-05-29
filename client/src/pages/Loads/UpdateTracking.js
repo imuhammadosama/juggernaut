@@ -19,6 +19,7 @@ export default function UpdateTracking({ closeUpdateTrackingModal, load }) {
     fetch = async () => {
       setLoading(true);
       const res = await axios.get(`/loads/${selectedLoad._id}`);
+      console.log(selectedLoad.tracking_details.length);
       setSelectedLoad(res.data.data);
       setLoading(false);
     };
@@ -145,7 +146,7 @@ export default function UpdateTracking({ closeUpdateTrackingModal, load }) {
                     </p>
                   </div>
                 </div>
-                {selectedLoad.tracking_details.length === 0 ? (
+                {selectedLoad.tracking_details.length === 1 ? (
                   <div></div>
                 ) : (
                   selectedLoad.tracking_details.map((location, key, arr) => {

@@ -64,6 +64,7 @@ export default function Login({ closeModal }) {
               type='email'
               placeholder='email'
               autoComplete='on'
+              className='full-width'
             />
             <br />
             <input
@@ -75,6 +76,7 @@ export default function Login({ closeModal }) {
               type='password'
               placeholder='password'
               autoComplete='on'
+              className='full-width'
             />
             <p className={setMessageClass()}>{message}</p>
             <a className='forgot-password'>Forgot Password?</a>

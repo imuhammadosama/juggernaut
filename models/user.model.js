@@ -2,14 +2,11 @@ import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
   id: { type: String, required: true },
-  company: {
-    type: Object,
-    required: true,
-    id: { type: String, required: true },
-    name: { type: String, required: true },
-  },
+  status: { type: String, required: true },
+  company_id: { type: String, required: true },
+  company_name: { type: String, required: true },
   name: { type: String, required: true },
-  cnic: { type: Number, required: true, unique: true },
+  cnic: { type: Number, required: true },
   father_name: { type: String, required: true },
   phone: { type: Number, required: true },
   email: { type: String, required: true, unique: true },
@@ -32,11 +29,7 @@ const userSchema = mongoose.Schema({
     relation: { type: String, required: true },
     phone: { type: Number, required: true },
   },
-  other_details: {
-    type: Object,
-    required: true,
-    added_by: { type: Number, required: true },
-  },
+  added_by: { type: Number, required: true },
 });
 
 export default mongoose.model('User', userSchema);

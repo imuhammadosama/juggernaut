@@ -10,11 +10,15 @@ import getAuth from '../../services/auth.service';
 toast.configure();
 
 function AddLoad({ closeOpenAddLoadModal }) {
-  const [user, setUser] = useState({});
+  const user = getAuth();
+  function getTodaysDate() {
+    var now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    return now.toISOString().slice(0, 16);
+  }
 
   useEffect(() => {
-    const loggedUser = getAuth();
-    setUser(loggedUser);
+    getAuth();
   }, []);
   const [load, setLoad] = useState({
     status: 'Pending',
@@ -27,8 +31,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
         province: '',
         postalcode: 0,
       },
-      date: '',
-      time: '',
+      date_and_time: getTodaysDate(),
     },
     destination: {
       address: {
@@ -38,73 +41,29 @@ function AddLoad({ closeOpenAddLoadModal }) {
         province: '',
         postalcode: 0,
       },
-      date: '',
-      time: '',
+      date_and_time: getTodaysDate(),
     },
     calculated_distance: 0,
     details: {
-      distance: '0',
-      trailer_type: '',
-      trailer_axle: 2,
-      full_or_partial: '',
-      capacity: { value: '', unit: '' },
+      distance: '',
+      trailer_type: 'Container',
+      trailer_axle: '2 Axle',
+      full_or_partial: 'Full',
+      capacity: { value: '', unit: 'lt' },
       quantity: 0,
-      weight: { value: '', unit: '' },
-      volume: { value: '', unit: '' },
+      weight: { value: 0, unit: 'kg' },
+      volume: { value: 0, unit: 'm3' },
       comodity_description: '',
       quantity_description: '',
       notes: '',
     },
     consignor: { name: '', phone: '' },
     consignee: { name: '', phone: '' },
-    dispatched_document: {
-      path: '',
-    },
-    invoice_document: {
-      path: '',
-    },
+
     tracking_details: {
-      locations: [
-        {
-          origin: {
-            city: '',
-            province: '',
-            date: '',
-            time: '',
-          },
-        },
-        {
-          destination: {
-            city: '',
-            province: '',
-            date: '',
-            time: '',
-          },
-        },
-        {
-          location1: {
-            city: '',
-            province: '',
-            date: '',
-            time: '',
-          },
-        },
-        {
-          location2: {
-            city: '',
-            province: '',
-            date: '',
-            time: '',
-          },
-        },
-      ],
+      locations: [{}],
     },
-    other_details: {
-      business_id: '',
-      shipper_id: '',
-      amount_set_by: '',
-      tracked_by: '',
-    },
+    business_id: user.company,
   });
 
   async function submitLoad(event) {
@@ -170,9 +129,12 @@ function AddLoad({ closeOpenAddLoadModal }) {
               ? value.target.value
               : load.origin.address.postalcode,
         },
-        date: field === 'Origin Date' ? value.target.value : load.origin.date,
-        time: field === 'Origin Time' ? value.target.value : load.origin.time,
+        date_and_time:
+          field === 'Origin Date & Time'
+            ? value.target.value
+            : load.origin.date_and_time,
       },
+
       destination: {
         address: {
           line1:
@@ -188,7 +150,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
               ? value.length === 0
                 ? load.destination.address.city
                 : value[0].label
-              : load.origin.address.city,
+              : load.destination.address.city,
 
           province:
             field === 'Destination Address City'
@@ -201,18 +163,14 @@ function AddLoad({ closeOpenAddLoadModal }) {
               ? value.target.value
               : load.destination.address.postalcode,
         },
-        date:
-          field === 'Destination Date'
+        date_and_time:
+          field === 'Destination Date & Time'
             ? value.target.value
-            : load.destination.date,
-        time:
-          field === 'Destination Time'
-            ? value.target.value
-            : load.destination.time,
+            : load.destination.date_and_time,
       },
-      calculated_distance: 0,
+
+      distance: '0',
       details: {
-        distance: '0',
         trailer_type:
           field === 'Details Trailer Type'
             ? value.target.value
@@ -244,20 +202,20 @@ function AddLoad({ closeOpenAddLoadModal }) {
             field === 'Details Weight Value'
               ? value.target.value
               : load.details.weight.value,
-          unit: 'KGS',
-          // field === 'Details Weight Unit'
-          //   ? value.target.value
-          //   : load.details.weight.unit,
+          unit:
+            field === 'Details Weight Unit'
+              ? value.target.value
+              : load.details.weight.unit,
         },
         volume: {
           value:
             field === 'Details Volume Value'
               ? value.target.value
               : load.details.volume.value,
-          unit: 'CM3',
-          // field === 'Details Volume Unit'
-          //   ? value.target.value
-          //   : load.details.volume.unit,
+          unit:
+            field === 'Details Volume Unit'
+              ? value.target.value
+              : load.details.volume.unit,
         },
         comodity_description:
           field === 'Details Comodity Description'
@@ -286,12 +244,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
             ? value.target.value
             : load.consignee.phone,
       },
-      dispatched_document: {
-        path: '',
-      },
-      invoice_document: {
-        path: '',
-      },
+
       tracking_details: {
         locations: [
           {
@@ -327,12 +280,6 @@ function AddLoad({ closeOpenAddLoadModal }) {
             },
           },
         ],
-      },
-      other_details: {
-        business_id: '',
-        shipper_id: '',
-        amount_set_by: '',
-        tracked_by: '',
       },
     });
     console.log(load);
@@ -375,6 +322,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       }
                       type='text'
                       placeholder='Line 1'
+                      className='full-width'
                     />
                     <br />
                     <input
@@ -384,6 +332,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       }
                       type='text'
                       placeholder='Line 2'
+                      className='full-width'
                     />
                     <br />
                   </div>
@@ -414,6 +363,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                         }
                         type='text'
                         placeholder='Postal Code'
+                        className='full-width'
                       />
                     </div>
                   </div>
@@ -422,33 +372,19 @@ function AddLoad({ closeOpenAddLoadModal }) {
                 <div className='flex border-bottom pb-16'>
                   <div className='right-inputs mr-16'>
                     <div className='text-left head-label pb-8'>
-                      Pickup Date
+                      Pickup Date & Time
                       <sup>
                         <span className='red ten'> ✸</span>
                       </sup>
                     </div>
                     <input
-                      value={load.origin.date || ''}
-                      onChange={(value) => updateState(value, 'Origin Date')}
-                      type='date'
-                      placeholder='Date'
-                    />
-                  </div>
-                  <div className='left-inputs'>
-                    <div className='text-left head-label pb-8 '>
-                      Pickup Time
-                      <sup>
-                        <span className='red ten'> ✸</span>
-                      </sup>
-                    </div>
-                    <input
-                      value={load.origin.time || ''}
-                      onChange={(value) => updateState(value, 'Origin Time')}
-                      placeholder='Time'
-                      type='time'
-                      id='appt'
-                      name='appt'
-                      required
+                      type='datetime-local'
+                      onChange={(value) =>
+                        updateState(value, 'Origin Date & Time')
+                      }
+                      value={load.origin.date_and_time}
+                      className='full-width'
+                      min={load.origin.date_and_time}
                     />
                   </div>
                 </div>
@@ -466,6 +402,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       onChange={(value) => updateState(value, 'Consignor Name')}
                       type='text'
                       placeholder='Consignor Name'
+                      className='full-width'
                     />
                   </div>
                   <div className='left-inputs'>
@@ -482,6 +419,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       }
                       type='number'
                       placeholder='Consignor Phone'
+                      className='full-width'
                     />
                   </div>
                 </div>
@@ -503,7 +441,9 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       }
                       type='text'
                       placeholder='Line 1'
+                      className='full-width'
                     />
+
                     <br />
                     <input
                       value={load.destination.address.line2 || ''}
@@ -512,6 +452,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       }
                       type='text'
                       placeholder='Line 2'
+                      className='full-width'
                     />
                     <br />
                   </div>
@@ -542,45 +483,28 @@ function AddLoad({ closeOpenAddLoadModal }) {
                         }
                         type='text'
                         placeholder='Postal Code'
+                        className='full-width'
                       />
                     </div>
                   </div>
                 </div>
 
                 <div className='flex border-bottom pb-16'>
-                  <div className='right-inputs mr-16'>
+                  <div className='right-inputs'>
                     <div className='text-left head-label pb-8'>
-                      Delivery Date
+                      Delivery Date & Time
                       <sup>
                         <span className='red ten'> ✸</span>
                       </sup>
                     </div>
                     <input
-                      value={load.destination.date || ''}
+                      type='datetime-local'
                       onChange={(value) =>
-                        updateState(value, 'Destination Date')
+                        updateState(value, 'Destination Date & Time')
                       }
-                      type='date'
-                      placeholder='Date'
-                    />
-                  </div>
-                  <div className='left-inputs'>
-                    <div className='text-left head-label pb-8 '>
-                      Delivery Time
-                      <sup>
-                        <span className='red ten'> ✸</span>
-                      </sup>
-                    </div>
-                    <input
-                      value={load.destination.time || ''}
-                      onChange={(value) =>
-                        updateState(value, 'Destination Time')
-                      }
-                      placeholder='Time'
-                      type='time'
-                      id='appt'
-                      name='appt'
-                      required
+                      value={load.destination.date_and_time}
+                      className='full-width'
+                      min={load.origin.date_and_time}
                     />
                   </div>
                 </div>
@@ -598,6 +522,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       onChange={(value) => updateState(value, 'Consignee Name')}
                       type='text'
                       placeholder='Consignee Name'
+                      className='full-width'
                     />
                   </div>
                   <div className='left-inputs'>
@@ -614,6 +539,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                       }
                       type='number'
                       placeholder='Consignee Phone'
+                      className='full-width'
                     />
                   </div>
                 </div>
@@ -624,7 +550,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                 <div className='flex'>
                   <div className='right-inputs'>
                     <div className='flex'>
-                      <div className='pr-24'>
+                      <div className='pr-24 full-width'>
                         <div className='text-left head-label pb-8'>
                           Trailer Type
                           <sup>
@@ -638,16 +564,19 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           }
                           type='text'
                           placeholder='Line 1'
+                          className='full-width'
                         >
-                          <option>Container</option>
-                          <option>Dry Van / Enclosed Trailer</option>
-                          <option>Flatbed</option>
-                          <option>Lowboy Trailer</option>
-                          <option>Oil Tanker</option>
-                          <option>Reefer</option>
+                          <option value='Container'>Container</option>
+                          <option value='Dry Van / Enclosed Trailer'>
+                            Dry Van / Enclosed Trailer
+                          </option>
+                          <option value='Flatbed'>Flatbed</option>
+                          <option value='Lowboy Trailer'>Lowboy Trailer</option>
+                          <option value='Oil Tanker'>Oil Tanker</option>
+                          <option value='Reefer'>Reefer</option>
                         </select>
                       </div>
-                      <div className='pr-24'>
+                      <div className='full-width'>
                         <div className='text-left head-label pb-8'>
                           Trailer Axle
                           <sup>
@@ -661,42 +590,14 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           }
                           type='text'
                           placeholder='Line 1'
+                          className='full-width'
                         >
-                          <option>2 Axles </option>
-                          <option>3 Axles </option>
-                          <option>4 Axles </option>
-                          <option>5 Axles </option>
-                          <option>6 Axles </option>
-                          <option>-------------</option>
+                          <option>2 Axle</option>
+                          <option>3 Axle</option>
+                          <option>4 Axle</option>
+                          <option>5 Axle</option>
+                          <option>6 Axle</option>
                         </select>
-                      </div>
-                      <div>
-                        <div className='text-left head-label pb-8'>
-                          Full or Parial
-                          <sup>
-                            <span className='red ten'> ✸</span>
-                          </sup>
-                        </div>
-                        <div>
-                          <div className='flex flex-item pt-12'>
-                            <div className='flex'>
-                              <input
-                                type='radio'
-                                value='Full'
-                                name='Details Full Or Partial'
-                                className='ratio-input'
-                              />
-                              Full
-                              <input
-                                type='radio'
-                                value='Partial'
-                                name='Details Full Or Partial'
-                                className='ratio-input'
-                              />
-                              Partial
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
 
@@ -706,7 +607,42 @@ function AddLoad({ closeOpenAddLoadModal }) {
                 <div className='flex'>
                   <div className='right-inputs'>
                     <div className='flex'>
-                      <div className='pr-24'>
+                      <div className='full-width'>
+                        <div className='text-left head-label pb-8'>
+                          Full or Parial
+                          <sup>
+                            <span className='red ten'> ✸</span>
+                          </sup>
+                        </div>
+                        <div>
+                          <div className='flex pt-12'>
+                            <div className='flex'>
+                              <input
+                                type='radio'
+                                value='Full'
+                                checked
+                                name='Details Full Or Partial'
+                                className='ratio-input full-width'
+                                onChange={(value) =>
+                                  updateState(value, 'Details Full Or Partial')
+                                }
+                              />
+                              Full
+                              <input
+                                type='radio'
+                                value='Partial'
+                                name='Details Full Or Partial'
+                                className='ratio-input full-width'
+                                onChange={(value) =>
+                                  updateState(value, 'Details Full Or Partial')
+                                }
+                              />
+                              Partial
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='full-width'>
                         <div className='text-left head-label pb-8'>
                           Quantity
                           <sup>
@@ -721,7 +657,39 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           }
                           name='Details Quantity'
                           placeholder='i.e, 10'
+                          className='full-width'
                         />
+                      </div>
+                    </div>
+                    <div className='flex'>
+                      <div className='pr-24'>
+                        <div className='text-left head-label pb-8'>
+                          Capacity
+                          <sup>
+                            <span className='red ten'> ✸</span>
+                          </sup>
+                        </div>
+                        <div className='flex'>
+                          <input
+                            type='number'
+                            value={load.details.capacity.value || ''}
+                            onChange={(value) =>
+                              updateState(value, 'Details Capacity Value')
+                            }
+                            name='Details Capacity Value'
+                            placeholder='i.e, 20'
+                            className='full-width'
+                          />
+                          <select
+                            value={load.details.capacity.unit || ''}
+                            onChange={(value) =>
+                              updateState(value, 'Details Capacity Unit')
+                            }
+                            name='Details Capacity Unit'
+                          >
+                            <option value='lt'>lt</option>
+                          </select>
+                        </div>
                       </div>
                       <div className='pr-24'>
                         <div className='text-left head-label pb-8'>
@@ -730,15 +698,29 @@ function AddLoad({ closeOpenAddLoadModal }) {
                             <span className='red ten'> ✸</span>
                           </sup>
                         </div>
-                        <input
-                          type='number'
-                          value={load.details.weight.value || ''}
-                          onChange={(value) =>
-                            updateState(value, 'Details Weight Value')
-                          }
-                          name='Details Weight Value'
-                          placeholder='i.e, 2000'
-                        />
+                        <div className='flex'>
+                          <input
+                            type='number'
+                            value={load.details.weight.value || ''}
+                            onChange={(value) =>
+                              updateState(value, 'Details Weight Value')
+                            }
+                            name='Details Weight Value'
+                            placeholder='i.e, 20'
+                            className='full-width'
+                          />
+                          <select
+                            value={load.details.weight.unit || ''}
+                            onChange={(value) =>
+                              updateState(value, 'Details Weight Unit')
+                            }
+                            name='Details Weight Unit'
+                          >
+                            <option value='kg'>kg</option>
+                            <option value='ton'>ton</option>
+                            <option value='lbs'>lbs</option>
+                          </select>
+                        </div>
                       </div>
                       <div>
                         <div className='text-left head-label pb-8'>
@@ -747,7 +729,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                             <span className='red ten'> ✸</span>
                           </sup>
                         </div>
-                        <div>
+                        <div className='flex'>
                           <input
                             type='number'
                             value={load.details.volume.value || ''}
@@ -755,8 +737,19 @@ function AddLoad({ closeOpenAddLoadModal }) {
                               updateState(value, 'Details Volume Value')
                             }
                             name='Details Volume Value'
-                            placeholder='i.e, 3000'
+                            placeholder='i.e, 30'
+                            className='full-width'
                           />
+                          <select
+                            value={load.details.volume.unit || ''}
+                            onChange={(value) =>
+                              updateState(value, 'Details Volume Unit')
+                            }
+                          >
+                            <option value='m3'>m3</option>
+                            <option value='ft3'>ft3</option>
+                            <option value='lbs'>lbs</option>
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -784,7 +777,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           placeholder='Enter details'
                         />
                       </div>
-                      <div className='pr-24 left-inputs'>
+                      <div className='left-inputs'>
                         <div className='text-left head-label pb-8'>
                           Quantity Description
                           <sup>

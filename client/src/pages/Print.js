@@ -56,8 +56,8 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
         details_comodity_description: data.details.comodity_description,
         details_quantity_description: data.details.quantity_description,
         details_notes: data.details.notes,
-        business_id: data.other_details.business_id,
-        shipper_id: data.other_details.shipper_id,
+        business_id: data.business_id,
+        carrier_id: data.carrier_id,
         amount: data.amount,
       });
       setLoading(false);
@@ -323,11 +323,11 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                         </div>
                         <div className='flex full-width pl-16 column flex-one'>
                           <div className='flex '>
-                            <div className=''>Shipper ID: </div>
+                            <div className=''>Carrier ID: </div>
                             <div className='pt-8'></div>
                           </div>
                           <div className='flex '>
-                            <div className='pt-4 bold'>{load.shipper_id}</div>
+                            <div className='pt-4 bold'>{load.carrier_id}</div>
                             <div className='pt-8'></div>
                           </div>
                         </div>

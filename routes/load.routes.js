@@ -35,10 +35,12 @@ router.get('/billingInvoice', async (req, res) => {
     res.json({ message: error, status: 'no' });
   }
 });
-router.get('/business', async (req, res) => {
+router.get('/business/:businessId', async (req, res) => {
   try {
     const result = await Load.find().sort({ _id: -1 });
-    const data = result;
+    const data = result.filter(
+      (load) => load.business_id === req.params.businessId
+    );
     res.json({ message: 'Found!', status: 'ok', data });
   } catch (error) {
     res.json({ message: error, status: 'no' });
@@ -100,7 +102,14 @@ router.put('/accept/:loadId', async (req, res) => {
   try {
     const data = await Load.updateOne(
       { _id: req.params.loadId },
-      { $set: { amount: req.body.amount, status: 'Active' } }
+      {
+        $set: {
+          amount: req.body.amount,
+          status: 'Active',
+          distance: `${req.body.distance} KM`,
+          amount_set_by: req.body.amount_set_by,
+        },
+      }
     );
     res.json({ message: 'Load is now active!', status: 'ok', data });
   } catch (error) {
@@ -116,7 +125,9 @@ router.put('/pick/:loadId', async (req, res) => {
       {
         $set: {
           status: 'Dispatched',
-          other_details: { shipper_id: req.body.client_id },
+          carrier_id: req.body.carrier_id,
+          driver_name: req.body.driver_name,
+          vehicle_registeration_number: req.body.vehicle_registeration_number,
         },
       }
     );
@@ -165,7 +176,7 @@ router.put('/pick/:loadId', async (req, res) => {
   try {
     const data = await Load.updateOne(
       { _id: req.params.loadId },
-      { $set: { status: 'Active' } }
+      { $set: { status: 'Active', carrier_id: req.body.carrier_id } }
     );
     res.json({ message: 'Load is activated!', status: 'ok', data });
   } catch (error) {
@@ -224,8 +235,7 @@ router.post('/', async (req, res) => {
         province: req.body.origin.address.province,
         postalcode: req.body.origin.postalcode,
       },
-      date: req.body.origin.date,
-      time: req.body.origin.time,
+      date_and_time: req.body.destination.date_and_time,
     },
     destination: {
       address: {
@@ -235,27 +245,25 @@ router.post('/', async (req, res) => {
         province: req.body.destination.address.province,
         postalcode: req.body.destination.postalcode,
       },
-      date: req.body.destination.date,
-      time: req.body.destination.time,
+      date_and_time: req.body.destination.date_and_time,
     },
-    calculated_distance: 0,
+    distance: 'Not set yet!',
     details: {
-      distance: '200KM',
       trailer_type: req.body.details.trailer_type,
       trailer_axle: req.body.details.trailer_axle,
       full_or_partial: req.body.details.full_or_partial,
       capacity: {
-        value: 0,
-        unit: 'ltrs',
+        value: req.body.details.capacity.value,
+        unit: req.body.details.capacity.unit,
       },
       quantity: req.body.details.quantity,
       weight: {
         value: req.body.details.weight.value,
-        unit: 'kgs',
+        unit: req.body.details.weight.unit,
       },
       volume: {
         value: req.body.details.volume.value,
-        unit: 'cubicmeter',
+        unit: req.body.details.volume.unit,
       },
       comodity_description: req.body.details.comodity_description,
       quantity_description: req.body.details.quantity_description,
@@ -269,54 +277,15 @@ router.post('/', async (req, res) => {
       name: req.body.consignee.name,
       phone: req.body.consignee.phone,
     },
-    dispatched_document: {
-      path: 'loads/dispatch_documents/jan/2021/dispatch_001.pdf',
-    },
-    invoice_document: {
-      path: 'loads/invoice_documents/jan/2021/invoice_001.pdf',
-    },
     tracking_details: {
-      locations: [
-        {
-          origin: {
-            city: 'Lahore',
-            province: 'Punjab',
-            date: '2022-01-01T00:00:00.511Z',
-            time: '2022-01-01T00:00:00.511Z',
-          },
-        },
-        {
-          destination: {
-            city: 'Karachi',
-            province: 'Sindh',
-            date: '2022-01-01T00:00:00.511Z',
-            time: '2022-01-01T00:00:00.511Z',
-          },
-        },
-        {
-          location1: {
-            city: 'Multan',
-            province: 'Punjab',
-            date: '2022-01-01T00:00:00.511Z',
-            time: '2022-01-01T00:00:00.511Z',
-          },
-        },
-        {
-          location2: {
-            city: 'Hyderabad',
-            province: 'Sindh',
-            date: '2022-01-01T00:00:00.511Z',
-            time: '2022-01-01T00:00:00.511Z',
-          },
-        },
-      ],
+      locations: [],
     },
-    other_details: {
-      business_id: '123456789',
-      shipper_id: '1234567',
-      amount_set_by: '1234567',
-      tracked_by: '1234567',
-    },
+    driver_name: 'Not set yet!',
+    vehicle_registeration_number: 'Not set yet!',
+    business_id: req.body.business_id,
+    carrier_id: 'Not set yet!',
+    amount_set_by: 'Not set yet!',
+    tracked_by: 'Not set yet!',
   });
   try {
     const data = await load.save();

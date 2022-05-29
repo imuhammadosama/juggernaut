@@ -10,6 +10,7 @@ import './User.css';
 import emailjs from 'emailjs-com';
 
 export default function Users() {
+  const loggedUser = getAuth();
   // States
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -83,8 +84,12 @@ export default function Users() {
   }, []);
 
   // Users Actions
-  const deleteUser = () => {};
-  const editUser = () => {};
+  const deleteUser = () => {
+    alert('Delete');
+  };
+  const editUser = () => {
+    alert('Edit');
+  };
 
   // Client Actions
   async function acceptClient(client) {
@@ -111,11 +116,8 @@ export default function Users() {
 
         // Add Client's User
         await axios.post('/users/register', {
-          id: 'N/A',
-          company: {
-            id: client._id,
-            name: client.name,
-          },
+          company_id: client.id,
+          company_name: client.name,
           name: client.name,
           cnic: 0,
           father_name: 'N/A',
@@ -136,7 +138,7 @@ export default function Users() {
             relation: 'N/A',
             phone: 'N/A',
           },
-          other_details: { added_by: 'N/A' },
+          added_by: loggedUser.id,
         });
 
         sendEmail(client.email, password);
@@ -395,11 +397,6 @@ export default function Users() {
                   class: 'primary-button',
                   onClick: acceptClient,
                 },
-                {
-                  name: 'Reject',
-                  class: 'secondary-button',
-                  onClick: rejectClient,
-                },
               ]}
               selectedItem={selectedClient}
               setItem={setSelectedClient}
@@ -573,7 +570,7 @@ export default function Users() {
               onClick: editUser,
             },
             {
-              name: 'Remove',
+              name: 'Delete',
               class: 'primary-button',
               onClick: deleteUser,
             },
@@ -656,7 +653,7 @@ export default function Users() {
             <div className='p-48'>
               <div className='small-title pb-8'>Added by</div>
               <div className='id-tag' style={{ width: 'fit-content' }}>
-                {selectedUser.other_details.added_by}
+                ID - {selectedUser.added_by}
               </div>
             </div>
           </div>

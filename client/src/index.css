@@ -113,6 +113,9 @@ h1 {
   text-decoration: none;
   text-align: center;
 }
+.disabled-button {
+  display: none;
+}
 
 .primary-button:hover,
 .secondary-button:hover {

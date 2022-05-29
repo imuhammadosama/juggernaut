@@ -12,6 +12,10 @@ function PickLoad({ closePickModal, selectedLoad }) {
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [eligiblity, setEligiblity] = useState(true);
+  const [driverName, setDriverName] = useState('');
+  const [vehicleRegisterationNumber, setVehicleRegisterationNumber] =
+    useState('');
+  const [termsChecked, setTermsChecked] = useState(false);
 
   const user = getAuth();
   useEffect(() => {
@@ -23,30 +27,47 @@ function PickLoad({ closePickModal, selectedLoad }) {
       const availableDrivers = await axios.get(
         `/drivers/client/${user.company}`
       );
-      setDrivers(availableDrivers.data.data);
+      const activeDrivers = availableDrivers.data.data.filter(
+        (driver) => driver.status === 'Active'
+      );
+      setDrivers(activeDrivers);
 
       // Get Available Vehicles
       const availableVehicles = await axios.get(
         `/vehicles/client/${user.company}`
       );
-      if (
-        availableDrivers.data.data.length === 0 ||
-        availableVehicles.data.data.length === 0
-      ) {
+
+      const activeVehicles = availableVehicles.data.data.filter(
+        (vehicle) => vehicle.status === 'Active'
+      );
+      if (activeDrivers.length === 0 || availableVehicles.length === 0) {
         setEligiblity(false);
       }
-      setVehicles(availableVehicles.data.data);
+      setVehicles(activeVehicles);
       setLoading(false);
     }
     fetch();
   }, []);
+
+  function getSubmitClass() {
+    if (
+      vehicleRegisterationNumber !== '' &&
+      driverName !== '' &&
+      termsChecked !== false
+    ) {
+      return 'primary-button';
+    }
+    return 'disabled-button';
+  }
 
   async function pickThisLoad(event) {
     event.preventDefault();
     console.log(selectedLoad);
     await axios
       .put(`/loads/pick/${selectedLoad._id}`, {
-        client_id: user.company,
+        carrier_id: user.company,
+        driver_name: driverName,
+        vehicle_registeration_number: vehicleRegisterationNumber,
       })
       .then((response) => {
         toast.success(response.data.message, {
@@ -126,10 +147,23 @@ function PickLoad({ closePickModal, selectedLoad }) {
                         <span className='red ten'> ✸</span>
                       </sup>
                     </div>
-                    <select>
+                    <select
+                      className='full-width'
+                      onChange={(e) => {
+                        setVehicleRegisterationNumber(e.target.value);
+                        console.log(e.target.value);
+                      }}
+                      defaultValue={''}
+                    >
+                      <option value='' disabled>
+                        Select a vehicle
+                      </option>
                       {vehicles.map((vehicle, index) => {
                         return (
-                          <option key={index}>
+                          <option
+                            key={index}
+                            value={vehicle.registeration_number}
+                          >
                             {vehicle.registeration_number}
                           </option>
                         );
@@ -144,9 +178,23 @@ function PickLoad({ closePickModal, selectedLoad }) {
                       </sup>
                     </div>
 
-                    <select>
+                    <select
+                      className='full-width'
+                      onChange={(e) => {
+                        setDriverName(e.target.value);
+                        console.log(e.target.value);
+                      }}
+                      defaultValue={''}
+                    >
+                      <option value='' disabled>
+                        Select a driver
+                      </option>
                       {drivers.map((driver, index) => {
-                        return <option key={index}>{driver.name}</option>;
+                        return (
+                          <option key={index} value={driver.name}>
+                            {driver.name}
+                          </option>
+                        );
                       })}
                     </select>
                   </div>
@@ -154,10 +202,12 @@ function PickLoad({ closePickModal, selectedLoad }) {
                 <div className='flex py-24'>
                   <input
                     type='checkbox'
-                    id='vehicle1'
-                    name='vehicle1'
-                    value='Bike'
                     className='check-input'
+                    onChange={() =>
+                      termsChecked === true
+                        ? setTermsChecked(false)
+                        : setTermsChecked(true)
+                    }
                   />
                   I accept
                   <span className='pl-4 terms-and-conditions'>
@@ -172,7 +222,7 @@ function PickLoad({ closePickModal, selectedLoad }) {
               <input
                 defaultValue='Pick Load'
                 type='Submit'
-                className='primary-button'
+                className={getSubmitClass()}
               />
             </form>
           </div>

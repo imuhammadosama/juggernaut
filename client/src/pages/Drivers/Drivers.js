@@ -187,11 +187,6 @@ export default function Drivers() {
                     class: 'primary-button',
                     onClick: approveDriver,
                   },
-                  {
-                    name: 'Reject',
-                    class: 'secondary-button',
-                    onClick: rejectDriver,
-                  },
                 ]
           }
           selectedItem={selectedDriver}

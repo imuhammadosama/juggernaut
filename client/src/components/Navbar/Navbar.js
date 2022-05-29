@@ -68,25 +68,23 @@ function Navigation(props) {
                 <div className='home-dropdown'>
                   <button className='signup-button'>Signup</button>
                   <div className='home-dropdown-content'>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setOpenRegister(true);
-                          setRegisterType('Business');
-                        }}
-                      >
-                        Business
-                      </a>
+                    <li
+                      className='signup-list clickable'
+                      onClick={() => {
+                        setOpenRegister(true);
+                        setRegisterType('Business');
+                      }}
+                    >
+                      <a className='signup-item'>Business</a>
                     </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setOpenRegister(true);
-                          setRegisterType('Carrier');
-                        }}
-                      >
-                        Carrier
-                      </a>
+                    <li
+                      className='signup-list clickable'
+                      onClick={() => {
+                        setOpenRegister(true);
+                        setRegisterType('Carrier');
+                      }}
+                    >
+                      <a className='signup-item'>Carrier</a>
                     </li>
                   </div>
                 </div>
@@ -106,7 +104,9 @@ function Navigation(props) {
         <div className='menu-bar'>
           <div className='menu-bar-content'>
             <div>
-              <img src={logo} />
+              <a href='/'>
+                <img src={logo} />
+              </a>
             </div>
             <div>
               <ul className='menu-items'>
