@@ -46,16 +46,22 @@ router.get('/business/:businessId', async (req, res) => {
     res.json({ message: error, status: 'no' });
   }
 });
-router.get('/carrier', async (req, res) => {
+router.get('/carrier/:carrierId', async (req, res) => {
   try {
     const result = await Load.find().sort([['modification_date', -1]]);
-    const data = result.filter(
-      (load) =>
-        load.status === 'Dispatched' ||
-        load.status === 'Active' ||
-        load.status === 'Completed'
+    const d1 = result.filter((load) => load.status === 'Active');
+    const d2 = result.filter(
+      (load) => load.carrier_id === req.params.carrierId
     );
-    res.json({ message: 'Found!', status: 'ok', data });
+    if (d2 === []) {
+      const data = d1;
+      res.json({ message: 'Found!', status: 'ok', data });
+    } else {
+      const data = [...d1, ...d2];
+
+      res.json({ message: 'Found!', status: 'ok', data });
+    }
+    console.log(d2);
   } catch (error) {
     res.json({ message: error, status: 'no' });
   }

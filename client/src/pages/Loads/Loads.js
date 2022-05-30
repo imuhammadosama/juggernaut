@@ -98,7 +98,7 @@ const Loads = () => {
           ? // Add Carrier ID
             await axios.get(`loads/business/${user.company}`)
           : user.type === 'Carrier'
-          ? await axios.get(`/loads/carrier`)
+          ? await axios.get(`/loads/carrier/${user.company}`)
           : // Add Carrier ID
             await axios.get('/loads');
       const l = res.data.data;
@@ -358,7 +358,7 @@ const Loads = () => {
           <input type='date' />
           <input type='date' />
         </div> */}
-        {user.type === 'Business' || user.type === 'Management' ? (
+        {user.type === 'Business' ? (
           <div className='p-16 border-bottom-white flex flex-item bg-white border-right-grey'>
             <button
               onClick={() => setOpenAddLoadModal(true)}
