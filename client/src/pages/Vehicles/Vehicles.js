@@ -8,6 +8,9 @@ import Loading from '../../assets/images/loading.svg';
 import getAuth from '../../services/auth.service';
 import { useNavigate } from 'react-router-dom';
 import './Vehicles.css';
+import { toast } from 'react-toastify';
+
+toast.configure();
 
 export default function Vehicles() {
   const user = getAuth();
@@ -18,7 +21,7 @@ export default function Vehicles() {
   const [vehicles, setVehicles] = useState([]);
   const [preVehicles, setPreVehicles] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('Pending');
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [vehiclesPerPage, setVehiclesPerPage] = useState(6);
@@ -56,28 +59,43 @@ export default function Vehicles() {
         const res = await axios.get(`/vehicles/client/${user.company}`);
         console.log(res.data.data);
         if (res.data.data !== null) {
-          setVehicles(res.data.data);
           setPreVehicles(res.data.data);
+          setVehicles(
+            res.data.data.filter((vehicle) => vehicle.status === 'Pending')
+          );
         }
       } else {
         const res = await axios.get('/vehicles');
-        setVehicles(res.data.data);
         setPreVehicles(res.data.data);
+        setVehicles(
+          res.data.data.filter((vehicle) => vehicle.status === 'Pending')
+        );
       }
       setLoading(false);
     };
     fetch();
   }, []);
-  const deleteVehicle = () => {
-    console.log('Delete Vehicle');
-  };
-  const editVehicle = () => {
-    console.log('Edit Vehicle');
-  };
+  async function approveVehicle(vehicle) {
+    const res = await axios
+      .put(`/vehicles/approve/${vehicle._id}`)
+      .then((response) => {
+        toast.success(response.data.message, {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+        window.location.reload(false);
+      });
+  }
 
   function handleClick(newValue) {
     setSelectedVehicle(newValue);
   }
+
   function openAddVehicle() {
     setOpenModal(true);
   }
@@ -171,13 +189,8 @@ export default function Vehicles() {
           buttons={[
             {
               name: 'Approve',
-              class: 'secondary-button',
-              onClick: editVehicle,
-            },
-            {
-              name: 'Reject',
               class: 'primary-button',
-              onClick: deleteVehicle,
+              onClick: approveVehicle,
             },
           ]}
           selectedItem={selectedVehicle}

@@ -26,6 +26,23 @@ router.get('/status/:status', async (req, res) => {
   }
 });
 
+// Update Status
+router.put('/approve/:vehicleId', async (req, res) => {
+  try {
+    await Vehicle.updateOne(
+      { _id: req.params.vehicleId },
+      {
+        $set: {
+          status: 'Active',
+        },
+      }
+    );
+    res.json({ message: 'Vehicle is accepted!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 // Find Drivers by ClientId
 router.get('/client/:clientId', async (req, res) => {
   try {
@@ -81,7 +98,6 @@ router.route('/').post(async (req, res) => {
     }
   } catch (error) {
     res.json({ message: error });
-    console.log(error);
   }
 });
 

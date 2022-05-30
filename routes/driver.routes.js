@@ -15,6 +15,23 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Update Status
+router.put('/approve/:driverId', async (req, res) => {
+  try {
+    await Driver.updateOne(
+      { _id: req.params.driverId },
+      {
+        $set: {
+          status: 'Active',
+        },
+      }
+    );
+    res.json({ message: 'Driver is accepted!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 // Getting single driver
 router.get('/:driverCnic', async (req, res) => {
   try {

@@ -10,6 +10,9 @@ import { useNavigate } from 'react-router-dom';
 import './Drivers.css';
 import Moment from 'react-moment';
 import moment from 'moment';
+import { toast } from 'react-toastify';
+
+toast.configure();
 
 export default function Drivers() {
   const navigate = useNavigate();
@@ -21,7 +24,7 @@ export default function Drivers() {
   const [drivers, setDrivers] = useState([]);
   const [preDrivers, setPreDrivers] = useState([]);
   const [selectedDriver, setSelectedDriver] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('Pending');
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [vehiclesPerPage, setDriversPerPage] = useState(6);
@@ -55,12 +58,16 @@ export default function Drivers() {
       if (user.type === 'Carrier') {
         const res = await axios.get(`/drivers/client/${user.company}`);
         if (res.data.data !== null) {
-          setDrivers(res.data.data);
+          setDrivers(
+            res.data.data.filter((driver) => driver.status === 'Pending')
+          );
           setPreDrivers(res.data.data);
         }
       } else {
         const res = await axios.get('/drivers');
-        setDrivers(res.data.data);
+        setDrivers(
+          res.data.data.filter((driver) => driver.status === 'Pending')
+        );
         setPreDrivers(res.data.data);
       }
       setLoading(false);
@@ -74,9 +81,24 @@ export default function Drivers() {
     console.log('Edit Driver');
   };
 
-  const approveDriver = () => {
-    console.log('Delete Driver');
-  };
+  async function approveDriver(driver) {
+    const res = await axios
+      .put(`/drivers/approve/${driver._id}`)
+      .then((response) => {
+        toast.success(response.data.message, {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+    window.location.reload(false);
+    console.log(res);
+  }
+
   const rejectDriver = () => {
     console.log('Edit Driver');
   };
