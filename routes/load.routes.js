@@ -103,6 +103,21 @@ router.get('/destination/:city', async (req, res) => {
   }
 });
 
+// Getting single load
+router.get('/vehicle/:vehicle', async (req, res) => {
+  console.log(req.params.vehicle);
+  try {
+    const data = await Load.find({
+      // prettier-ignore
+      'details.trailer_type': req.params.vehicle,
+    }).sort({ _id: -1 });
+
+    res.json({ message: 'Found!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 // Accept load
 router.put('/accept/:loadId', async (req, res) => {
   try {
@@ -225,11 +240,12 @@ router.get('/active/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const lastLoad = await Load.find({}).sort({ _id: -1 }).limit(1);
-  const lastId = parseInt(lastLoad[0].id);
+
+  const lastId = parseInt(lastLoad[0].id.slice(2));
   const uniqueId = lastId + 1;
 
   const load = new Load({
-    id: uniqueId,
+    id: `JD${uniqueId}`,
     status: req.body.status,
     start_date: '2020-01-01T00:00:00.511Z',
     amount: 0,

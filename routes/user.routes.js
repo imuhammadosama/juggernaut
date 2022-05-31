@@ -12,12 +12,29 @@ router.route('/').get(async (req, res) => {
   }
 });
 
+// Getting single load
+router.get('/:userId', async (req, res) => {
+  try {
+    const data = await User.findOne({ _id: req.params.userId });
+    res.json({ message: 'Found!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 router.route('/register').post(async (req, res) => {
-  const lastLoad = await User.find({}).sort({ _id: -1 }).limit(1);
-  const lastId = parseInt(lastLoad[0].id);
+  const lastUser = await User.find({}).sort({ _id: -1 }).limit(1);
+
+  const lastId = parseInt(lastUser[0].id.slice(2));
   const uniqueId = lastId + 1;
+  const typeId = function () {
+    if (req.body.type === '10000') {
+      return `JA${uniqueId}`;
+    }
+    return `JC${uniqueId}`;
+  };
   const user = new User({
-    id: uniqueId,
+    id: typeId,
     status: 'Active',
     company_id: req.body.company_id,
     company_name: req.body.company_name,
@@ -69,6 +86,7 @@ router.route('/login').post(async (req, res) => {
         {
           status: user.status,
           id: user.id,
+          _id: user._id,
           name: user.name,
           email: user.email,
           type: user.type,

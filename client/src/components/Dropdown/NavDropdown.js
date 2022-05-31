@@ -3,18 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Register from '../../pages/Register';
 import getAuth from '../../services/auth.service';
+import EditUser from '../../pages/Users/EditUser';
 
 export default function NavDropdown(props) {
   const { loggedIn } = props;
   const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [registerType, setRegisterType] = useState('');
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
+  const user = getAuth();
 
   useEffect(() => {
-    const getUser = getAuth();
-    setUser(getUser);
-    // console.log(user);
+    getAuth();
   }, []);
 
   function myNewFunction() {
@@ -47,6 +47,7 @@ export default function NavDropdown(props) {
         {openModal && (
           <Register closeModal={setOpenModal} type={registerType} />
         )}
+
         <button onClick={myNewFunction} className='navdropbtn'>
           Register
         </button>
@@ -78,6 +79,9 @@ export default function NavDropdown(props) {
   } else {
     return (
       <div className='navdropdown'>
+        {openEditModal && (
+          <EditUser closeOpenEditModal={setOpenEditModal} userId={user._id} />
+        )}
         <button onClick={myNewFunction} className='navdropbtn'>
           Welcome! {user.name}
         </button>
@@ -88,6 +92,9 @@ export default function NavDropdown(props) {
               <Link to='/users'>Users</Link>
               <Link to='/drivers'>Drivers</Link>
               <Link to='/vehicles'>Vehicles</Link>
+              <a onClick={() => setOpenEditModal(true)} className='clickable'>
+                Edit Profile
+              </a>
             </div>
           ) : (
             <div></div>

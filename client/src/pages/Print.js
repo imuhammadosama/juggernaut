@@ -119,7 +119,7 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                       </div>
                       <div className='flex column p-16'>
                         <div className='small-title pb-4'>Support</div>
-                        <div className='small-bold-title'>+92 321 929 3394</div>
+                        <div className='small-bold-title'>+92 302 8283 999</div>
                       </div>
                     </div>
                   </div>
@@ -352,14 +352,14 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                           </div>
                           <div className='flex space-between pb-8'>
                             <div className='active bold'>
-                              Service Charges @5:
+                              Service Charges @ 10%:
                             </div>
                             <div className='uppercase bold'>
-                              {(load.amount * 5) / 100} PKR
+                              {(load.amount * 10) / 100} PKR
                             </div>
                           </div>
                           <div className='flex space-between pb-8 br-b-grey-1'>
-                            <div className='active bold'>Sales Taxes @3:</div>
+                            <div className='active bold'>Sales Taxes @ 3%:</div>
                             <div className='uppercase bold'>
                               {(load.amount * 3) / 100} PKR
                             </div>

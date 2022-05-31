@@ -65,15 +65,48 @@ const Loads = () => {
   const [searchMessage, setSearchMessage] = useState('');
 
   // Filters
-  const [origin, setOrigin] = useState('');
-  const [destination, setDestination] = useState('');
+  const [filters, setFilters] = useState({});
 
   // Filter loads
-  const handleFilter = async (e) => {
-    console.log(e.target.value);
+  const handleOriginFilter = async (e) => {
+    setFilters({ ...filters, origin: e.target.value });
     if (e.target.value !== 'All') {
-      setOrigin(e.target.value);
       const res = await axios.get(`/loads/origin/${e.target.value}`);
+      setLoads(res.data.data);
+    } else {
+      setLoads(preLoads);
+    }
+  };
+
+  // Filter loads
+  const handleDestinationFilter = async (e) => {
+    setFilters({ ...filters, destination: e.target.value });
+    if (e.target.value !== 'All') {
+      const res = await axios.get(`/loads/destination/${e.target.value}`);
+      setLoads(res.data.data);
+    } else {
+      setLoads(preLoads);
+    }
+  };
+
+  // Filter loads
+  const handleVehicleFilter = async (e) => {
+    console.log(e.target.value);
+    setFilters({ ...filters, vehicle: e.target.value });
+    if (e.target.value !== 'All') {
+      const res = await axios.get(`/loads/vehicle/${e.target.value}`);
+      setLoads(res.data.data);
+    } else {
+      setLoads(preLoads);
+    }
+  };
+
+  // Filter loads
+  const handleComodityFilter = async (e) => {
+    console.log(e.target.value);
+    setFilters({ ...filters, comodity: e.target.value });
+    if (e.target.value === '') {
+      const res = await axios.get(`/loads/comodity/${e.target.value}`);
       setLoads(res.data.data);
     } else {
       setLoads(preLoads);
@@ -376,7 +409,7 @@ const Loads = () => {
           <select
             style={{ backgroundColor: 'White' }}
             className='mb-24 full-width'
-            onChange={handleFilter}
+            onChange={handleOriginFilter}
           >
             <option value='All'>All</option>
             {preLoads
@@ -390,6 +423,7 @@ const Loads = () => {
           <select
             style={{ backgroundColor: 'White' }}
             className='mb-24 full-width'
+            onChange={handleDestinationFilter}
           >
             <option value='All'>All</option>
             {preLoads
@@ -403,14 +437,176 @@ const Loads = () => {
 
         <div className='p-16 border-bottom-white'>
           <div className='bold pb-16'>Vehicle</div>
-          <input type='checkbox' value='Container' />
+          <input
+            type='radio'
+            value='All'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          All
+          <br />
+          <input
+            type='radio'
+            value='Container'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
           Container
+          <br />
+          <input
+            type='radio'
+            value='Tanker'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          Tanker
+          <br />
+          <input
+            type='radio'
+            value='Flat-bed'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          Flat-bed
+          <br />
+          <input
+            type='radio'
+            value='Cement Truck'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          Cement Truck
+          <br />
+          <input
+            type='radio'
+            value='Refeer Truck'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          Refeer Truck
+          <br />
+          <input
+            type='radio'
+            value='Car Carrier'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          Car Carrier
+          <br />
+          <input
+            type='radio'
+            value='Dry Van'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          Dry Van
+          <br />
+          <input
+            type='radio'
+            value='Lowboy Trailer'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          Lowboy Trailer
+          <br />
+          <input
+            type='radio'
+            value='Enclosed Trailer'
+            name='Vehicle'
+            onChange={handleVehicleFilter}
+          />
+          Enclosed Trailer
           <br />
         </div>
         <div className='p-16 '>
           <div className='bold pb-16'>Commodity</div>
-          <input type='checkbox' value='Auto' />
+          <input
+            type='radio'
+            value='All'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          All
+          <br />
+          <input
+            type='radio'
+            value='Oil & Gas'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          Oil & Gas
+          <br />
+          <input
+            type='radio'
+            value='Textile'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          Textile
+          <br />
+          <input
+            type='radio'
+            value='FMCG'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          FMCG
+          <br />
+          <input
+            type='radio'
+            value='Chemical'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          Chemical
+          <br />
+          <input
+            type='radio'
+            value='Auto'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
           Auto
+          <br />
+          <input
+            type='radio'
+            value='Beverages'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          Beverages
+          <br />
+          <input
+            type='radio'
+            value='Cement'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          Cement
+          <br />
+          <input
+            type='radio'
+            value='General Goods'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          General Goods
+          <br />
+          <input
+            type='radio'
+            value='Pharmaceutical'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          Pharmaceutical
+          <br />
+          <input
+            type='radio'
+            value='Agriculture'
+            name='Comodity'
+            onChange={handleComodityFilter}
+          />
+          Agriculture
           <br />
         </div>
       </div>

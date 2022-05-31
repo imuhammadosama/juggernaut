@@ -41,7 +41,7 @@ export default function Slider() {
               </div>
               <div>
                 <div className='home-slider-one-content-description'>
-                  50,000 Loads Per Day
+                  5,000 Loads Per Day
                 </div>
               </div>
               <div>
@@ -65,9 +65,7 @@ export default function Slider() {
                 </h1>
               </div>
               <div>
-                <div className='home-slider-one-content-description'>
-                  50,000 Loads Per Day
-                </div>
+                <div className='home-slider-one-content-description'></div>
               </div>
               <div>
                 <button className='home-slider-one-content-button'>
@@ -88,9 +86,7 @@ export default function Slider() {
                 </h1>
               </div>
               <div>
-                <div className='home-slider-one-content-description'>
-                  50,000 Loads Per Day
-                </div>
+                <div className='home-slider-one-content-description'></div>
               </div>
               <div>
                 <button className='home-slider-one-content-button'>
@@ -111,9 +107,7 @@ export default function Slider() {
                 </h1>
               </div>
               <div>
-                <div className='home-slider-one-content-description'>
-                  50,000 Loads Per Day
-                </div>
+                <div className='home-slider-one-content-description'></div>
               </div>
               <div>
                 <button className='home-slider-one-content-button'>

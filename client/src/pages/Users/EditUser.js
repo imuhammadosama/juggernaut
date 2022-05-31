@@ -7,33 +7,25 @@ import getAuth from '../../services/auth.service';
 
 toast.configure();
 
-export default function EditUser({ closeModal }) {
+export default function EditUser({ closeOpenEditModal, userId }) {
+  console.log(userId);
+  const [initialData, setInitialData] = useState({});
+  const [loading, setLoading] = useState(false);
   const loggedUser = getAuth();
+
   useEffect(() => {
     getAuth();
-  });
-  const initialData = {
-    name: '',
-    company_id: '1000',
-    company_name: 'Juggernaut',
-    cnic: '',
-    father_name: '',
-    phone: '',
-    email: '',
-    password: '',
-    userType: 'Management',
-    designation: 'Manager Operations',
-    line1: '',
-    line2: '',
-    city: '',
-    province: '',
-    postalcode: '',
-    emergencyName: '',
-    emergencyRelation: '',
-    emergencyPhone: '',
-    added_by: '',
-  };
-  const [formValues, setFormValues] = useState(initialData);
+    async function fetch() {
+      setLoading(true);
+      const res = await axios.get(`/users/${userId}`);
+      setFormValues(res.data.data);
+      setLoading(false);
+    }
+
+    fetch();
+  }, []);
+
+  const [formValues, setFormValues] = useState({});
   const [formErrors, setFormErrors] = useState({});
 
   const validate = (user) => {
@@ -81,8 +73,8 @@ export default function EditUser({ closeModal }) {
     e.preventDefault();
     setFormErrors(validate(formValues));
     const user = {
-      company_id: '1000',
-      company_name: 'Juggernaut',
+      company_id: formValues.company_id,
+      company_name: formValues.company_name,
       name: formValues.name,
       cnic: formValues.cnic,
       father_name: formValues.father_name,
@@ -103,7 +95,7 @@ export default function EditUser({ closeModal }) {
         relation: formValues.emergencyRelation,
         phone: formValues.emergencyPhone,
       },
-      added_by: loggedUser.id,
+      added_by: formValues.added_by,
     };
     const res = await axios.post('/users/register', user);
     if (
@@ -112,7 +104,7 @@ export default function EditUser({ closeModal }) {
     ) {
       setFormErrors({ ...formErrors, email: 'Email already used!' });
     } else if (res.data.status === 'ok') {
-      closeModal(false);
+      closeOpenEditModal(false);
       console.log(res);
       setFormValues(initialData);
       setFormErrors({});
@@ -139,7 +131,15 @@ export default function EditUser({ closeModal }) {
       setFormErrors({ ...formErrors, [name]: '' });
     }
   };
-
+  if (loading)
+    return (
+      <div className='modal-background flex flex-item bg-pending modal-animation'>
+        <div
+          className='modal-container mx-144 flex-item modal-container-animation unset-height absolute modal-container-scroll'
+          style={{ backgroundColor: 'none', width: '550px' }}
+        ></div>
+      </div>
+    );
   return (
     <div className='modal-background flex flex-item bg-pending modal-animation'>
       <div
@@ -149,10 +149,10 @@ export default function EditUser({ closeModal }) {
         <div className='pt-8 pb-16 '>
           <div className='flex flex-item space-between px-40 py-16'>
             <div>
-              <h1>Add New User</h1>
+              <h1>Edit Profile</h1>
             </div>
             <button
-              onClick={() => closeModal(false)}
+              onClick={() => closeOpenEditModal(false)}
               className='secondary-button'
             >
               Close
@@ -169,6 +169,7 @@ export default function EditUser({ closeModal }) {
                     placeholder='Name'
                     onChange={handleChange}
                     className='full-width'
+                    disabled
                   />
                   <p
                     className={
@@ -188,6 +189,7 @@ export default function EditUser({ closeModal }) {
                     placeholder='CNIC'
                     onChange={handleChange}
                     className='full-width'
+                    disabled
                   />
                   <p
                     className={

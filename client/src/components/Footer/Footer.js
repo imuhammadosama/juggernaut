@@ -42,7 +42,7 @@ export default function Footer() {
           <div className='footer-title'>Support</div>
           <div className='footer-description'>
             <li>
-              <b>Phone:</b> +92 309 929 3394
+              <b>Phone:</b> UAN 304 111 2997
             </li>
             <li>
               <b>Email:</b> help@juggernaut.com

@@ -1,12 +1,9 @@
 import './Home.css';
 
-import Footer from '../components/Footer/Footer';
-
-import { useState } from 'react';
-
 import Slider from '../components/Sliders/Slider';
 import CardSlider from '../components/CardSlider/CardSlider';
 import CitiesSlider from '../components/CitiesSlider/CitiesSlider';
+import Footer from '../components/Footer/Footer';
 
 export default function Home() {
   return (
