@@ -65,7 +65,7 @@ export default function Users() {
 
   useEffect(() => {
     getAuth();
-
+    console.log(loggedUser);
     setLoading(true);
     fetch = async () => {
       const users = await axios.get('/users');

@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
     relation: { type: String, required: true },
     phone: { type: Number, required: true },
   },
-  added_by: { type: Number, required: true },
+  added_by: { type: String, required: true },
 });
 
 export default mongoose.model('User', userSchema);

@@ -156,7 +156,7 @@ export default function Drivers() {
             </div>
           </div>
           <div className='flex-item'>
-            {user.type === 'Carrier' ? (
+            {user.type === 'Carrier' || user.type === 'Super Admin' ? (
               <button
                 className='primary-button unset-width'
                 onClick={openAddDriver}

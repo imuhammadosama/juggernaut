@@ -27,14 +27,9 @@ router.route('/register').post(async (req, res) => {
 
   const lastId = parseInt(lastUser[0].id.slice(2));
   const uniqueId = lastId + 1;
-  const typeId = function () {
-    if (req.body.type === '10000') {
-      return `JA${uniqueId}`;
-    }
-    return `JC${uniqueId}`;
-  };
+
   const user = new User({
-    id: typeId,
+    id: `JA${uniqueId}`,
     status: 'Active',
     company_id: req.body.company_id,
     company_name: req.body.company_name,

@@ -121,7 +121,7 @@ const Loads = () => {
       setLoading(true);
 
       const res =
-        user.type === 'Management'
+        user.type === 'Management' || user.type === 'Super Admin'
           ? await axios.get('/loads')
           : user.type === 'Dispatch / Tracking'
           ? await axios.get('/loads/dispatchTracking')
@@ -135,7 +135,7 @@ const Loads = () => {
           : // Add Carrier ID
             await axios.get('/loads');
       const l = res.data.data;
-      if (user.type === 'Management') {
+      if (user.type === 'Management' || user.type === 'Super Admin') {
         const p = preLoads.filter((load) => load.status === 'Pending');
         setLoads(p);
       }
@@ -391,7 +391,7 @@ const Loads = () => {
           <input type='date' />
           <input type='date' />
         </div> */}
-        {user.type === 'Business' ? (
+        {user.type === 'Business' || user.type === 'Super Admin' ? (
           <div className='p-16 border-bottom-white flex flex-item bg-white border-right-grey'>
             <button
               onClick={() => setOpenAddLoadModal(true)}
@@ -610,7 +610,7 @@ const Loads = () => {
           <br />
         </div>
       </div>
-      {user.type === 'Management' ? (
+      {user.type === 'Management' || user.type === 'Super Admin' ? (
         <div className='table all-loads no-scroll'>
           <div className='flex py-32'>
             <div
@@ -886,15 +886,24 @@ const Loads = () => {
                       {load.origin.address.province}
                       <br />
                       <p className='time'>
-                        <Moment format='ddd d/M'>{load.origin.date}</Moment>
+                        <Moment format='ddd d/M'>
+                          {load.origin.date_and_time}
+                        </Moment>
                         <span className='mr-4'></span>
-                        {<Moment format='hh:mm'>{load.origin.time}</Moment>}
+                        {
+                          <Moment format='hh:mm'>
+                            {load.origin.date_and_time}
+                          </Moment>
+                        }
                         <span> - </span>
                         {
                           <Moment
                             format='hh:mm'
                             add={(10, 'minutes')}
-                            date={moment(load.origin.time).add(2, 'hours')}
+                            date={moment(load.origin.date_and_time).add(
+                              2,
+                              'hours'
+                            )}
                           />
                         }
                       </p>
@@ -909,12 +918,12 @@ const Loads = () => {
                           <br />
                           <p className='time'>
                             <Moment format='ddd d/M'>
-                              {load.destination.date}
+                              {load.destination.date_and_time}
                             </Moment>
                             <span className='mr-4'></span>
                             {
                               <Moment format='hh:mm'>
-                                {load.destination.time}
+                                {load.destination.date_and_time}
                               </Moment>
                             }
                             <span> - </span>
@@ -922,7 +931,10 @@ const Loads = () => {
                               <Moment
                                 format='hh:mm'
                                 add={(10, 'minutes')}
-                                date={moment(load.origin.time).add(2, 'hours')}
+                                date={moment(load.origin.date_and_time).add(
+                                  2,
+                                  'hours'
+                                )}
                               />
                             }
                           </p>
@@ -969,7 +981,8 @@ const Loads = () => {
             {selectedLoad.status === 'Pending' ? (
               <div>
                 {user.type === 'Billing / Invoice' ||
-                user.type === 'Management' ? (
+                user.type === 'Management' ||
+                user.type === 'Super Admin' ? (
                   <div className='py-16 bg-pending flex flex-column px-16'>
                     <div className='white bold pb-16'>Accept Load</div>
                     <div>
@@ -1026,12 +1039,12 @@ const Loads = () => {
                   <div className='white bold pb-8 '>
                     <p className='white '>
                       <Moment format='ddd d/M'>
-                        {selectedLoad.origin.date}
+                        {selectedLoad.origin.date_and_time}
                       </Moment>
                       <span className='mr-4'></span>
                       {
                         <Moment format='hh:mm'>
-                          {selectedLoad.origin.time}
+                          {selectedLoad.origin.date_and_time}
                         </Moment>
                       }
                       <span> - </span>
@@ -1039,7 +1052,7 @@ const Loads = () => {
                         <Moment
                           format='hh:mm'
                           add={(10, 'minutes')}
-                          date={moment(selectedLoad.origin.time).add(
+                          date={moment(selectedLoad.origin.date_and_time).add(
                             2,
                             'hours'
                           )}
@@ -1065,12 +1078,12 @@ const Loads = () => {
                   <div className='white bold pb-8 '>
                     <p className='white '>
                       <Moment format='ddd d/M'>
-                        {selectedLoad.origin.date}
+                        {selectedLoad.origin.date_and_time}
                       </Moment>
                       <span className='mr-4'></span>
                       {
                         <Moment format='hh:mm'>
-                          {selectedLoad.origin.time}
+                          {selectedLoad.origin.date_and_time}
                         </Moment>
                       }
                       <span> - </span>
@@ -1078,7 +1091,7 @@ const Loads = () => {
                         <Moment
                           format='hh:mm'
                           add={(10, 'minutes')}
-                          date={moment(selectedLoad.origin.time).add(
+                          date={moment(selectedLoad.origin.date_and_time).add(
                             2,
                             'hours'
                           )}
@@ -1249,7 +1262,9 @@ const Loads = () => {
                 </div>
               </div>
             </div>
-            {selectedLoad.status === 'Active' && user.type === 'Carrier' ? (
+            {(selectedLoad.status === 'Active' && user.type === 'Carrier') ||
+            (selectedLoad.status === 'Active' &&
+              user.type === 'Super Admin') ? (
               <div className='border-bottom py-16 flex-item'>
                 <button
                   className='primary-button'
@@ -1261,7 +1276,8 @@ const Loads = () => {
             ) : selectedLoad.status === 'Dispatched' ? (
               <div>
                 {user.type === 'Dispatch / Tracking' ||
-                user.type === 'Management' ? (
+                user.type === 'Management' ||
+                user.type === 'Super Admin' ? (
                   <div className='border-bottom py-12 px-32 flex-item'>
                     <a
                       className='primary-button'

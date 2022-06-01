@@ -87,7 +87,7 @@ export default function NavDropdown(props) {
         </button>
         <div id='myNavDropdown' className='navdropdown-content'>
           <Link to='/loads'>Loads</Link>
-          {user.type === 'Management' ? (
+          {user.type === 'Management' || user.type === 'Super Admin' ? (
             <div>
               <Link to='/users'>Users</Link>
               <Link to='/drivers'>Drivers</Link>

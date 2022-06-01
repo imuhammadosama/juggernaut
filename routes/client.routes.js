@@ -12,15 +12,19 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  console.log(req.body.type);
   const lastClient = await Client.find({}).sort({ _id: -1 }).limit(1);
   const lastId = parseInt(lastClient[0].id.slice(2));
+  console.log(lastClient);
   const uniqueId = lastId + 1;
-  const typeId = function () {
-    if (req.body.type === 'Carrier') {
-      return `JC${uniqueId}`;
-    }
-    return `JB${uniqueId}`;
-  };
+  const carrierId = `JC${uniqueId}`;
+  const businessId = `JB${uniqueId}`;
+  let typeId = '';
+  if (req.body.type === 'Client') {
+    typeId = carrierId;
+  } else {
+    typeId = businessId;
+  }
   const client = new Client({
     id: typeId,
     status: 'Pending',
