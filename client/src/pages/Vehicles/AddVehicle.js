@@ -190,14 +190,21 @@ export default function ({ closeModal }) {
                       <span className='red ten'> ✸</span>
                     </sup>
                   </div>
-                  <input
+                  <select
                     name='trailer_axles'
                     value={formValues.trailer_axles}
                     type='text'
-                    placeholder='2 Axles'
+                    placeholder='2 Axle'
                     onChange={handleChange}
                     className='full-width'
-                  />
+                  >
+                    <option>2 Axle</option>
+                    <option>3 Axle</option>
+                    <option>4 Axle</option>
+                    <option>5 Axle</option>
+                    <option>6 Axle</option>
+                  </select>
+
                   <p
                     className={
                       formErrors.trailer_axles ? 'errorMessage' : 'hideMe'

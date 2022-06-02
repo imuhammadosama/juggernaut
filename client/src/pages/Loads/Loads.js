@@ -1394,7 +1394,7 @@ const Loads = () => {
               </div>
               <div className='pr-32'>
                 <p className='small-title'>Comodity Description</p>
-                <p>{selectedLoad.details.comodity_description}</p>
+                <p>{selectedLoad.details.commodity_description}</p>
               </div>
               <div className='flex'>
                 <div className='pr-32'>

@@ -44,6 +44,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
       date_and_time: getTodaysDate(),
     },
     calculated_distance: 0,
+    commodity: '',
     details: {
       distance: '',
       trailer_type: 'Container',
@@ -53,7 +54,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
       quantity: 0,
       weight: { value: 0, unit: 'kg' },
       volume: { value: 0, unit: 'm3' },
-      comodity_description: '',
+      commodity_description: '',
       quantity_description: '',
       notes: '',
     },
@@ -170,6 +171,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
       },
 
       distance: '0',
+      commodity: field === 'Commodity' ? value.target.value : load.commodity,
       details: {
         trailer_type:
           field === 'Details Trailer Type'
@@ -217,10 +219,10 @@ function AddLoad({ closeOpenAddLoadModal }) {
               ? value.target.value
               : load.details.volume.unit,
         },
-        comodity_description:
+        commodity_description:
           field === 'Details Comodity Description'
             ? value.target.value
-            : load.details.comodity_description,
+            : load.details.commodity_description,
         quantity_description:
           field === 'Details Quantity Description'
             ? value.target.value
@@ -567,13 +569,16 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           className='full-width'
                         >
                           <option value='Container'>Container</option>
-                          <option value='Dry Van / Enclosed Trailer'>
-                            Dry Van / Enclosed Trailer
-                          </option>
-                          <option value='Flatbed'>Flatbed</option>
+                          <option value='Tanked'>Tanker</option>
+                          <option value='Flat-bed'>Flat-bed</option>
+                          <option value='Cement Truck'>Cement Truck</option>
+                          <option value='Refeer Truck'>Refeer Truck</option>
+                          <option value='Car Carrier'>Car Carrier</option>
+                          <option value='Dry Van'>Dry Van</option>
                           <option value='Lowboy Trailer'>Lowboy Trailer</option>
-                          <option value='Oil Tanker'>Oil Tanker</option>
-                          <option value='Reefer'>Reefer</option>
+                          <option value='Enclosed Trailer'>
+                            Enclosed Trailer
+                          </option>
                         </select>
                       </div>
                       <div className='full-width'>
@@ -659,6 +664,31 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           placeholder='i.e, 10'
                           className='full-width'
                         />
+                      </div>
+                      <div className='full-width'>
+                        <div className='text-left head-label pb-8'>
+                          Commodity
+                          <sup>
+                            <span className='red ten'> ✸</span>
+                          </sup>
+                        </div>
+                        <select
+                          value={load.commodity || ''}
+                          onChange={(value) => updateState(value, 'Commodity')}
+                          type='text'
+                          className='full-width'
+                        >
+                          <option value='Oil & Gas'>Oil & Gas</option>
+                          <option value='Textile'>Textile</option>
+                          <option value='FMCG'>FMCG</option>
+                          <option value='Chemical'>Chemical</option>
+                          <option value='Auto'>Auto</option>
+                          <option value='Beverages'>Beverages</option>
+                          <option value='Cement'>Cement</option>
+                          <option value='General Goods'>General Goods</option>
+                          <option value='Pharmaceutical'>Pharmaceutical</option>
+                          <option value='Agriculture'>Agriculture</option>
+                        </select>
                       </div>
                     </div>
                     <div className='flex'>
@@ -769,7 +799,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                         </div>
                         <textarea
                           type='number'
-                          value={load.details.comodity_description || ''}
+                          value={load.details.commodity_description || ''}
                           onChange={(value) =>
                             updateState(value, 'Details Comodity Description')
                           }

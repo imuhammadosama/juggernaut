@@ -30,6 +30,7 @@ const loadSchema = mongoose.Schema({
     date_and_time: { type: Date, required: true },
   },
   distance: { type: String, required: true },
+  commodity: { type: String, required: true },
   details: {
     type: Object,
     required: true,
@@ -49,7 +50,7 @@ const loadSchema = mongoose.Schema({
       value: { type: Number, required: true },
       unit: { type: String, required: true },
     },
-    comodity_description: { type: String, required: true },
+    commodity_description: { type: String, required: true },
     quantity_description: { type: String, required: true },
     notes: { type: String, required: true },
   },

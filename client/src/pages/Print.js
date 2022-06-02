@@ -53,7 +53,7 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
         details_weight_unit: data.details.weight.unit,
         details_volume_value: data.details.volume.value,
         details_volume_unit: data.details.volume.unit,
-        details_comodity_description: data.details.comodity_description,
+        details_commodity_description: data.details.commodity_description,
         details_quantity_description: data.details.quantity_description,
         details_notes: data.details.notes,
         business_id: data.business_id,
@@ -254,7 +254,7 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                         {load.details_capacity_unit}
                       </div>
                       <div className='small-bold-title py-4 px-8 br-b-grey-2'>
-                        {load.details_comodity_description}
+                        {load.details_commodity_description}
                       </div>
                       <div className='small-bold-title py-4 px-8 br-b-grey-2'>
                         {load.details_quantity_description}

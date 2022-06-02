@@ -41,14 +41,15 @@ function Register({ closeModal, type }) {
   });
   const commodities = [
     'Oil & Gas',
-    'General Goods',
-    'Beverages',
+    'Textile',
     'FMCG',
     'Chemical',
-    'Textile',
-    'Cement',
-    'Pharmaceutical',
     'Auto',
+    'Beverages',
+    'Cement',
+    'General Goods',
+    'Pharmaceutical',
+    'Agriculture',
   ];
   const navigate = useNavigate();
 

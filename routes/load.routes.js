@@ -270,6 +270,7 @@ router.post('/', async (req, res) => {
       date_and_time: req.body.destination.date_and_time,
     },
     distance: 'Not set yet!',
+    commodity: req.body.commodity,
     details: {
       trailer_type: req.body.details.trailer_type,
       trailer_axle: req.body.details.trailer_axle,
@@ -287,7 +288,7 @@ router.post('/', async (req, res) => {
         value: req.body.details.volume.value,
         unit: req.body.details.volume.unit,
       },
-      comodity_description: req.body.details.comodity_description,
+      commodity_description: req.body.details.commodity_description,
       quantity_description: req.body.details.quantity_description,
       notes: req.body.details.notes,
     },
