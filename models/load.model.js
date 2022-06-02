@@ -70,7 +70,9 @@ const loadSchema = mongoose.Schema({
   driver_name: { type: String, required: true },
   vehicle_registeration_number: { type: String, required: true },
   business_id: { type: String, required: true },
+  business_name: { type: String, required: true },
   carrier_id: { type: String, required: true },
+  carrier_name: { type: String, required: true },
   amount_set_by: { type: String, required: true },
   tracked_by: { type: String, required: true },
 });

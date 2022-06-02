@@ -40146,11 +40146,11 @@
                         (0, de.jsx)('br', {}),
                         (0, de.jsx)('input', {
                           type: 'radio',
-                          value: 'Refeer Truck',
+                          value: 'Reefer Truck',
                           name: 'Vehicle',
                           onChange: De,
                         }),
-                        'Refeer Truck',
+                        'Reefer Truck',
                         (0, de.jsx)('br', {}),
                         (0, de.jsx)('input', {
                           type: 'radio',
@@ -51016,16 +51016,14 @@
               }
             }),
             (e.link = function (e, t, n, r, i) {
-              this.internal
-                .getCurrentPageInfo()
-                .pageContext.annotations.push({
-                  x: e,
-                  y: t,
-                  w: n,
-                  h: r,
-                  options: i,
-                  type: 'link',
-                });
+              this.internal.getCurrentPageInfo().pageContext.annotations.push({
+                x: e,
+                y: t,
+                w: n,
+                h: r,
+                options: i,
+                type: 'link',
+              });
             }),
             (e.textWithLink = function (e, t, n, r) {
               var i = this.getTextWidth(e),

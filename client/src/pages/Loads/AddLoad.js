@@ -44,16 +44,16 @@ function AddLoad({ closeOpenAddLoadModal }) {
       date_and_time: getTodaysDate(),
     },
     calculated_distance: 0,
-    commodity: '',
+    commodity: 'Oil & Gas',
     details: {
       distance: '',
       trailer_type: 'Container',
       trailer_axle: '2 Axle',
       full_or_partial: 'Full',
-      capacity: { value: '', unit: 'lt' },
+      capacity: { value: '', unit: ' ltr' },
       quantity: 0,
-      weight: { value: 0, unit: 'kg' },
-      volume: { value: 0, unit: 'm3' },
+      weight: { value: 0, unit: ' kg' },
+      volume: { value: 0, unit: ' m3' },
       commodity_description: '',
       quantity_description: '',
       notes: '',
@@ -65,6 +65,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
       locations: [{}],
     },
     business_id: user.company,
+    business_name: user.name,
   });
 
   async function submitLoad(event) {
@@ -82,7 +83,9 @@ function AddLoad({ closeOpenAddLoadModal }) {
           draggable: true,
           progress: undefined,
         });
-        window.location.reload(false);
+        if (response === 'Successfully Added!') {
+          window.location.reload(false);
+        }
       })
       .catch((error) => {
         toast.error(error.message, {
@@ -220,7 +223,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
               : load.details.volume.unit,
         },
         commodity_description:
-          field === 'Details Comodity Description'
+          field === 'Details Commodity Description'
             ? value.target.value
             : load.details.commodity_description,
         quantity_description:
@@ -572,7 +575,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           <option value='Tanked'>Tanker</option>
                           <option value='Flat-bed'>Flat-bed</option>
                           <option value='Cement Truck'>Cement Truck</option>
-                          <option value='Refeer Truck'>Refeer Truck</option>
+                          <option value='Reefer Truck'>Reefer Truck</option>
                           <option value='Car Carrier'>Car Carrier</option>
                           <option value='Dry Van'>Dry Van</option>
                           <option value='Lowboy Trailer'>Lowboy Trailer</option>
@@ -647,6 +650,31 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           </div>
                         </div>
                       </div>
+                      <div className='full-width mr-8'>
+                        <div className='text-left head-label pb-8'>
+                          Commodity
+                          <sup>
+                            <span className='red ten'> ✸</span>
+                          </sup>
+                        </div>
+                        <select
+                          value={load.commodity || ''}
+                          onChange={(value) => updateState(value, 'Commodity')}
+                          name='Commodity'
+                          className='full-width'
+                        >
+                          <option value='Oil & Gas'>Oil & Gas</option>
+                          <option value='Textile'>Textile</option>
+                          <option value='FMCG'>FMCG</option>
+                          <option value='Chemical'>Chemical</option>
+                          <option value='Auto'>Auto</option>
+                          <option value='Beverages'>Beverages</option>
+                          <option value='Cement'>Cement</option>
+                          <option value='General Goods'>General Goods</option>
+                          <option value='Pharmaceutical'>Pharmaceutical</option>
+                          <option value='Agriculture'>Agriculture</option>
+                        </select>
+                      </div>
                       <div className='full-width'>
                         <div className='text-left head-label pb-8'>
                           Quantity
@@ -664,31 +692,6 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           placeholder='i.e, 10'
                           className='full-width'
                         />
-                      </div>
-                      <div className='full-width'>
-                        <div className='text-left head-label pb-8'>
-                          Commodity
-                          <sup>
-                            <span className='red ten'> ✸</span>
-                          </sup>
-                        </div>
-                        <select
-                          value={load.commodity || ''}
-                          onChange={(value) => updateState(value, 'Commodity')}
-                          type='text'
-                          className='full-width'
-                        >
-                          <option value='Oil & Gas'>Oil & Gas</option>
-                          <option value='Textile'>Textile</option>
-                          <option value='FMCG'>FMCG</option>
-                          <option value='Chemical'>Chemical</option>
-                          <option value='Auto'>Auto</option>
-                          <option value='Beverages'>Beverages</option>
-                          <option value='Cement'>Cement</option>
-                          <option value='General Goods'>General Goods</option>
-                          <option value='Pharmaceutical'>Pharmaceutical</option>
-                          <option value='Agriculture'>Agriculture</option>
-                        </select>
                       </div>
                     </div>
                     <div className='flex'>
@@ -801,9 +804,9 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           type='number'
                           value={load.details.commodity_description || ''}
                           onChange={(value) =>
-                            updateState(value, 'Details Comodity Description')
+                            updateState(value, 'Details Commodity Description')
                           }
-                          name='Details Comodity Description'
+                          name='Details Commodity Description'
                           placeholder='Enter details'
                         />
                       </div>

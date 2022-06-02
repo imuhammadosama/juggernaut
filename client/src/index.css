@@ -301,6 +301,10 @@ table {
   color: var(--brand);
 }
 
+.pending {
+  color: var(--pending);
+}
+
 .id-tag {
   color: white;
   font-size: 12px;

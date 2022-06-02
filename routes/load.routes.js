@@ -118,6 +118,21 @@ router.get('/vehicle/:vehicle', async (req, res) => {
   }
 });
 
+// Getting single load
+router.get('/commodity/:commodity', async (req, res) => {
+  console.log(req.params.commodity);
+  try {
+    const data = await Load.find({
+      // prettier-ignore
+      'details.commodity': req.params.commodity,
+    }).sort({ _id: -1 });
+
+    res.json({ message: 'Found!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 // Accept load
 router.put('/accept/:loadId', async (req, res) => {
   try {
@@ -127,7 +142,7 @@ router.put('/accept/:loadId', async (req, res) => {
         $set: {
           amount: req.body.amount,
           status: 'Active',
-          distance: `${req.body.distance} KM`,
+          distance: `${req.body.distance} km`,
           amount_set_by: req.body.amount_set_by,
         },
       }
@@ -147,6 +162,7 @@ router.put('/pick/:loadId', async (req, res) => {
         $set: {
           status: 'Dispatched',
           carrier_id: req.body.carrier_id,
+          carrier_name: req.body.carrier_name,
           driver_name: req.body.driver_name,
           vehicle_registeration_number: req.body.vehicle_registeration_number,
         },
@@ -257,7 +273,7 @@ router.post('/', async (req, res) => {
         province: req.body.origin.address.province,
         postalcode: req.body.origin.postalcode,
       },
-      date_and_time: req.body.destination.date_and_time,
+      date_and_time: req.body.origin.date_and_time,
     },
     destination: {
       address: {
@@ -306,7 +322,9 @@ router.post('/', async (req, res) => {
     driver_name: 'Not set yet!',
     vehicle_registeration_number: 'Not set yet!',
     business_id: req.body.business_id,
+    business_name: req.body.business_name,
     carrier_id: 'Not set yet!',
+    carrier_name: 'Not set yet!',
     amount_set_by: 'Not set yet!',
     tracked_by: 'Not set yet!',
   });

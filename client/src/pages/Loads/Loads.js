@@ -105,7 +105,7 @@ const Loads = () => {
   const handleComodityFilter = async (e) => {
     console.log(e.target.value);
     setFilters({ ...filters, comodity: e.target.value });
-    if (e.target.value === '') {
+    if (e.target.value !== 'All') {
       const res = await axios.get(`/loads/comodity/${e.target.value}`);
       setLoads(res.data.data);
     } else {
@@ -337,6 +337,15 @@ const Loads = () => {
     setLoads(completedLoads);
   };
 
+  const filterCancelled = () => {
+    setSelectedLoad(false);
+    setSelectedFilter('cancelled');
+    const cancelledLoads = preLoads.filter(
+      (load) => load.status === 'Cancelled'
+    );
+    setLoads(cancelledLoads);
+  };
+
   if (loading)
     return (
       <div className='flex loader'>
@@ -391,6 +400,12 @@ const Loads = () => {
           <input type='date' />
           <input type='date' />
         </div> */}
+        <div
+          className='brand-bg uppercase bold text-center pt-8 pb-8 clickable'
+          onClick={() => filterCancelled()}
+        >
+          Cancelled Loads
+        </div>
         {user.type === 'Business' || user.type === 'Super Admin' ? (
           <div className='p-16 border-bottom-white flex flex-item bg-white border-right-grey'>
             <button
@@ -434,7 +449,37 @@ const Loads = () => {
               })}
           </select>
         </div>
-
+        <div className='p-16 border-bottom-white'>
+          <div className='bold pb-16'>Clients</div>
+          <div className='small-title pb-8'>Business</div>
+          <select
+            style={{ backgroundColor: 'White' }}
+            className='mb-24 full-width'
+            onChange={handleOriginFilter}
+          >
+            <option value='All'>All</option>
+            {preLoads
+              .map((load) => load.origin.address.city)
+              .filter((value, index, self) => self.indexOf(value) === index)
+              .map((location, index) => {
+                return <option key={index}>{location}</option>;
+              })}
+          </select>
+          <div className='small-title pb-8'>Carrier</div>
+          <select
+            style={{ backgroundColor: 'White' }}
+            className='mb-24 full-width'
+            onChange={handleDestinationFilter}
+          >
+            <option value='All'>All</option>
+            {preLoads
+              .map((load) => load.destination.address.city)
+              .filter((value, index, self) => self.indexOf(value) === index)
+              .map((location, index) => {
+                return <option key={index}>{location}</option>;
+              })}
+          </select>
+        </div>
         <div className='p-16 border-bottom-white'>
           <div className='bold pb-16'>Vehicle</div>
           <input
@@ -479,11 +524,11 @@ const Loads = () => {
           <br />
           <input
             type='radio'
-            value='Refeer Truck'
+            value='Reefer Truck'
             name='Vehicle'
             onChange={handleVehicleFilter}
           />
-          Refeer Truck
+          Reefer Truck
           <br />
           <input
             type='radio'
@@ -732,19 +777,19 @@ const Loads = () => {
                       {load.origin.address.province}
                       <br />
                       <p className='time'>
-                        <Moment format='ddd d/M'>
+                        <Moment format='ddd D/M'>
                           {load.origin.date_and_time}
                         </Moment>
                         <span className='mr-4'></span>
                         {
-                          <Moment format='hh:mm'>
+                          <Moment format='HH:mm'>
                             {load.origin.date_and_time}
                           </Moment>
                         }
                         <span> - </span>
                         {
                           <Moment
-                            format='hh:mm'
+                            format='HH:mm'
                             add={(10, 'minutes')}
                             date={moment(load.origin.date_and_time).add(
                               2,
@@ -764,17 +809,17 @@ const Loads = () => {
                           {load.destination.address.province}
                           <br />
                           <p className='time'>
-                            <Moment format='ddd d/M'>
+                            <Moment format='ddd D/M'>
                               {load.destination.date_and_time}
                             </Moment>
                             <span className='mr-4'></span>
-                            <Moment format='hh:mm'>
+                            <Moment format='HH:mm'>
                               {load.destination.date_and_time}
                             </Moment>{' '}
                             <span> - </span>
                             {
                               <Moment
-                                format='hh:mm'
+                                format='HH:mm'
                                 add={(10, 'minutes')}
                                 date={moment(load.origin.date_and_time).add(
                                   2,
@@ -790,15 +835,19 @@ const Loads = () => {
                     <td>{load.details.trailer_type}</td>
                     <td>{load.distance}</td>
                     <td>
-                      <button
-                        className='secondary-button'
-                        onClick={() => {
-                          setPointedLoad(load);
-                          setOpenModal(true);
-                        }}
-                      >
-                        Cancel
-                      </button>
+                      {load.status === 'Cancelled' ? (
+                        <p className='pending uppercase'>Cancelled</p>
+                      ) : (
+                        <button
+                          className='secondary-button'
+                          onClick={() => {
+                            setPointedLoad(load);
+                            setOpenModal(true);
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -886,19 +935,19 @@ const Loads = () => {
                       {load.origin.address.province}
                       <br />
                       <p className='time'>
-                        <Moment format='ddd d/M'>
+                        <Moment format='ddd D/M'>
                           {load.origin.date_and_time}
                         </Moment>
                         <span className='mr-4'></span>
                         {
-                          <Moment format='hh:mm'>
+                          <Moment format='HH:mm'>
                             {load.origin.date_and_time}
                           </Moment>
                         }
                         <span> - </span>
                         {
                           <Moment
-                            format='hh:mm'
+                            format='HH:mm'
                             add={(10, 'minutes')}
                             date={moment(load.origin.date_and_time).add(
                               2,
@@ -917,19 +966,19 @@ const Loads = () => {
                           {load.destination.address.province}
                           <br />
                           <p className='time'>
-                            <Moment format='ddd d/M'>
+                            <Moment format='ddd D/M'>
                               {load.destination.date_and_time}
                             </Moment>
                             <span className='mr-4'></span>
                             {
-                              <Moment format='hh:mm'>
+                              <Moment format='HH:mm'>
                                 {load.destination.date_and_time}
                               </Moment>
                             }
                             <span> - </span>
                             {
                               <Moment
-                                format='hh:mm'
+                                format='HH:mm'
                                 add={(10, 'minutes')}
                                 date={moment(load.origin.date_and_time).add(
                                   2,
@@ -1038,19 +1087,19 @@ const Loads = () => {
                 <div className='flex flex-center'>
                   <div className='white bold pb-8 '>
                     <p className='white '>
-                      <Moment format='ddd d/M'>
+                      <Moment format='ddd D/M'>
                         {selectedLoad.origin.date_and_time}
                       </Moment>
                       <span className='mr-4'></span>
                       {
-                        <Moment format='hh:mm'>
+                        <Moment format='HH:mm'>
                           {selectedLoad.origin.date_and_time}
                         </Moment>
                       }
                       <span> - </span>
                       {
                         <Moment
-                          format='hh:mm'
+                          format='HH:mm'
                           add={(10, 'minutes')}
                           date={moment(selectedLoad.origin.date_and_time).add(
                             2,
@@ -1077,19 +1126,19 @@ const Loads = () => {
                 <div className='flex flex-center'>
                   <div className='white bold pb-8 '>
                     <p className='white '>
-                      <Moment format='ddd d/M'>
+                      <Moment format='ddd D/M'>
                         {selectedLoad.origin.date_and_time}
                       </Moment>
                       <span className='mr-4'></span>
                       {
-                        <Moment format='hh:mm'>
+                        <Moment format='HH:mm'>
                           {selectedLoad.origin.date_and_time}
                         </Moment>
                       }
                       <span> - </span>
                       {
                         <Moment
-                          format='hh:mm'
+                          format='HH:mm'
                           add={(10, 'minutes')}
                           date={moment(selectedLoad.origin.date_and_time).add(
                             2,
@@ -1116,19 +1165,19 @@ const Loads = () => {
                 <div className='flex flex-center'>
                   <div className='white bold pb-8 '>
                     <p className='white'>
-                      <Moment format='ddd d/M'>
+                      <Moment format='ddd D/M'>
                         {selectedLoad.origin.date_and_time}
                       </Moment>
                       <span className='mr-4'></span>
                       {
-                        <Moment format='hh:mm'>
+                        <Moment format='HH:mm'>
                           {selectedLoad.origin.date_and_time}
                         </Moment>
                       }
                       <span> - </span>
                       {
                         <Moment
-                          format='hh:mm'
+                          format='HH:mm'
                           add={(10, 'minutes')}
                           date={moment(selectedLoad.origin.date_and_time).add(
                             2,
@@ -1146,29 +1195,31 @@ const Loads = () => {
               ) : (
                 <div className='bg-cancelled'>
                   <div className='flex space-between border-bottom-white px-16'>
-                    <div className='white twenty-four bold py-16'>
-                      {`${selectedLoad.amount} PKR`}
+                    <div className='white bold py-16 amount-distance'>
+                      {`${selectedLoad.amount
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} PKR`}
                     </div>
-                    <div className='white twenty-four bold py-16 uppercase'>
+                    <div className='white bold py-16 amount-distance uppercase'>
                       {selectedLoad.distance}
                     </div>
                   </div>
                   <div className='flex flex-center'>
-                    <div className='white twenty-four bold pb-8 '>
-                      <p className='white'>
-                        <Moment format='ddd d/M'>
+                    <div className='white bold pb-8 '>
+                      <p className='white '>
+                        <Moment format='ddd D/M'>
                           {selectedLoad.origin.date_and_time}
                         </Moment>
                         <span className='mr-4'></span>
                         {
-                          <Moment format='hh:mm'>
+                          <Moment format='HH:mm'>
                             {selectedLoad.origin.date_and_time}
                           </Moment>
                         }
                         <span> - </span>
                         {
                           <Moment
-                            format='hh:mm'
+                            format='HH:mm'
                             add={(10, 'minutes')}
                             date={moment(selectedLoad.origin.date_and_time).add(
                               2,
@@ -1176,7 +1227,6 @@ const Loads = () => {
                             )}
                           />
                         }
-                        &nbsp;HRS
                       </p>
                     </div>
                   </div>
@@ -1205,19 +1255,19 @@ const Loads = () => {
                         {selectedLoad.origin.address.province}
                         <br />
                         <p className='small-title'>
-                          <Moment format='ddd d/M'>
+                          <Moment format='ddd D/M'>
                             {selectedLoad.origin.date_and_time}
                           </Moment>
                           <span className='mr-4'></span>
                           {
-                            <Moment format='hh:mm'>
+                            <Moment format='HH:mm'>
                               {selectedLoad.origin.date_and_time}
                             </Moment>
                           }
                           <span> - </span>
                           {
                             <Moment
-                              format='hh:mm'
+                              format='HH:mm'
                               add={(10, 'minutes')}
                               date={moment(
                                 selectedLoad.origin.date_and_time
@@ -1236,19 +1286,19 @@ const Loads = () => {
                     {selectedLoad.destination.address.province}
                     <br />
                     <p className='small-title'>
-                      <Moment format='ddd d/M'>
+                      <Moment format='ddd D/M'>
                         {selectedLoad.destination.date_and_time}
                       </Moment>
                       <span className='mr-4'></span>
                       {
-                        <Moment format='hh:mm'>
+                        <Moment format='HH:mm'>
                           {selectedLoad.destination.date_and_time}
                         </Moment>
                       }
                       <span> - </span>
                       {
                         <Moment
-                          format='hh:mm'
+                          format='HH:mm'
                           add={(10, 'minutes')}
                           date={moment(selectedLoad.origin.date_and_time).add(
                             2,
@@ -1385,6 +1435,10 @@ const Loads = () => {
                       {selectedLoad.details.volume.value}
                       <span>{selectedLoad.details.volume.unit}</span>
                     </p>
+                  </div>
+                  <div className='pb-12'>
+                    <p className='small-title '>Commodity</p>
+                    <p>{selectedLoad.commodity}</p>
                   </div>
                 </div>
               </div>
