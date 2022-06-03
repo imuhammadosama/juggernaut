@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
 import moment from 'moment';
+import Countdown from 'react-countdown';
 import getAuth from '../../services/auth.service.js';
 import { toast } from 'react-toastify';
 
@@ -136,10 +137,11 @@ const Loads = () => {
             await axios.get('/loads');
       const l = res.data.data;
       if (user.type === 'Management' || user.type === 'Super Admin') {
-        const p = preLoads.filter((load) => load.status === 'Pending');
+        const p = l.filter((load) => load.status === 'Pending');
         setLoads(p);
+      } else {
+        setLoads(l);
       }
-      setLoads(l);
 
       setPreLoads(res.data.data);
 
@@ -755,7 +757,7 @@ const Loads = () => {
                   <th>Origin</th>
                   <th>Destination</th>
                   <th>Trailer Type</th>
-                  <th>Distance</th>
+                  <th>Timer</th>
                   <th>Cancellation</th>
                 </tr>
               </thead>
@@ -833,7 +835,11 @@ const Loads = () => {
                       </div>
                     </td>
                     <td>{load.details.trailer_type}</td>
-                    <td>{load.distance}</td>
+                    <td>
+                      <Countdown date={Date.now() + 400000}>
+                        {<span>Expired!</span>}
+                      </Countdown>
+                    </td>
                     <td>
                       {load.status === 'Cancelled' ? (
                         <p className='pending uppercase'>Cancelled</p>
