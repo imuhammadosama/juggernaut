@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const loadSchema = mongoose.Schema({
   id: { type: String, required: true },
   status: { type: String, required: true },
-  start_date: { type: Date, required: true },
+  start: { type: Date, required: true },
   amount: { type: Number, required: true },
   origin: {
     type: Object,

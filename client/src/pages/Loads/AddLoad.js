@@ -18,7 +18,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
 
   const [load, setLoad, getLoad] = useState({
     status: 'Pending',
-    start_date: '',
+    start: '',
     origin: {
       address: {
         line1: 'Unset',
@@ -124,7 +124,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
       setLoad({
         ...load,
         status: 'Pending',
-        start_date: '',
+        start: '',
         origin: {
           address: {
             line1:
@@ -249,7 +249,6 @@ function AddLoad({ closeOpenAddLoadModal }) {
   }
 
   async function submitLoad(event) {
-    console.log(load);
     event.preventDefault();
     validateLoad()
       ? await axios
@@ -264,7 +263,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
               draggable: true,
               progress: undefined,
             });
-            if (response === 'Successfully Added!') {
+            if (response.data.message === 'Successfully Added!') {
               window.location.reload(false);
             }
           })
@@ -294,7 +293,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
     setLoad({
       ...load,
       status: 'Pending',
-      start_date: '',
+      start: '',
       origin: {
         address: {
           line1:
@@ -647,6 +646,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           updateState(value, 'Consignor Phone')
                         }
                         type='number'
+                        min='0'
                         placeholder='Consignor Phone'
                         className='full-width'
                       />
@@ -866,6 +866,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           updateState(value, 'Consignee Phone')
                         }
                         type='number'
+                        min='0'
                         placeholder='Consignee Phone'
                         className='full-width'
                       />
@@ -1088,6 +1089,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                         <div>
                           <input
                             type='number'
+                            min='0'
                             value={
                               load.details.quantity === 'Unset'
                                 ? ''
@@ -1122,6 +1124,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           <div>
                             <input
                               type='number'
+                              min='0'
                               value={load.details.capacity.value || ''}
                               onChange={(value) =>
                                 updateState(value, 'Details Capacity Value')
@@ -1163,6 +1166,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           <div>
                             <input
                               type='number'
+                              min='0'
                               value={
                                 load.details.weight.value === 'Unset'
                                   ? ''
@@ -1210,6 +1214,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                           <div>
                             <input
                               type='number'
+                              min='0'
                               value={
                                 load.details.volume.value === 'Unset'
                                   ? ''
@@ -1340,6 +1345,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                         <div>
                           <textarea
                             type='number'
+                            min='0'
                             value={
                               load.details.notes === 'Unset'
                                 ? ''

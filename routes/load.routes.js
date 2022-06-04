@@ -263,7 +263,7 @@ router.post('/', async (req, res) => {
   const load = new Load({
     id: `JD${uniqueId}`,
     status: req.body.status,
-    start_date: '2020-01-01T00:00:00.511Z',
+    start: new Date(),
     amount: 0,
     origin: {
       address: {

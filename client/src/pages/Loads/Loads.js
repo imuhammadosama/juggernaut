@@ -68,6 +68,15 @@ const Loads = () => {
   // Filters
   const [filters, setFilters] = useState({});
 
+  function getTimer(date) {
+    var startTime = moment(date);
+    var endTime = moment(Date.now());
+    if (endTime.diff(startTime, 'hours') > 1) {
+      return 'Expired!';
+    }
+    return 'Not Expired';
+  }
+
   // Filter loads
   const handleOriginFilter = async (e) => {
     setFilters({ ...filters, origin: e.target.value });
@@ -116,6 +125,7 @@ const Loads = () => {
 
   useEffect(() => {
     // filterPending();
+    setSelectedFilter('pending');
     getAuth();
     console.log(user);
     fetch = async () => {
@@ -757,7 +767,17 @@ const Loads = () => {
                   <th>Origin</th>
                   <th>Destination</th>
                   <th>Trailer Type</th>
-                  <th>Timer</th>
+                  {selectedFilter === 'pending' ? (
+                    <th>Pending Since</th>
+                  ) : selectedFilter === 'active' ? (
+                    <th>Distance</th>
+                  ) : selectedFilter === 'dispatched' ? (
+                    <th>Distance</th>
+                  ) : selectedFilter === 'completed' ? (
+                    <th>Distance</th>
+                  ) : (
+                    <th>Distance</th>
+                  )}
                   <th>Cancellation</th>
                 </tr>
               </thead>
@@ -836,9 +856,19 @@ const Loads = () => {
                     </td>
                     <td>{load.details.trailer_type}</td>
                     <td>
-                      <Countdown date={Date.now() + 400000}>
-                        {<span>Expired!</span>}
-                      </Countdown>
+                      {load.status === 'Pending' ? (
+                        <Countdown date={moment.utc(load.start) + 3600000}>
+                          {<span className='pending uppercase'>Late!</span>}
+                        </Countdown>
+                      ) : load.status === 'Active' ? (
+                        load.distance
+                      ) : load.status === 'Dispatched' ? (
+                        load.distance
+                      ) : load.status === 'Completed' ? (
+                        load.distance
+                      ) : (
+                        ''
+                      )}
                     </td>
                     <td>
                       {load.status === 'Cancelled' ? (
@@ -1046,6 +1076,7 @@ const Loads = () => {
                           <div>
                             <input
                               type='number'
+                              min='0'
                               placeholder='Amount'
                               onChange={(event) =>
                                 setLoadAmount(event.target.value)
@@ -1056,6 +1087,7 @@ const Loads = () => {
                           <div>
                             <input
                               type='number'
+                              min='0'
                               placeholder='Distance'
                               onChange={(event) =>
                                 setLoadDistance(event.target.value)
