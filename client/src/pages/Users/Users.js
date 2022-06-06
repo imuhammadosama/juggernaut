@@ -154,12 +154,7 @@ export default function Users() {
       password: password,
     };
     emailjs
-      .send(
-        'service_4gjyi7p',
-        'juggernaut',
-        templateParams,
-        'VdSVobMfhmKrcOFN4'
-      )
+      .send('juggernaut', 'juggernaut', templateParams, 'VdSVobMfhmKrcOFN4')
       .then(
         (response) => {
           console.log('SUCCESS!', response.status, response.text);

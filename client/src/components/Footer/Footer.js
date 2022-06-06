@@ -45,7 +45,7 @@ export default function Footer() {
               <b>Phone:</b> UAN 304 111 2997
             </li>
             <li>
-              <b>Email:</b> help@juggernaut.com
+              <b>Email:</b> help@juggernautpk.com
             </li>
             <li>
               <b>Address:</b> 223 2nd Floor, HBL Building, <br />
