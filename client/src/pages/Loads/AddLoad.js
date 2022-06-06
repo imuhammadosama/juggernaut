@@ -56,12 +56,8 @@ function AddLoad({ closeOpenAddLoadModal }) {
     },
     consignor: { name: 'Unset', phone: 'Unset' },
     consignee: { name: 'Unset', phone: 'Unset' },
-
-    tracking_details: {
-      locations: [{}],
-    },
-    business_id: user.company,
-    business_name: user.name,
+    business_id: user.company_id,
+    business_name: user.company_name,
   });
 
   function validateLoad() {

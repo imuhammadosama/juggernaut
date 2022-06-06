@@ -99,6 +99,27 @@ const Loads = () => {
     }
   };
 
+  const handleCarrierFilter = async (e) => {
+    console.log(e.target.value);
+    setFilters({ ...filters, carrier: e.target.value });
+    if (e.target.value !== 'All') {
+      const res = await axios.get(`/loads/carrierName/${e.target.value}`);
+      setLoads(res.data.data);
+    } else {
+      setLoads(preLoads);
+    }
+  };
+
+  const handleBusinessFilter = async (e) => {
+    setFilters({ ...filters, business: e.target.value });
+    if (e.target.value !== 'All') {
+      const res = await axios.get(`/loads/businessName/${e.target.value}`);
+      setLoads(res.data.data);
+    } else {
+      setLoads(preLoads);
+    }
+  };
+
   // Filter loads
   const handleVehicleFilter = async (e) => {
     console.log(e.target.value);
@@ -114,9 +135,9 @@ const Loads = () => {
   // Filter loads
   const handleComodityFilter = async (e) => {
     console.log(e.target.value);
-    setFilters({ ...filters, comodity: e.target.value });
+    setFilters({ ...filters, commodity: e.target.value });
     if (e.target.value !== 'All') {
-      const res = await axios.get(`/loads/comodity/${e.target.value}`);
+      const res = await axios.get(`/loads/commodity/${e.target.value}`);
       setLoads(res.data.data);
     } else {
       setLoads(preLoads);
@@ -467,11 +488,11 @@ const Loads = () => {
           <select
             style={{ backgroundColor: 'White' }}
             className='mb-24 full-width'
-            onChange={handleOriginFilter}
+            onChange={handleBusinessFilter}
           >
             <option value='All'>All</option>
             {preLoads
-              .map((load) => load.origin.address.city)
+              .map((load) => load.business_name)
               .filter((value, index, self) => self.indexOf(value) === index)
               .map((location, index) => {
                 return <option key={index}>{location}</option>;
@@ -481,12 +502,15 @@ const Loads = () => {
           <select
             style={{ backgroundColor: 'White' }}
             className='mb-24 full-width'
-            onChange={handleDestinationFilter}
+            onChange={handleCarrierFilter}
           >
             <option value='All'>All</option>
             {preLoads
-              .map((load) => load.destination.address.city)
-              .filter((value, index, self) => self.indexOf(value) === index)
+              .map((load) => load.carrier_name)
+              .filter(
+                (value, index, self) =>
+                  self.indexOf(value) === index && value !== 'Not set yet!'
+              )
               .map((location, index) => {
                 return <option key={index}>{location}</option>;
               })}
@@ -857,7 +881,7 @@ const Loads = () => {
                     <td>{load.details.trailer_type}</td>
                     <td>
                       {load.status === 'Pending' ? (
-                        <Countdown date={moment.utc(load.start) + 3600000}>
+                        <Countdown date={moment.utc(load.start) + 7200000}>
                           {<span className='pending uppercase'>Late!</span>}
                         </Countdown>
                       ) : load.status === 'Active' ? (

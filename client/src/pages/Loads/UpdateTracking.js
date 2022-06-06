@@ -146,7 +146,7 @@ export default function UpdateTracking({ closeUpdateTrackingModal, load }) {
                     </p>
                   </div>
                 </div>
-                {selectedLoad.tracking_details.length === 1 ? (
+                {selectedLoad.tracking_details.length === 0 ? (
                   <div></div>
                 ) : (
                   selectedLoad.tracking_details.map((location, key, arr) => {

@@ -25,7 +25,7 @@ function PickLoad({ closePickModal, selectedLoad }) {
 
       // Get Available Drivers
       const availableDrivers = await axios.get(
-        `/drivers/client/${user.company}`
+        `/drivers/client/${user.company_id}`
       );
       const activeDrivers = availableDrivers.data.data.filter(
         (driver) => driver.status === 'Active'
@@ -34,7 +34,7 @@ function PickLoad({ closePickModal, selectedLoad }) {
 
       // Get Available Vehicles
       const availableVehicles = await axios.get(
-        `/vehicles/client/${user.company}`
+        `/vehicles/client/${user.company_id}`
       );
 
       const activeVehicles = availableVehicles.data.data.filter(
@@ -62,10 +62,11 @@ function PickLoad({ closePickModal, selectedLoad }) {
 
   async function pickThisLoad(event) {
     event.preventDefault();
-    console.log(selectedLoad);
+    console.log(user.company_id);
     await axios
       .put(`/loads/pick/${selectedLoad._id}`, {
-        carrier_id: user.company,
+        carrier_id: user.company_id,
+        carrier_name: user.company_name,
         driver_name: driverName,
         vehicle_registeration_number: vehicleRegisterationNumber,
       })

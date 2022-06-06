@@ -123,8 +123,35 @@ router.get('/commodity/:commodity', async (req, res) => {
   console.log(req.params.commodity);
   try {
     const data = await Load.find({
-      // prettier-ignore
-      'details.commodity': req.params.commodity,
+      commodity: req.params.commodity,
+    }).sort({ _id: -1 });
+
+    res.json({ message: 'Found!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
+// Getting single load
+router.get('/businessName/:business', async (req, res) => {
+  console.log('Apple');
+  try {
+    const data = await Load.find({
+      business_name: req.params.business,
+    }).sort({ _id: -1 });
+
+    res.json({ message: 'Found!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
+// Getting single load
+router.get('/carrierName/:carrier', async (req, res) => {
+  console.log('Apple');
+  try {
+    const data = await Load.find({
+      carrier_name: req.params.carrier,
     }).sort({ _id: -1 });
 
     res.json({ message: 'Found!', status: 'ok', data });
@@ -316,9 +343,7 @@ router.post('/', async (req, res) => {
       name: req.body.consignee.name,
       phone: req.body.consignee.phone,
     },
-    tracking_details: {
-      locations: [],
-    },
+    tracking_details: [],
     driver_name: 'Not set yet!',
     vehicle_registeration_number: 'Not set yet!',
     business_id: req.body.business_id,

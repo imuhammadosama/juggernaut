@@ -59,6 +59,8 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
         business_id: data.business_id,
         carrier_id: data.carrier_id,
         amount: data.amount,
+        driver_name: data.driver_name,
+        vehicle_registeration_number: data.vehicle_registeration_number,
       });
       setLoading(false);
     };
@@ -103,10 +105,10 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                   <div className='print-head'>
                     <div className='print-title'>{type} Document</div>
                     <div className='flex full-width'>
-                      <div className='print-borders small-bold-title full-width px-16 py-8'>
+                      <div className='print-borders small-bold-title full-width px-16 py-8 text-center'>
                         Load Number
                       </div>
-                      <div className='print-borders small-bold-title full-width  px-8 py-8 nml-2'>
+                      <div className='print-borders small-bold-title full-width  px-8 py-8 nml-2 text-center'>
                         {load.id}
                       </div>
                     </div>
@@ -130,13 +132,14 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                       <h2>Pickup Address</h2>
                       <h4>{load.consignee_name}</h4>
                       <p>
+                        <b>Phone: </b> {load.consignee_phone}
+                      </p>
+                      <p className='h64'>
                         {load.origin_address_line1}, {load.origin_address_line2}
                         , {load.origin_address_city},{' '}
                         {load.origin_address_province}
                       </p>
-                      <p>
-                        <b>Phone: </b> {load.consignee_phone}
-                      </p>
+
                       <p className='bold uppercase black-bg text-center full-width white py-4'>
                         <Moment format='ddd d/M'>
                           {load.destination_date}
@@ -163,14 +166,15 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                       <h2>Delivery Address</h2>
                       <h4>{load.consignor_name}</h4>
                       <p>
+                        <b>Phone: </b> {load.consignor_phone}
+                      </p>
+                      <p className='h64'>
                         {load.destination_address_line1},{' '}
                         {load.destination_address_line2},{' '}
                         {load.destination_address_city},{' '}
                         {load.destination_address_province}
                       </p>
-                      <p>
-                        <b>Phone: </b> {load.consignor_phone}
-                      </p>
+
                       <p className='bold uppercase black-bg text-center full-width white py-4'>
                         <Moment format='ddd d/M'>
                           {load.destination_date}
@@ -194,36 +198,36 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                   </div>
                 </div>
                 <div className='print-description flex column full-width mt-8 '>
-                  <div className='full-width white black-bg bold py-8 pl-8 z-index-1'>
+                  <div className='white black-bg bold py-8 pl-8 z-index-1'>
                     Description of Load
                   </div>
                   <div className='flex full-width'>
                     <div className='flex column br-grey-2 full-width nmt-2'>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Trailer Type
                       </div>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Trailer Axles
                       </div>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Full or Partial
                       </div>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Weight
                       </div>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Volume
                       </div>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Quantity
                       </div>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Capacity
                       </div>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Commodity Description
                       </div>
-                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title-grey py-4 px-8 br-b-grey-2 h14'>
                         Quantity Description
                       </div>
                       <div className='small-bold-title-grey py-4 px-8'>
@@ -231,32 +235,32 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                       </div>
                     </div>
                     <div className='flex column br-grey-2 nml-2 full-width nmt-2'>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_trailer_type}
                       </div>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_trailer_axle}
                       </div>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_full_or_partial}
                       </div>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_weight_value} KGS
                       </div>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_volume_value} M<sup>3</sup>
                       </div>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_quantity}
                       </div>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_capacity_value}{' '}
                         {load.details_capacity_unit}
                       </div>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_commodity_description}
                       </div>
-                      <div className='small-bold-title py-4 px-8 br-b-grey-2'>
+                      <div className='small-bold-title py-4 px-8 br-b-grey-2 h14'>
                         {load.details_quantity_description}
                       </div>
                       <div className='small-bold-title py-4 px-8'>
@@ -314,11 +318,13 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                         <div className='flex full-width pl-16 column flex-two'>
                           <div className='flex '>
                             <div className=''>Driver's Name:&nbsp;</div>
-                            <div className='bold'>Atif Husain</div>
+                            <div className='bold'>{load.driver_name}</div>
                           </div>
                           <div className='flex pt-4'>
                             <div className=''>Vehicle Registeration:&nbsp;</div>
-                            <div className='bold'>1235</div>
+                            <div className='bold'>
+                              {load.vehicle_registeration_number}
+                            </div>
                           </div>
                         </div>
                         <div className='flex full-width pl-16 column flex-one'>
@@ -342,36 +348,55 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                           <div className='pt-32 br-b-grey-1 full-width'></div>
                         </div>
                         <div className='full-width pl-16'>
-                          <div className='flex space-between pb-8'>
-                            <div className='active uppercase bold'>
-                              Subtotal:
+                          <div className='flex space-between pb-8 flex-one'>
+                            <div className='dark-grey uppercase bold flex-two'>
+                              Subtotal
                             </div>
-                            <div className='uppercase bold'>
-                              {load.amount} PKR
-                            </div>
-                          </div>
-                          <div className='flex space-between pb-8'>
-                            <div className='active bold'>
-                              Service Charges @ 10%:
-                            </div>
-                            <div className='uppercase bold'>
-                              {(load.amount * 10) / 100} PKR
+                            <div className='pr-16'>:</div>
+                            <div className='uppercase bold flex-one text-right'>
+                              {(load.amount * 1)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                              PKR
                             </div>
                           </div>
-                          <div className='flex space-between pb-8 br-b-grey-1'>
-                            <div className='active bold'>Sales Taxes @ 3%:</div>
-                            <div className='uppercase bold'>
-                              {(load.amount * 3) / 100} PKR
+                          <div className='flex space-between pb-8 flex-one'>
+                            <div className='dark-grey bold flex-two'>
+                              Service Charges @ 10%
+                            </div>
+                            <div className='pr-16'>:</div>
+                            <div className='uppercase bold flex-one text-right'>
+                              {((load.amount * 10) / 100)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                              PKR
                             </div>
                           </div>
-                          <div className='flex space-between pb-8 pt-8'>
-                            <div className='active uppercase bold'>
-                              Grand Total:
+                          <div className='flex space-between pb-8 br-b-grey-1 flex-one'>
+                            <div className='dark-grey bold flex-two'>
+                              Sales Taxes @ 3%
                             </div>
-                            <div className='uppercase bold'>
-                              {(load.amount * 5) / 100 +
+                            <div className='pr-16'>:</div>
+                            <div className='uppercase bold flex-one text-right'>
+                              {((load.amount * 3) / 100)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                              PKR
+                            </div>
+                          </div>
+                          <div className='flex space-between pb-8 pt-8 flex-one'>
+                            <div className='dark-grey uppercase bold flex-two'>
+                              Grand Total
+                            </div>
+                            <div className='pr-16'>:</div>
+                            <div className='uppercase bold flex-one text-right'>
+                              {(
                                 (load.amount * 5) / 100 +
-                                load.amount}{' '}
+                                (load.amount * 5) / 100 +
+                                load.amount
+                              )
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
                               PKR
                             </div>
                           </div>
@@ -382,7 +407,7 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                         <div className='flex full-width pl-16 column flex-one text-center'>
                           <div className='flex '>
                             <div className=''>
-                              Shipper ID: {load.shipper_id}
+                              Shipper ID: <b>{load.carrier_id}</b>
                             </div>
                             <div className='pt-8'></div>
                           </div>

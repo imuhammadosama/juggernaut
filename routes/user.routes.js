@@ -85,7 +85,8 @@ router.route('/login').post(async (req, res) => {
           name: user.name,
           email: user.email,
           type: user.type,
-          company: user.company_id,
+          company_id: user.company_id,
+          company_name: user.company_name,
         },
         'secret123'
       );
