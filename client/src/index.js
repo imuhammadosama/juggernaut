@@ -7,8 +7,8 @@ import axios from 'axios';
 
 // prettier-ignore
 axios.defaults.baseURL = 
-'http://localhost:1337/v1/api/';
-// 'https://juggernaut-backend.herokuapp.com/v1/api/';
+// 'http://localhost:1337/v1/api/';
+'https://juggernaut-backend.herokuapp.com/v1/api/';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);

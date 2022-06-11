@@ -56,7 +56,7 @@ export default function Vehicles() {
       setLoading(true);
       console.log(user);
       if (user.type === 'Carrier') {
-        const res = await axios.get(`/vehicles/client/${user.company}`);
+        const res = await axios.get(`/vehicles/client/${user.company_id}`);
         console.log(res.data.data);
         if (res.data.data !== null) {
           setPreVehicles(res.data.data);

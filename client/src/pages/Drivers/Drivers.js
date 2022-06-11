@@ -56,7 +56,7 @@ export default function Drivers() {
       setLoading(true);
       console.log(user);
       if (user.type === 'Carrier') {
-        const res = await axios.get(`/drivers/client/${user.company}`);
+        const res = await axios.get(`/drivers/client/${user.company_id}`);
         if (res.data.data !== null) {
           setDrivers(
             res.data.data.filter((driver) => driver.status === 'Pending')

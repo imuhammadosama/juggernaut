@@ -307,7 +307,9 @@ export default function AddUser({ closeModal }) {
                       <option value='Manager Operations'>
                         Manager Operations
                       </option>
-                      <option value='Accounts Manager'>Accounts Manager</option>
+                      <option value='Accounts Manager' selected>
+                        Accounts Manager
+                      </option>
                       <option value='Director Operations'>
                         Director Operations
                       </option>
@@ -325,7 +327,9 @@ export default function AddUser({ closeModal }) {
                       }}
                       className='full-width'
                     >
-                      <option value='Dispatch Officer'>Dispatch Officer</option>
+                      <option value='Dispatch Officer' selected>
+                        Dispatch Officer
+                      </option>
                       <option value='Tracking Officer'>Tracking Officer</option>
                     </select>
                   ) : (
@@ -339,7 +343,9 @@ export default function AddUser({ closeModal }) {
                       }}
                       className='full-width'
                     >
-                      <option value='Invoice Officer'>Invoice Officer</option>
+                      <option value='Invoice Officer' selected>
+                        Invoice Officer
+                      </option>
                       <option value='Billing Officer'>Billing Officer</option>
                     </select>
                   )}

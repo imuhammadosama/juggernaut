@@ -56,8 +56,8 @@ export default function ({ closeModal }) {
       upload_cnic: formValues.upload_cnic,
       upload_licence: formValues.upload_licence,
       client: {
-        id: user.company,
-        name: user.name,
+        id: user.company_id,
+        name: user.company_name,
       },
       approved_by: formValues.approved_by,
       rejected_by: formValues.rejected_by,

@@ -8,6 +8,7 @@ toast.configure();
 export default function ({ closeModal }) {
   const [user, setUser] = useState({});
   useEffect(() => {
+    console.log(user);
     setUser(getAuth());
   }, []);
 
@@ -54,8 +55,8 @@ export default function ({ closeModal }) {
       upload_documents: formValues.upload_documents,
       upload_images: formValues.upload_images,
       client: {
-        id: user.company,
-        name: user.name,
+        id: user.company_id,
+        name: user.company_name,
       },
       approved_by: '0',
       rejected_by: '0',
@@ -88,6 +89,7 @@ export default function ({ closeModal }) {
   }
 
   const handleChange = (e) => {
+    console.log(e.target.value);
     e.preventDefault();
     const { name, value, placeholder } = e.target;
     setFormValues({ ...formValues, [name]: value });
