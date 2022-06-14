@@ -40,7 +40,7 @@ function PickLoad({ closePickModal, selectedLoad }) {
       const activeVehicles = availableVehicles.data.data.filter(
         (vehicle) => vehicle.status === 'Active'
       );
-      if (activeDrivers.length === 0 || availableVehicles.length === 0) {
+      if (activeDrivers.length === 0 || activeVehicles.length === 0) {
         setEligiblity(false);
       }
       setVehicles(activeVehicles);
@@ -101,7 +101,17 @@ function PickLoad({ closePickModal, selectedLoad }) {
           style={{ backgroundColor: 'none', width: '600px' }}
         >
           <div>
-            Either Approved Vehicle or Driver is Missing!
+            <button
+              onClick={() => closePickModal(false)}
+              className='secondary-button'
+            >
+              Close
+            </button>
+            <div className='flex flex-item space-between '>
+              <div>
+                <h3>Missing Approved Driver or Vehicle</h3>
+              </div>
+            </div>
             <br />
             <div className='py-24'>
               <a href='/vehicles' className='primary-button'>

@@ -16,7 +16,7 @@ const clientSchema = mongoose.Schema({
     postalcode: { type: Number, required: false },
   },
   authorize_person_name: { type: String, required: true },
-  authorize_person_phone: { type: String, required: true },
+  authorize_person_phone: { type: Number, required: true },
   commodity: { type: Array, required: true },
   isSuspended: {
     type: Object,

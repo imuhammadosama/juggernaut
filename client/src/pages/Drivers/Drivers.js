@@ -99,9 +99,23 @@ export default function Drivers() {
     console.log(res);
   }
 
-  const rejectDriver = () => {
-    console.log('Edit Driver');
-  };
+  async function rejectDriver(driver) {
+    const res = await axios
+      .put(`/drivers/reject/${driver._id}`)
+      .then((response) => {
+        toast.success(response.data.message, {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+    window.location.reload(false);
+    console.log(res);
+  }
 
   function handleClick(newValue) {
     setSelectedDriver(newValue);
@@ -174,46 +188,90 @@ export default function Drivers() {
           </div>
           <div className='flex-item'></div>
         </div>
-        <Table
-          page={'drivers'}
-          loading={loading}
-          items={currentDriver}
-          names={['cnic', 'name', 'father_name', 'phone', '', 'status']}
-          titles={[
-            'CNIC',
-            'Name',
-            'Father Name',
-            'Phone Number',
-            '',
-            'Status',
-            '',
-            'Manage',
-          ]}
-          buttons={
-            user.type === 'Carrier'
-              ? [
-                  {
-                    name: 'Edit',
-                    class: 'primary-button',
-                    onClick: editDriver,
-                  },
-                  {
-                    name: 'Delete',
-                    class: 'secondary-button',
-                    onClick: deleteDriver,
-                  },
-                ]
-              : [
-                  {
-                    name: 'Approve',
-                    class: 'primary-button',
-                    onClick: approveDriver,
-                  },
-                ]
-          }
-          selectedItem={selectedDriver}
-          setItem={setSelectedDriver}
-        />
+        {selectedFilter === 'Pending' && user.type !== 'Carrier' ? (
+          <Table
+            page={'drivers'}
+            loading={loading}
+            items={currentDriver}
+            names={['cnic', 'name', 'father_name', 'phone', '', 'status']}
+            titles={[
+              'CNIC',
+              'Name',
+              'Father Name',
+              'Phone Number',
+              '',
+              'Status',
+              '',
+              'Manage',
+            ]}
+            buttons={[
+              {
+                name: 'Approve',
+                class: 'primary-button',
+                onClick: approveDriver,
+              },
+            ]}
+            selectedItem={selectedDriver}
+            setItem={setSelectedDriver}
+          />
+        ) : selectedFilter === 'Active' && user.type !== 'Carrier' ? (
+          <Table
+            page={'drivers'}
+            loading={loading}
+            items={currentDriver}
+            names={['cnic', 'name', 'father_name', 'phone', '', 'status']}
+            titles={[
+              'CNIC',
+              'Name',
+              'Father Name',
+              'Phone Number',
+              '',
+              'Status',
+              '',
+              'Manage',
+            ]}
+            buttons={[
+              {
+                name: 'Reject',
+                class: 'secondary-button',
+                onClick: rejectDriver,
+              },
+            ]}
+            selectedItem={selectedDriver}
+            setItem={setSelectedDriver}
+          />
+        ) : (
+          <Table
+            page={'drivers'}
+            loading={loading}
+            items={currentDriver}
+            names={['cnic', 'name', 'father_name', 'phone', '', 'status']}
+            titles={[
+              'CNIC',
+              'Name',
+              'Father Name',
+              'Phone Number',
+              '',
+              'Status',
+              '',
+              'Manage',
+            ]}
+            buttons={[
+              {
+                name: 'Edit',
+                class: 'primary-button',
+                onClick: editDriver,
+              },
+              {
+                name: 'Delete',
+                class: 'secondary-button',
+                onClick: deleteDriver,
+              },
+            ]}
+            selectedItem={selectedDriver}
+            setItem={setSelectedDriver}
+          />
+        )}
         <Pagination
           totalItems={drivers.length}
           itemsPerPage={vehiclesPerPage}

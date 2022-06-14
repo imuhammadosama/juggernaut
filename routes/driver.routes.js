@@ -32,6 +32,22 @@ router.put('/approve/:driverId', async (req, res) => {
   }
 });
 
+router.put('/reject/:driverId', async (req, res) => {
+  try {
+    await Driver.updateOne(
+      { _id: req.params.driverId },
+      {
+        $set: {
+          status: 'Pending',
+        },
+      }
+    );
+    res.json({ message: 'Driver is accepted!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 // Getting single driver
 router.get('/:driverCnic', async (req, res) => {
   try {

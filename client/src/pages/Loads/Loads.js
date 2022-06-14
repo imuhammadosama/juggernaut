@@ -881,7 +881,7 @@ const Loads = () => {
                     <td>{load.details.trailer_type}</td>
                     <td>
                       {load.status === 'Pending' ? (
-                        <Countdown date={moment.utc(load.start) + 7200000}>
+                        <Countdown date={moment.utc(load.start) + 10800000}>
                           {<span className='pending uppercase'>Late!</span>}
                         </Countdown>
                       ) : load.status === 'Active' ? (

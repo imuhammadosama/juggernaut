@@ -203,7 +203,7 @@ function Register({ closeModal, type }) {
                   <input
                     value={client.ntn || ''}
                     onChange={(value) => updateState(value, 'NTN')}
-                    type='text'
+                    type='number'
                     placeholder='Business NTN'
                     className='full-width'
                   />
@@ -415,7 +415,7 @@ function Register({ closeModal, type }) {
                   <input
                     value={client.ntn || ''}
                     onChange={(value) => updateState(value, 'NTN')}
-                    type='text'
+                    type='number'
                     placeholder='Company NTN'
                     className='full-width'
                   />

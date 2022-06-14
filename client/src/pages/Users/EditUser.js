@@ -18,7 +18,17 @@ export default function EditUser({ closeOpenEditModal, userId }) {
     async function fetch() {
       setLoading(true);
       const res = await axios.get(`/users/${userId}`);
-      setFormValues(res.data.data);
+      console.log(res.data.data);
+      setFormValues({
+        ...res.data.data,
+        line1: res.data.data.address.line1,
+        line2: res.data.data.address.line2,
+        city: res.data.data.address.city,
+        postalcode: res.data.data.address.postalcode,
+        emergencyName: res.data.data.emergency.name,
+        emergencyRelation: res.data.data.emergency.relation,
+        emergencyPhone: res.data.data.emergency.phone,
+      });
       setLoading(false);
     }
 
@@ -209,6 +219,7 @@ export default function EditUser({ closeOpenEditModal, userId }) {
                     placeholder='Father Name'
                     onChange={handleChange}
                     className='full-width'
+                    disabled
                   />
                   <p
                     className={
@@ -273,78 +284,6 @@ export default function EditUser({ closeOpenEditModal, userId }) {
                   >
                     {formErrors.password}
                   </p>
-                </div>
-              </div>
-              <div className='flex'>
-                <div className='full-width mr-8'>
-                  <select
-                    value={formValues.userType}
-                    onChange={(e) => {
-                      setFormValues({
-                        ...formValues,
-                        userType: e.target.value,
-                      });
-                    }}
-                    className='full-width'
-                  >
-                    <option value='Management'>Management</option>
-                    <option value='Dispatch / Tracking'>
-                      Dispatch / Tracking
-                    </option>
-                    <option value='Billing / Invoice'>Billing / Invoice</option>
-                  </select>
-                </div>
-                <div className='full-width'>
-                  {formValues.userType === 'Management' ? (
-                    <select
-                      value={formValues.designation}
-                      onChange={(e) => {
-                        setFormValues({
-                          ...formValues,
-                          designation: e.target.value,
-                        });
-                      }}
-                      className='full-width'
-                    >
-                      <option value='Manager Operations'>
-                        Manager Operations
-                      </option>
-                      <option value='Accounts Manager'>Accounts Manager</option>
-                      <option value='Director Operations'>
-                        Director Operations
-                      </option>
-                      <option value='Manager HR'>Manager HR</option>
-                      <option value='Director Finance'>Director Finance</option>
-                    </select>
-                  ) : formValues.userType === 'Dispatch / Tracking' ? (
-                    <select
-                      value={formValues.designation}
-                      onChange={(e) => {
-                        setFormValues({
-                          ...formValues,
-                          designation: e.target.value,
-                        });
-                      }}
-                      className='full-width'
-                    >
-                      <option value='Dispatch Officer'>Dispatch Officer</option>
-                      <option value='Tracking Officer'>Tracking Officer</option>
-                    </select>
-                  ) : (
-                    <select
-                      value={formValues.designation}
-                      onChange={(e) => {
-                        setFormValues({
-                          ...formValues,
-                          designation: e.target.value,
-                        });
-                      }}
-                      className='full-width'
-                    >
-                      <option value='Invoice Officer'>Invoice Officer</option>
-                      <option value='Billing Officer'>Billing Officer</option>
-                    </select>
-                  )}
                 </div>
               </div>
 
@@ -477,7 +416,7 @@ export default function EditUser({ closeOpenEditModal, userId }) {
 
               <input
                 name='emergencyPhone'
-                value={formValues.emergencyPhone}
+                value={parseInt(formValues.emergencyPhone)}
                 type='number'
                 placeholder='Emergency Phone'
                 onChange={handleChange}

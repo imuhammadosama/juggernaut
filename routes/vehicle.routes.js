@@ -43,6 +43,23 @@ router.put('/approve/:vehicleId', async (req, res) => {
   }
 });
 
+// Update Status
+router.put('/reject/:vehicleId', async (req, res) => {
+  try {
+    await Vehicle.updateOne(
+      { _id: req.params.vehicleId },
+      {
+        $set: {
+          status: 'Pending',
+        },
+      }
+    );
+    res.json({ message: 'Vehicle is rejected!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 // Find Drivers by ClientId
 router.get('/client/:clientId', async (req, res) => {
   try {
@@ -66,13 +83,13 @@ function uniqid(prefix = '', random = false) {
 
 // Posting a Vehicle
 router.route('/').post(async (req, res) => {
+  console.log(req.body);
   const vehicle = new Vehicle({
     registeration_number: req.body.registeration_number,
     status: 'Pending',
     make: req.body.make,
     year: req.body.year,
-    trailer_type: req.body.trailer_type,
-    trailer_axles: req.body.trailer_axles,
+    trailer_axle: req.body.trailer_axle,
     chasis_number: req.body.chasis_number,
     engine_number: req.body.engine_number,
     insurance_policy: req.body.insurance_policy,

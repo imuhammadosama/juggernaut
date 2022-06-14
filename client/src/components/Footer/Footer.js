@@ -57,19 +57,35 @@ export default function Footer() {
       <div className='border-line'></div>
       <div className='footer-social'>
         <div>
-          <img src={Facebook} />
+          <a href='https://facebook.com/juggernautpkofficial' target='_blank'>
+            <img src={Facebook} />
+          </a>
         </div>
         <div>
-          <img src={Instagram} />
+          <a href='https://twitter.com/juggernautpk' target='_blank'>
+            <img src={Twitter} />
+          </a>
         </div>
         <div>
-          <img src={Twitter} />
+          <a
+            href='https://www.youtube.com/channel/UCT8tdE1iSfhtEhDrBcbeKgw'
+            target='_blank'
+          >
+            <img src={Youtube} />
+          </a>
         </div>
         <div>
-          <img src={Youtube} />
+          <a
+            href='https://linkedin.com/in/juggernautpkofficial'
+            target='_blank'
+          >
+            <img src={Linkedin} />
+          </a>
         </div>
         <div>
-          <img src={Linkedin} />
+          <a href='https://instagram.com/juggernautpkofficial' target='_blank'>
+            <img src={Instagram} />
+          </a>
         </div>
       </div>
       <div className='footer-copyright'>

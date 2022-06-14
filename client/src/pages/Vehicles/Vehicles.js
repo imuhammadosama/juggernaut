@@ -91,7 +91,25 @@ export default function Vehicles() {
         window.location.reload(false);
       });
   }
-
+  async function rejectVehicle(vehicle) {
+    const res = await axios
+      .put(`/vehicles/reject/${vehicle._id}`)
+      .then((response) => {
+        toast.success(response.data.message, {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+        window.location.reload(false);
+      });
+  }
+  async function deleteVehicle(vehicle) {
+    alert('Coming Soon');
+  }
   function handleClick(newValue) {
     setSelectedVehicle(newValue);
   }
@@ -164,38 +182,113 @@ export default function Vehicles() {
           </div>
           <div className='flex-item'></div>
         </div>
-        <Table
-          page={'vehicles'}
-          loading={loading}
-          items={currentVehicle}
-          names={[
-            'registeration_number',
-            'make',
-            'trailer_type',
-            'trailer_axles',
-            'chasis_number',
-            'status',
-          ]}
-          titles={[
-            'Registeration #',
-            'Make',
-            'Trailer Type',
-            'Trailer Axles',
-            'Chasis Number',
-            'Status',
-            '',
-            'Approve / Reject',
-          ]}
-          buttons={[
-            {
-              name: 'Approve',
-              class: 'primary-button',
-              onClick: approveVehicle,
-            },
-          ]}
-          selectedItem={selectedVehicle}
-          setItem={setSelectedVehicle}
-        />
+        {selectedFilter === 'Pending' && user.type !== 'Carrier' ? (
+          <Table
+            page={'vehicles'}
+            loading={loading}
+            items={currentVehicle}
+            names={[
+              'registeration_number',
+              'make',
+              'year',
+              'trailer_axle',
+              'chasis_number',
+              'status',
+            ]}
+            titles={[
+              'Registeration #',
+              'Make',
+              'Year',
+              'Trailer Axle',
+              'Chasis Number',
+              'Status',
+              '',
+              'Manage',
+            ]}
+            buttons={[
+              {
+                name: 'Approve',
+                class: 'primary-button',
+                onClick: approveVehicle,
+              },
+            ]}
+            selectedItem={selectedVehicle}
+            setItem={setSelectedVehicle}
+          />
+        ) : selectedFilter === 'Active' && user.type !== 'Carrier' ? (
+          <Table
+            page={'vehicles'}
+            loading={loading}
+            items={currentVehicle}
+            names={[
+              'registeration_number',
+              'make',
+              'year',
+              'trailer_axle',
+              'chasis_number',
+              'status',
+            ]}
+            titles={[
+              'Registeration #',
+              'Make',
+              'Year',
+              'Trailer Axle',
+              'Chasis Number',
+              'Status',
+              '',
+              'Manage',
+            ]}
+            buttons={[
+              {
+                name: 'Reject',
+                class: 'secondary-button',
+                onClick: rejectVehicle,
+              },
+            ]}
+            selectedItem={selectedVehicle}
+            setItem={setSelectedVehicle}
+          />
+        ) : (
+          <Table
+            page={'vehicles'}
+            loading={loading}
+            items={currentVehicle}
+            names={[
+              'registeration_number',
+              'make',
+              'year',
+              'trailer_axle',
+              'chasis_number',
+              'status',
+            ]}
+            titles={[
+              'Registeration #',
+              'Make',
+              'Year',
+              'Trailer Axle',
+              'Chasis Number',
+              'Status',
+              '',
+              'Manage',
+            ]}
+            buttons={[
+              {
+                name: 'Edit',
+                class: 'primary-button',
+                onClick: () => {
+                  alert('Coming Soon');
+                },
+              },
+              {
+                name: 'Delete',
+                class: 'secondary-button',
+                onClick: deleteVehicle,
+              },
+            ]}
+            selectedItem={selectedVehicle}
+            setItem={setSelectedVehicle}
+          />
+        )}
         <Pagination
           totalItems={vehicles.length}
           itemsPerPage={vehiclesPerPage}
@@ -220,10 +313,7 @@ export default function Vehicles() {
                 <div className='small-title pb-8'>Make</div>
                 <div>{selectedVehicle.make}</div>
               </div>
-              <div className='pb-24'>
-                <div className='small-title pb-8'>Trailer Type</div>
-                <div>{selectedVehicle.trailer_type}</div>
-              </div>
+
               <div className='pb-24'>
                 <div className='small-title pb-8'>Engine Number</div>
                 <div>{selectedVehicle.engine_number}</div>

@@ -8,15 +8,12 @@ import './Print.css';
 
 const Print = ({ closePrintModal, selectedLoad, printType }) => {
   const componentRef = useRef();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const type = printType;
   const id = selectedLoad._id;
 
   const [load, setLoad] = useState({});
   const [loading, setLoading] = useState(false);
-  const [serviceCharges, setServiceCharges] = useState(0);
-  const [salesTax, setSalesTax] = useState(0);
 
   useEffect(() => {
     fetch = async () => {
@@ -30,14 +27,12 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
         origin_address_line2: data.origin.address.line2,
         origin_address_city: data.origin.address.city,
         origin_address_province: data.origin.address.province,
-        origin_date: data.origin.date,
-        origin_time: data.origin.time,
+        origin_date_and_time: data.origin.date_and_time,
         destination_address_line1: data.destination.address.line1,
         destination_address_line2: data.destination.address.line2,
         destination_address_city: data.destination.address.city,
         destination_address_province: data.destination.address.province,
-        destination_date: data.destination.date,
-        destination_time: data.destination.time,
+        destination_date_and_time: data.destination.date_and_time,
         consignor_name: data.consignor.name,
         consignor_phone: data.consignor.phone,
         consignee_name: data.consignee.name,
@@ -95,7 +90,7 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
             </div>
             <div ref={componentRef} className='print-page '>
               <div className='align-center'>
-                <div className='print-header'>
+                <div className='print-header pb-48'>
                   <div className='print-logo'>
                     <img
                       src='https://i.imgur.com/dTq4GCd.png'
@@ -126,7 +121,7 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                     </div>
                   </div>
                 </div>
-                <div className='flex space-between'>
+                <div className='flex space-between pb-24'>
                   <div className='pickup-details full-width px-24'>
                     <div className='center'>
                       <h2>Pickup Address</h2>
@@ -141,23 +136,27 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                       </p>
 
                       <p className='bold uppercase black-bg text-center full-width white py-4'>
-                        <Moment format='ddd d/M'>
-                          {load.destination_date}
+                        <Moment format='ddd D/M'>
+                          {load.origin_date_and_time}
                         </Moment>
                         <span className='mr-4'></span>
                         {
-                          <Moment format='hh:mm'>
-                            {load.destination_time}
+                          <Moment format='HH:mm'>
+                            {load.origin_date_and_time}
                           </Moment>
                         }
                         <span> - </span>
                         {
                           <Moment
-                            format='hh:mm'
+                            format='HH:mm'
                             add={(10, 'minutes')}
-                            date={moment(load.destination_time).add(2, 'hours')}
+                            date={moment(load.origin_date_and_time).add(
+                              2,
+                              'hours'
+                            )}
                           />
                         }
+                        &nbsp;HRS
                       </p>
                     </div>
                   </div>
@@ -176,23 +175,27 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                       </p>
 
                       <p className='bold uppercase black-bg text-center full-width white py-4'>
-                        <Moment format='ddd d/M'>
-                          {load.destination_date}
+                        <Moment format='ddd D/M'>
+                          {load.destination_date_and_time}
                         </Moment>
                         <span className='mr-4'></span>
                         {
-                          <Moment format='hh:mm'>
-                            {load.destination_time}
+                          <Moment format='HH:mm'>
+                            {load.destination_date_and_time}
                           </Moment>
                         }
                         <span> - </span>
                         {
                           <Moment
-                            format='hh:mm'
+                            format='HH:mm'
                             add={(10, 'minutes')}
-                            date={moment(load.destination_time).add(2, 'hours')}
+                            date={moment(load.destination_date_and_time).add(
+                              2,
+                              'hours'
+                            )}
                           />
                         }
+                        &nbsp;HRS
                       </p>
                     </div>
                   </div>
@@ -341,7 +344,10 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                     </div>
                   ) : (
                     <div>
-                      <div className='flex pt-16 pb-24 space-between'>
+                      <div
+                        className='flex mt-32 pt-32 pb-24 space-between'
+                        style={{ borderTop: '1px dotted black' }}
+                      >
                         <div className='full-width pr-16'>
                           <div className='bold'>Remarks</div>
                           <div className='pt-32 br-b-grey-1 full-width'></div>

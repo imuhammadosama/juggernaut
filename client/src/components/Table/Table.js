@@ -45,13 +45,7 @@ export default function Table({
             <td>{item[names[2]]}</td>
             <td>{item[names[3]]}</td>
             <td>{item[names[4]]}</td>
-            {page === 'vehicles' || page === 'drivers' ? (
-              <td>
-                <span className='id-tag'>{item[names[5]]}</span>
-              </td>
-            ) : (
-              <td>{item[names[5]]}</td>
-            )}
+            <td>{item[names[5]]}</td>
             <td>{item[names[6]]}</td>
             {actions ? (
               <td>
