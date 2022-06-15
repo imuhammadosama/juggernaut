@@ -13,6 +13,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Delete Vehicle
+router.delete('/:vehicleId', async (req, res) => {
+  try {
+    const data = await Vehicle.deleteOne({ _id: req.params.vehicleId });
+    res.json({ message: 'Vehicle has been deleted!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 // Getting Pending Vehicles
 
 router.get('/status/:status', async (req, res) => {
@@ -80,6 +90,36 @@ function uniqid(prefix = '', random = false) {
     random ? `.${Math.trunc(Math.random() * 100000000)}` : ''
   }`;
 }
+
+// Update Status
+router.put('/:vehicleId', async (req, res) => {
+  console.log(req.body);
+  try {
+    await Vehicle.updateOne(
+      { _id: req.params.vehicleId },
+      {
+        $set: {
+          registeration_number: req.body.registeration_number,
+          status: 'Pending',
+          make: req.body.make,
+          year: req.body.year,
+          trailer_axle: req.body.trailer_axle,
+          chasis_number: req.body.chasis_number,
+          engine_number: req.body.engine_number,
+          insurance_policy: req.body.insurance_policy,
+          file_documents: [''],
+          upload_images: [''],
+          client: { id: req.body.client.id, name: req.body.client.name },
+          approved_by: req.body.approved_by,
+          rejected_by: req.body.rejected_by,
+        },
+      }
+    );
+    res.json({ message: 'Vehicle have been added!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
 
 // Posting a Vehicle
 router.route('/').post(async (req, res) => {

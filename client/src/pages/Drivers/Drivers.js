@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Table from '../../components/Table/Table';
 import Pagination from '../../components/Pagination/Pagination';
 import AddDriver from './AddDriver';
+import EditDriver from './EditDriver';
 import NotSelected from '../../assets/images/empty-state/not-selected.svg';
 import Loading from '../../assets/images/loading.svg';
 import getAuth from '../../services/auth.service';
@@ -20,6 +21,7 @@ export default function Drivers() {
   const user = getAuth();
   // States
   const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [drivers, setDrivers] = useState([]);
   const [preDrivers, setPreDrivers] = useState([]);
@@ -76,9 +78,6 @@ export default function Drivers() {
   }, []);
   const deleteDriver = () => {
     console.log('Delete Driver');
-  };
-  const editDriver = () => {
-    console.log('Edit Driver');
   };
 
   async function approveDriver(driver) {
@@ -145,6 +144,12 @@ export default function Drivers() {
   return (
     <div className='flex pt-24'>
       {openModal && <AddDriver closeModal={setOpenModal} />}
+      {openEditModal && (
+        <EditDriver
+          closeEditModal={setOpenEditModal}
+          thisDriver={selectedDriver}
+        />
+      )}
       <div className='table' style={{ flex: '1' }}>
         <div className='flex space-between'>
           <div className='flex-item'>
@@ -260,7 +265,7 @@ export default function Drivers() {
               {
                 name: 'Edit',
                 class: 'primary-button',
-                onClick: editDriver,
+                onClick: () => setOpenEditModal(true),
               },
               {
                 name: 'Delete',

@@ -5,7 +5,7 @@ import getAuth from '../../services/auth.service';
 
 toast.configure();
 
-export default function ({ closeModal }) {
+export default function ({ closeEditModal, thisVehicle }) {
   const [user, setUser] = useState({});
   useEffect(() => {
     console.log(user);
@@ -13,19 +13,19 @@ export default function ({ closeModal }) {
   }, []);
 
   const initialData = {
-    make: '',
-    year: '2015',
-    trailer_axle: '2 Axle',
-    registeration_number: '',
-    chasis_number: '',
-    engine_number: '',
-    insurance_policy: '',
+    make: thisVehicle.make,
+    year: thisVehicle.year,
+    trailer_axle: thisVehicle.trailer_axle,
+    registeration_number: thisVehicle.registeration_number,
+    chasis_number: thisVehicle.chasis_number,
+    engine_number: thisVehicle.engine_number,
+    insurance_policy: thisVehicle.insurance_policy,
     client: {
-      id: '',
-      name: '',
+      id: thisVehicle.client.id,
+      name: thisVehicle.client.name,
     },
-    approved_by: '',
-    rejected_by: '',
+    approved_by: thisVehicle.approved_by,
+    rejected_by: thisVehicle.rejected_by,
   };
   const [formValues, setFormValues] = useState(initialData);
   const [formErrors, setFormErrors] = useState({});
@@ -56,10 +56,11 @@ export default function ({ closeModal }) {
         id: user.company_id,
         name: user.company_name,
       },
-      approved_by: '0',
-      rejected_by: '0',
+      approved_by: thisVehicle.approved_by,
+      rejected_by: thisVehicle.rejected_by,
     };
-    const res = await axios.post('/vehicles', vehicle);
+    const res = await axios.put(`/vehicles/${vehicle._id}`, vehicle);
+    console.log(res);
     if (
       res.data.status === 'no' &&
       res.data.message === 'Registeration Number is already registered!'
@@ -69,7 +70,7 @@ export default function ({ closeModal }) {
         registeration_number: 'Registeration Number is already registered!',
       });
     } else if (res.data.status === 'ok') {
-      closeModal(false);
+      closeEditModal(false);
       console.log(res);
       setFormValues(initialData);
       setFormErrors({});
@@ -108,10 +109,10 @@ export default function ({ closeModal }) {
         <div className='pt-8 pb-16 modal-content'>
           <div className='flex flex-item space-between px-40 py-16'>
             <div>
-              <h2>Add New Vehicle</h2>
+              <h2>Edit Vehicle</h2>
             </div>
             <button
-              onClick={() => closeModal(false)}
+              onClick={() => closeEditModal(false)}
               className='secondary-button'
             >
               Close
@@ -352,7 +353,7 @@ export default function ({ closeModal }) {
                   </p>
                 </div>
               </div>
-              <input type='submit' value='Submit' className='primary-button' />
+              <input type='submit' value='Update' className='primary-button' />
             </form>
           </div>
         </div>

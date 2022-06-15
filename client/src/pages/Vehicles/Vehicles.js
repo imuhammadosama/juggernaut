@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Table from '../../components/Table/Table';
 import Pagination from '../../components/Pagination/Pagination';
 import AddVehicle from './AddVehicle';
+import EditVehicle from './EditVehicle';
 import NotSelected from '../../assets/images/empty-state/not-selected.svg';
 import Loading from '../../assets/images/loading.svg';
 import getAuth from '../../services/auth.service';
@@ -17,6 +18,7 @@ export default function Vehicles() {
   const navigate = useNavigate();
   // States
   const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
   const [preVehicles, setPreVehicles] = useState([]);
@@ -91,6 +93,7 @@ export default function Vehicles() {
         window.location.reload(false);
       });
   }
+
   async function rejectVehicle(vehicle) {
     const res = await axios
       .put(`/vehicles/reject/${vehicle._id}`)
@@ -108,7 +111,18 @@ export default function Vehicles() {
       });
   }
   async function deleteVehicle(vehicle) {
-    alert('Coming Soon');
+    await axios.delete(`/vehicles/${vehicle._id}`).then((response) => {
+      toast.success(response.data.message, {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+      window.location.reload(false);
+    });
   }
   function handleClick(newValue) {
     setSelectedVehicle(newValue);
@@ -139,6 +153,12 @@ export default function Vehicles() {
   return (
     <div className='flex pt-24 scroll-no'>
       {openModal && <AddVehicle closeModal={setOpenModal} />}
+      {openEditModal && (
+        <EditVehicle
+          closeEditModal={setOpenEditModal}
+          thisVehicle={selectedVehicle}
+        />
+      )}
       <div className='table' style={{ flex: '1' }}>
         <div className='flex space-between'>
           <div className='flex-item'>
@@ -275,9 +295,7 @@ export default function Vehicles() {
               {
                 name: 'Edit',
                 class: 'primary-button',
-                onClick: () => {
-                  alert('Coming Soon');
-                },
+                onClick: () => setOpenEditModal(true),
               },
               {
                 name: 'Delete',

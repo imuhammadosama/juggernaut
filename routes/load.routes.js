@@ -214,16 +214,6 @@ router.put('/complete/:loadId', async (req, res) => {
   }
 });
 
-// Cancel load
-// router.delete('/:loadId', async (req, res) => {
-//   try {
-//     const data = await Load.deleteOne({ _id: req.params.loadId });
-//     res.json({ message: 'Load Successfully Cancelled!', status: 'ok', data });
-//   } catch (error) {
-//     res.json({ message: error, status: 'no' });
-//   }
-// });
-
 router.put('/cancel/:loadId', async (req, res) => {
   try {
     const data = await Load.updateOne(

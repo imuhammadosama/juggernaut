@@ -5,29 +5,29 @@ import getAuth from '../../services/auth.service';
 
 toast.configure();
 
-export default function ({ closeModal }) {
+export default function ({ closeEditModal, thisDriver }) {
   const [user, setUser] = useState({});
   useEffect(() => {
     setUser(getAuth());
   }, []);
 
   const initialData = {
-    cnic: '',
-    name: '',
-    father_name: '',
-    phone: '',
-    licence_category: 'HTV',
-    licence_expiry: '',
-    insurance_policy: '',
-    health_condition: '',
+    cnic: thisDriver.cnic,
+    name: thisDriver.name,
+    father_name: thisDriver.father_name,
+    phone: thisDriver.phone,
+    licence_category: thisDriver.licence_category,
+    licence_expiry: thisDriver.licence_expiry,
+    insurance_policy: thisDriver.insurance_policy,
+    health_condition: thisDriver.health_condition,
     upload_cnic: [''],
     upload_licence: [''],
     client: {
-      id: '',
-      name: '',
+      id: thisDriver.client.id,
+      name: thisDriver.client.name,
     },
-    approved_by: '',
-    rejected_by: '',
+    approved_by: thisDriver.approved_by,
+    rejected_by: thisDriver.rejected_by,
   };
   const [formValues, setFormValues] = useState(initialData);
   const [formErrors, setFormErrors] = useState({});
@@ -73,7 +73,7 @@ export default function ({ closeModal }) {
         cnic: 'CNIC is already registered!',
       });
     } else if (res.data.status === 'ok') {
-      closeModal(false);
+      closeEditModal(false);
       console.log(res);
       setFormValues(initialData);
       setFormErrors({});
@@ -112,10 +112,10 @@ export default function ({ closeModal }) {
         <div className='pt-8 pb-16 modal-content'>
           <div className='flex flex-item space-between px-40 py-16'>
             <div>
-              <h2>Add New Driver</h2>
+              <h2>Edit Driver</h2>
             </div>
             <button
-              onClick={() => closeModal(false)}
+              onClick={() => closeEditModal(false)}
               className='secondary-button'
             >
               Close
