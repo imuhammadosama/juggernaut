@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import chevDown from '../../assets/icons/chev-down.svg';
-import downArrow from '../../assets/images/home/navbar/down-arrow.svg';
-import loginArrow from '../../assets/images/home/navbar/login-arrow.svg';
-import logoutIcon from '../../assets/images/home/navbar/logout-icon.svg';
+import { HashLink } from 'react-router-hash-link';
 
 // Businesses
 import oilAndGas from '../../assets/navbar/businesses/oil-and-gas.svg';
@@ -44,7 +42,12 @@ function Navigation(props) {
     window.location.reload();
   }
 
-  if (location.pathname === '/' || location.pathname === '/business/')
+  if (
+    location.pathname === '/' ||
+    location.pathname === '/business/' ||
+    location.pathname === '/details/' ||
+    location.pathname === '/services/'
+  )
     return (
       <div className='home-header border-bottom'>
         {openLogin && <Login closeModal={setOpenLogin} />}
@@ -129,12 +132,12 @@ function Navigation(props) {
                               <img src={oilAndGas} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#oil-and-gas'
+                              <HashLink
+                                to='/business/#oil-and-gas'
                                 className='menu-child-href'
                               >
                                 Oil & Gas
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                           <div className='flex menu-child-item'>
@@ -142,12 +145,12 @@ function Navigation(props) {
                               <img src={textile} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#textile'
+                              <HashLink
+                                to='/business/#textile'
                                 className='menu-child-href'
                               >
                                 Textile
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                           <div className='flex menu-child-item'>
@@ -155,12 +158,12 @@ function Navigation(props) {
                               <img src={fmcg} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#fmcg'
+                              <HashLink
+                                to='/business/#fmcg'
                                 className='menu-child-href'
                               >
                                 FMCG
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                           <div className='flex menu-child-item'>
@@ -168,12 +171,12 @@ function Navigation(props) {
                               <img src={auto} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#auto'
+                              <HashLink
+                                to='/business/#auto'
                                 className='menu-child-href'
                               >
                                 Auto
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                           <div className='flex menu-child-item'>
@@ -181,12 +184,12 @@ function Navigation(props) {
                               <img src={chemical} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#chemical'
+                              <HashLink
+                                to='/business/#chemical'
                                 className='menu-child-href'
                               >
                                 Chemical
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                         </div>
@@ -196,12 +199,12 @@ function Navigation(props) {
                               <img src={beverages} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#beverages'
+                              <HashLink
+                                to='/business/#beverages'
                                 className='menu-child-href'
                               >
                                 Beverages
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                           <div className='flex menu-child-item'>
@@ -209,12 +212,12 @@ function Navigation(props) {
                               <img src={cement} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#cement'
+                              <HashLink
+                                to='/business/#cement'
                                 className='menu-child-href'
                               >
                                 Cement
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                           <div className='flex menu-child-item'>
@@ -222,12 +225,12 @@ function Navigation(props) {
                               <img src={generalGoods} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#general-goods'
+                              <HashLink
+                                to='/business/#general-goods'
                                 className='menu-child-href'
                               >
                                 General Goods
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                           <div className='flex menu-child-item'>
@@ -235,12 +238,12 @@ function Navigation(props) {
                               <img src={pharmaceutical} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#pharmaceutical'
+                              <HashLink
+                                to='/business/#pharmaceutical'
                                 className='menu-child-href'
                               >
                                 Pharmaceutical
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                           <div className='flex menu-child-item'>
@@ -248,12 +251,12 @@ function Navigation(props) {
                               <img src={agriculture} />
                             </div>
                             <div className='flex-item'>
-                              <a
-                                href='/business/#agriculture'
+                              <HashLink
+                                to='/business/#agriculture'
                                 className='menu-child-href'
                               >
                                 Agriculture
-                              </a>
+                              </HashLink>
                             </div>
                           </div>
                         </div>
@@ -334,6 +337,16 @@ function Navigation(props) {
                                 className='menu-child-href'
                               >
                                 Fuel Card
+                              </a>
+                            </div>
+                          </div>
+                          <div className='flex menu-child-item'>
+                            <div className='flex-item'>
+                              <a
+                                href='/services/#dash-cam'
+                                className='menu-child-href'
+                              >
+                                Dash Cam
                               </a>
                             </div>
                           </div>

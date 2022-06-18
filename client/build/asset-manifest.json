@@ -1,10 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9b273ad7.css",
-    "main.js": "/static/js/main.45f75af3.js",
-    "static/js/498.587cec44.chunk.js": "/static/js/498.587cec44.chunk.js",
-    "static/js/703.52a32a35.chunk.js": "/static/js/703.52a32a35.chunk.js",
-    "static/js/142.a4458dcb.chunk.js": "/static/js/142.a4458dcb.chunk.js",
+    "main.css": "/static/css/main.55b25064.css",
+    "main.js": "/static/js/main.e1b7a26d.js",
     "static/media/not-selected.svg": "/static/media/not-selected.33307d1d3c8daccbe257e01d7485d6ad.svg",
     "static/media/404.svg": "/static/media/404.eb79317198d1611b3c544982bf4fe97e.svg",
     "static/media/Instagram.svg": "/static/media/Instagram.7c53a2b500bd13cfdca7871298d3b1c4.svg",
@@ -19,13 +16,10 @@
     "static/media/dispatched-icon.svg": "/static/media/dispatched-icon.bba4475989d04e4d188c2f120441273f.svg",
     "static/media/Twitter.svg": "/static/media/Twitter.f0e0fd489a0782a01535482326e745a2.svg",
     "static/media/beverages.svg": "/static/media/beverages.f9560e5e74afdadcf5502c9aed6b9d7f.svg",
-    "static/media/logout-icon.svg": "/static/media/logout-icon.c28b63efd34b16031c2abfa7964ff757.svg",
     "static/media/oil-and-gas.svg": "/static/media/oil-and-gas.3503278a0a9a813877bc5f62604cd0ac.svg",
     "static/media/active-icon.svg": "/static/media/active-icon.e164ddec80dcaad8ae15b00b93fb4b72.svg",
     "static/media/agriculture.svg": "/static/media/agriculture.b063ddc93dc6d908a14a49b9df5e8764.svg",
-    "static/media/login-arrow.svg": "/static/media/login-arrow.f892b0f54e6ec3ff5b7f89d529e82832.svg",
     "static/media/auto.svg": "/static/media/auto.a5c7a84c0cf4bb4b621d3d0c06452c63.svg",
-    "static/media/down-arrow.svg": "/static/media/down-arrow.675847e64d18fa8eda31993f25760916.svg",
     "static/media/loading.svg": "/static/media/loading.5b3f26296c61dffb500265ef0f13b7fc.svg",
     "static/media/cement.svg": "/static/media/cement.43ea6133ba66e3badbf3e43d72b10aae.svg",
     "static/media/pharmaceutical.svg": "/static/media/pharmaceutical.3deb6738bbd5af7a302dbafdcc745618.svg",
@@ -36,14 +30,11 @@
     "static/media/chev-down.svg": "/static/media/chev-down.293d7ea943e066361882a9ebec793a18.svg",
     "static/media/line.svg": "/static/media/line.a927e977a18b52d808ebaf346124f3cd.svg",
     "static/media/unchecked.svg": "/static/media/unchecked.59d1008acc2ea9c7c1cd78365c340506.svg",
-    "main.9b273ad7.css.map": "/static/css/main.9b273ad7.css.map",
-    "main.45f75af3.js.map": "/static/js/main.45f75af3.js.map",
-    "498.587cec44.chunk.js.map": "/static/js/498.587cec44.chunk.js.map",
-    "703.52a32a35.chunk.js.map": "/static/js/703.52a32a35.chunk.js.map",
-    "142.a4458dcb.chunk.js.map": "/static/js/142.a4458dcb.chunk.js.map"
+    "main.55b25064.css.map": "/static/css/main.55b25064.css.map",
+    "main.e1b7a26d.js.map": "/static/js/main.e1b7a26d.js.map"
   },
   "entrypoints": [
-    "static/css/main.9b273ad7.css",
-    "static/js/main.45f75af3.js"
+    "static/css/main.55b25064.css",
+    "static/js/main.e1b7a26d.js"
   ]
 }

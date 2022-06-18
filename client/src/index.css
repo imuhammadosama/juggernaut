@@ -653,3 +653,7 @@ textarea {
   width: -webkit-fill-available;
   height: 120px;
 }
+
+.poppins {
+  font-family: 'Poppins';
+}

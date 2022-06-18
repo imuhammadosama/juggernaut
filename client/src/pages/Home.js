@@ -20,7 +20,6 @@ export default function Home() {
                 get leads to all the available trucks and loads in the entire
                 Pakistani trucking marketplace.
               </p>
-              <button className='home-button'>Read More</button>
             </div>
           </div>
           <div className='about-section-column'>
@@ -42,7 +41,6 @@ export default function Home() {
               brokers or customers in industry. By this service our aim is to
               enhance capacity usage to the fullest and enhance profitability
             </p>
-            <button className='home-button'>Find details</button>
           </div>
         </div>
       </div>
@@ -57,7 +55,6 @@ export default function Home() {
               brokers or customers in industry. By this service our aim is to
               enhance capacity usage to the fullest and enhance profitability
             </p>
-            <button className='home-button'>Find details</button>
           </div>
         </div>
         <div className='mission-section-column'></div>

@@ -107,7 +107,7 @@ export default function EditUser({ closeOpenEditModal, userId }) {
       },
       added_by: formValues.added_by,
     };
-    const res = await axios.post('/users/register', user);
+    const res = await axios.put('/users', user);
     if (
       res.data.status === 'no' &&
       res.data.message === 'Email already used!'

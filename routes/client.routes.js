@@ -94,5 +94,17 @@ router.put('/suspend/:clientId', async (req, res) => {
     res.json({ message: error, status: 'no' });
   }
 });
+// Suspend Client
+router.put('/blacklist/:clientId', async (req, res) => {
+  try {
+    const data = await Client.updateOne(
+      { _id: req.params.clientId },
+      { $set: { status: 'Blacklisted' } }
+    );
+    res.json({ message: 'Client is now suspended!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
 
 export default router;

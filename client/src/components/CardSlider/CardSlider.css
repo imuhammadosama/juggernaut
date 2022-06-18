@@ -81,3 +81,18 @@
 .title-PHARMACEUTICALS {
   font-size: 16px;
 }
+
+.card-content > a {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.mySwiper2 > .swiper-button-next {
+  display: none !important;
+}
+.mySwiper2 > .swiper-button-prev {
+  display: none !important;
+}

@@ -11,6 +11,7 @@ import './CardSlider.css';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';
+import { HashLink } from 'react-router-hash-link';
 
 export default function CardSlider() {
   return (
@@ -25,9 +26,9 @@ export default function CardSlider() {
           clickable: true,
         }}
         autoplay={{
-          delay: 1500,
+          delay: 3500,
           disableOnInteraction: false,
-          speed: 300,
+          pauseOnMouseEnter: true,
         }}
         modules={[Autoplay, Pagination, Navigation]}
         navigation={true}
@@ -36,37 +37,39 @@ export default function CardSlider() {
         <SwiperSlide className='card-slider-one'>
           <div className='card-content'>
             <div className='comodity-slider-title'>FMCG</div>
-            <div className='comodity-slider-details'>View More</div>
+            <div className='comodity-slider-details'>
+              <HashLink to='/business/#fmcg'>View More</HashLink>
+            </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-two'>
           <div className='card-content'>
             <div className='comodity-slider-title'>AUTO</div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#auto'>View More</HashLink>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-three'>
           <div className='card-content'>
             <div className='comodity-slider-title'>OIL & GAS</div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#oil-and-gas'>View More</HashLink>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-four'>
           <div className='card-content'>
             <div className='comodity-slider-title'>TEXTILE</div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#textile'>View More</HashLink>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-five'>
           <div className='card-content'>
             <div className='comodity-slider-title'>CEMENT</div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#cement'>View More</HashLink>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-six'>
           <div className='card-content'>
             <div className='comodity-slider-title'>CHEMICALS</div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#chemical'>View More</HashLink>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-seven'>
@@ -74,25 +77,25 @@ export default function CardSlider() {
             <div className='comodity-slider-title title-PHARMACEUTICALS'>
               PHARMACEUTICALS
             </div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#pharmaceutical'>View More</HashLink>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-eight'>
           <div className='card-content'>
             <div className='comodity-slider-title'>BEVERAGES</div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#beverages'>View More</HashLink>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-nine'>
           <div className='card-content'>
             <div className='comodity-slider-title'>AGRICULTURE</div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#agriculture'>View More</HashLink>
           </div>
         </SwiperSlide>
         <SwiperSlide className='card-slider-ten'>
           <div className='card-content'>
             <div className='comodity-slider-title'>GENERAL GOODS</div>
-            <div className='comodity-slider-details'>View More</div>
+            <HashLink to='/business/#general-goods'>View More</HashLink>
           </div>
         </SwiperSlide>
       </Swiper>

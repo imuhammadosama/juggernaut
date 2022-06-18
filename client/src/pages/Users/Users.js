@@ -8,6 +8,7 @@ import Loading from '../../assets/images/loading.svg';
 import getAuth from '../../services/auth.service';
 import './User.css';
 import emailjs from 'emailjs-com';
+import { toast } from 'react-toastify';
 
 export default function Users() {
   const loggedUser = getAuth();
@@ -168,10 +169,14 @@ export default function Users() {
   const rejectClient = (client) => {
     console.log('reject');
   };
-  const suspendClient = (client) => {
-    console.log(client);
-  };
-  const blacklistClient = (client) => {};
+  async function suspendClient(client) {
+    const res = await axios.put(`/clients/suspend/${client._id}`);
+    window.location.reload(false);
+  }
+  async function blacklistClient(client) {
+    const res = await axios.put(`/clients/blacklist/${client._id}`);
+    window.location.reload(false);
+  }
 
   function handleClick(newValue) {
     setSelectedUser(newValue);
@@ -418,15 +423,15 @@ export default function Users() {
                 '',
                 'Update Status',
               ]}
-              actions={[
+              buttons={[
                 {
                   name: 'Suspend',
-                  class: 'suspended-button',
+                  class: 'primary-button mr-16',
                   onClick: suspendClient,
                 },
                 {
-                  name: '🚩',
-                  class: 'blacklist-button',
+                  name: 'Ban',
+                  class: 'secondary-button',
                   onClick: blacklistClient,
                 },
               ]}
@@ -451,22 +456,11 @@ export default function Users() {
                 'Company Name',
                 'Authorize Person',
                 'Phone Number',
+                'Suspended Period',
                 '',
                 '',
-                'Update Status',
               ]}
-              buttons={[
-                {
-                  name: 'Accept',
-                  class: 'primary-button',
-                  onClick: editUser,
-                },
-                {
-                  name: 'Reject',
-                  class: 'secondary-button',
-                  onClick: deleteUser,
-                },
-              ]}
+              buttons={[]}
               selectedItem={selectedClient}
               setItem={setSelectedClient}
             />
@@ -490,20 +484,9 @@ export default function Users() {
                 'Phone Number',
                 '',
                 '',
-                'Update Status',
+                '',
               ]}
-              buttons={[
-                {
-                  name: 'Accept',
-                  class: 'primary-button',
-                  onClick: editUser,
-                },
-                {
-                  name: 'Reject',
-                  class: 'secondary-button',
-                  onClick: deleteUser,
-                },
-              ]}
+              buttons={[]}
               selectedItem={selectedClient}
               setItem={setSelectedClient}
             />
@@ -529,6 +512,26 @@ export default function Users() {
                 <div className='pb-24'>
                   <div className='small-title pb-8'>Name</div>
                   <div>{selectedClient.name}</div>
+                </div>
+                <div className='pb-24'>
+                  <div className='small-title pb-8'>NTN</div>
+                  <div>{selectedClient.ntn}</div>
+                </div>
+                <div className='pb-24'>
+                  <div className='small-title pb-8'>STRN</div>
+                  <div>{selectedClient.strn}</div>
+                </div>
+                <div className='pb-24'>
+                  <div className='small-title pb-8'>
+                    Authorize Person's Name
+                  </div>
+                  <div>{selectedClient.authorize_person_name}</div>
+                </div>
+                <div className='pb-24'>
+                  <div className='small-title pb-8'>
+                    Authorize Person's Phone
+                  </div>
+                  <div>{selectedClient.authorize_person_phone}</div>
                 </div>
               </div>
             </div>

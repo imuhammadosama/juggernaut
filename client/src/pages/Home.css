@@ -214,7 +214,9 @@
   padding-bottom: 12px;
 }
 
-.home-button {
+.home-button,
+.home-slider-one-content-button {
+  text-decoration: none;
   background-color: white;
   font-family: 'Poppins';
   font-weight: bold;
@@ -228,6 +230,7 @@
   box-sizing: border-box;
   border-radius: 8px;
   cursor: pointer;
+  width: fit-content;
 }
 
 .home-button:hover {

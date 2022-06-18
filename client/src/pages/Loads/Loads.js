@@ -148,7 +148,6 @@ const Loads = () => {
     // filterPending();
     setSelectedFilter('pending');
     getAuth();
-    console.log(user);
     fetch = async () => {
       setLoading(true);
 

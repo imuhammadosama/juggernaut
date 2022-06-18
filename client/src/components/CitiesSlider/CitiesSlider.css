@@ -12,7 +12,7 @@
 }
 .cities-slider {
   height: 80px;
-  width: 190px !important;
+  width: 300px !important;
 }
 
 .mySwiper3 > .swiper-pagination-horizontal {
@@ -20,4 +20,14 @@
 }
 
 .mySwiper3 > .swiper-wrapper {
+}
+
+.swiper-button-prev:after {
+  position: relative;
+  left: -1px;
+}
+
+.comodity-slider-details > a {
+  text-decoration: none;
+  color: white;
 }

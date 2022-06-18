@@ -22,7 +22,7 @@ export default function AddUser({ closeModal }) {
     email: '',
     password: '',
     userType: 'Management',
-    designation: 'Manager Operations',
+    designation: 'Management Operator',
     line1: '',
     line2: '',
     city: '',
@@ -307,9 +307,7 @@ export default function AddUser({ closeModal }) {
                       <option value='Manager Operations'>
                         Manager Operations
                       </option>
-                      <option value='Accounts Manager' selected>
-                        Accounts Manager
-                      </option>
+                      <option value='Accounts Manager'>Accounts Manager</option>
                       <option value='Director Operations'>
                         Director Operations
                       </option>

@@ -1,7 +1,6 @@
 import './Business.css';
 import Footer from '../components/Footer/Footer';
-
-export default function Business() {
+export default function () {
   return (
     <div>
       <div class='flex business-row'>
@@ -201,7 +200,11 @@ export default function Business() {
         <div className='business-image'>
           <img src='https://i.imgur.com/hUmoOPN.jpg' />
         </div>
-        <div class='business-column-right center' id='agriculture'>
+        <div
+          class='business-column-right center'
+          id='agriculture'
+          name='agriculture'
+        >
           <h1>Agriculture</h1>
           Coming soon...
         </div>

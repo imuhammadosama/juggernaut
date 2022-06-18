@@ -125,9 +125,9 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                   <div className='pickup-details full-width px-24'>
                     <div className='center'>
                       <h2>Pickup Address</h2>
-                      <h4>{load.consignee_name}</h4>
+                      <h4>{load.consignor_name}</h4>
                       <p>
-                        <b>Phone: </b> {load.consignee_phone}
+                        <b>Phone: </b> {load.consignor_phone}
                       </p>
                       <p className='h64'>
                         {load.origin_address_line1}, {load.origin_address_line2}
@@ -163,9 +163,9 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                   <div className='delivery-details full-width px-24  nml-2'>
                     <div className='center'>
                       <h2>Delivery Address</h2>
-                      <h4>{load.consignor_name}</h4>
+                      <h4>{load.consignee_name}</h4>
                       <p>
-                        <b>Phone: </b> {load.consignor_phone}
+                        <b>Phone: </b> {load.consignee_phone}
                       </p>
                       <p className='h64'>
                         {load.destination_address_line1},{' '}

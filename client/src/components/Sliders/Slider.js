@@ -11,6 +11,7 @@ import './Slider.css';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';
+import { HashLink } from 'react-router-hash-link';
 
 export default function Slider() {
   return (
@@ -25,6 +26,7 @@ export default function Slider() {
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         }}
         modules={[Autoplay, Pagination, Navigation]}
         navigation={true}
@@ -45,9 +47,12 @@ export default function Slider() {
                 </div>
               </div>
               <div>
-                <button className='home-slider-one-content-button'>
+                <HashLink
+                  className='home-slider-one-content-button'
+                  to='/details/#s3'
+                >
                   Find Details
-                </button>
+                </HashLink>
               </div>
             </div>
             <div>
@@ -68,9 +73,12 @@ export default function Slider() {
                 <div className='home-slider-one-content-description'></div>
               </div>
               <div>
-                <button className='home-slider-one-content-button'>
+                <HashLink
+                  className='home-slider-one-content-button'
+                  to='/details/#s1'
+                >
                   Find Details
-                </button>
+                </HashLink>
               </div>
             </div>
             <div>{/* <img src='https://i.imgur.com/cWqo3VS.png' /> */}</div>
@@ -89,9 +97,12 @@ export default function Slider() {
                 <div className='home-slider-one-content-description'></div>
               </div>
               <div>
-                <button className='home-slider-one-content-button'>
+                <HashLink
+                  className='home-slider-one-content-button'
+                  to='/details/#s2'
+                >
                   Find Details
-                </button>
+                </HashLink>
               </div>
             </div>
             <div>{/* <img src='https://i.imgur.com/cWqo3VS.png' /> */}</div>
@@ -110,9 +121,12 @@ export default function Slider() {
                 <div className='home-slider-one-content-description'></div>
               </div>
               <div>
-                <button className='home-slider-one-content-button'>
+                <HashLink
+                  className='home-slider-one-content-button'
+                  to='/details/#s4'
+                >
                   Find Details
-                </button>
+                </HashLink>
               </div>
             </div>
             <div>{/* <img src='https://i.imgur.com/cWqo3VS.png' /> */}</div>
