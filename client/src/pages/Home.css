@@ -2,6 +2,11 @@
 
 .home-header {
   font-family: 'Poppins';
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  margin-bottom: 32px;
 }
 .top-bar {
   background-image: linear-gradient(var(--primary), #182028);

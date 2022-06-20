@@ -298,6 +298,14 @@ export default function Drivers() {
                 <div>{selectedDriver.cnic}</div>
               </div>
               <div className='pb-24'>
+                <div className='small-title pb-8'>CNIC Pic</div>
+                <div>
+                  <a href={selectedDriver.upload_cnic[0]} target='_blank'>
+                    View Image
+                  </a>
+                </div>
+              </div>
+              <div className='pb-24'>
                 <div className='small-title pb-8'>Driver's Name</div>
                 <div>{selectedDriver.name}</div>
               </div>
@@ -324,7 +332,14 @@ export default function Drivers() {
                   <span className='mr-4'></span>
                 </p>
               </div>
-
+              <div className='pb-24'>
+                <div className='small-title pb-8'>Driver's Licence Pic</div>
+                <div>
+                  <a href={selectedDriver.upload_licence[0]} target='_blank'>
+                    View Image
+                  </a>
+                </div>
+              </div>
               <div className='small-title pb-8'>Carrier</div>
               <div className='id-tag' style={{ width: 'fit-content' }}>
                 {selectedDriver.client.name}

@@ -31,6 +31,8 @@ export default function ({ closeModal }) {
   };
   const [formValues, setFormValues] = useState(initialData);
   const [formErrors, setFormErrors] = useState({});
+  const [cnic, setCnic] = useState('');
+  const [licence, setLicence] = useState('');
 
   const validate = (driver) => {
     const errors = {};
@@ -53,8 +55,8 @@ export default function ({ closeModal }) {
       licence_expiry: formValues.licence_expiry,
       insurance_policy: formValues.insurance_policy,
       health_condition: formValues.health_condition,
-      upload_cnic: formValues.upload_cnic,
-      upload_licence: formValues.upload_licence,
+      upload_cnic: cnic,
+      upload_licence: licence,
       client: {
         id: user.company_id,
         name: user.company_name,
@@ -101,6 +103,22 @@ export default function ({ closeModal }) {
     if (formErrors[name]) {
       setFormErrors({ ...formErrors, [name]: '' });
     }
+  };
+
+  const upload = (files, type) => {
+    const formData = new FormData();
+    formData.append('file', files[0]);
+    formData.append('upload_preset', 'juggernaut');
+
+    axios
+      .post('https://api.cloudinary.com/v1_1/dnvsynb1c/image/upload', formData)
+      .then((Response) => {
+        if (type === 'cnic') {
+          setCnic(Response.data.url);
+        } else {
+          setLicence(Response.data.url);
+        }
+      });
   };
 
   return (
@@ -313,9 +331,11 @@ export default function ({ closeModal }) {
                   </div>
                   <input
                     name='upload_cnic'
-                    value={formValues.upload_cnic}
+                    // value={formValues.upload_cnic}
                     type='file'
-                    onChange={handleChange}
+                    onChange={(event) => {
+                      upload(event.target.files, 'cnic');
+                    }}
                     className='full-width'
                     multiple
                     accept='image/png, image/jpg, image/jpeg'
@@ -337,12 +357,14 @@ export default function ({ closeModal }) {
                   </div>
                   <input
                     name='upload_licence'
-                    value={formValues.upload_licence}
+                    // value={formValues.upload_licence}
                     type='file'
-                    onChange={handleChange}
+                    onChange={(event) => {
+                      upload(event.target.files, 'licence');
+                    }}
                     className='full-width'
                     multiple
-                    accept='document/pdf'
+                    accept='image/png, image/jpg, image/jpeg'
                   />
                   <p
                     className={
@@ -353,7 +375,12 @@ export default function ({ closeModal }) {
                   </p>
                 </div>
               </div>
-              <input type='submit' value='Submit' className='primary-button' />
+              <input
+                type='submit'
+                value='Submit'
+                className='primary-button'
+                disabled={false}
+              />
             </form>
           </div>
         </div>

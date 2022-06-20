@@ -32,6 +32,32 @@ export default function Slider() {
         navigation={true}
         className='mySwiper'
       >
+        <SwiperSlide className='home-slider-two'>
+          <div className='flex space-between flex-item home-slider-one-content'>
+            <div className='text-left'>
+              <div>
+                <h1 className='home-slider-one-content-title'>
+                  Bringing revolution to <br />
+                  Pakistan's Trucking Industry{' '}
+                </h1>
+              </div>
+              <div>
+                <div className='home-slider-one-content-description'></div>
+              </div>
+              <div>
+                <HashLink
+                  className='home-slider-one-content-button'
+                  to='/details/#s1'
+                >
+                  Find Details
+                </HashLink>
+              </div>
+            </div>
+            <div>
+              {/* <img src='https://res.cloudinary.com/dnvsynb1c/image/upload/v1655555622/Frame_2_yi1hab.jpg' /> */}
+            </div>
+          </div>
+        </SwiperSlide>
         <SwiperSlide className='home-slider-one'>
           <div className='flex space-between flex-item home-slider-one-content'>
             <div className='text-left'>
@@ -58,30 +84,6 @@ export default function Slider() {
             <div>
               <img src='https://i.imgur.com/cWqo3VS.png' />
             </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className='home-slider-two'>
-          <div className='flex space-between flex-item home-slider-one-content'>
-            <div className='text-left'>
-              <div>
-                <h1 className='home-slider-one-content-title'>
-                  Bringing revolution to <br />
-                  Pakistan's Trucking Industry{' '}
-                </h1>
-              </div>
-              <div>
-                <div className='home-slider-one-content-description'></div>
-              </div>
-              <div>
-                <HashLink
-                  className='home-slider-one-content-button'
-                  to='/details/#s1'
-                >
-                  Find Details
-                </HashLink>
-              </div>
-            </div>
-            <div>{/* <img src='https://i.imgur.com/cWqo3VS.png' /> */}</div>
           </div>
         </SwiperSlide>
         <SwiperSlide className='home-slider-three'>

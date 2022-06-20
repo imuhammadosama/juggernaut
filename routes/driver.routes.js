@@ -84,8 +84,8 @@ router.route('/').post(async (req, res) => {
     licence_expiry: req.body.licence_expiry,
     insurance_policy: req.body.insurance_policy,
     health_condition: req.body.health_condition,
-    upload_cnic: [''],
-    upload_licence: [''],
+    upload_cnic: [req.body.upload_cnic],
+    upload_licence: [req.body.upload_licence],
     client: {
       id: req.body.client.id,
       name: req.body.client.name,

@@ -300,16 +300,7 @@ function Navigation(props) {
                               </a>
                             </div>
                           </div>
-                          <div className='flex menu-child-item'>
-                            <div className='flex-item'>
-                              <a
-                                href='/services/#brokers'
-                                className='menu-child-href'
-                              >
-                                Brokers
-                              </a>
-                            </div>
-                          </div>
+
                           <div className='flex menu-child-item'>
                             <div className='flex-item'>
                               <a

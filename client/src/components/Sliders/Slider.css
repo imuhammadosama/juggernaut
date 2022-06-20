@@ -37,7 +37,8 @@
 }
 
 .home-slider-two {
-  background: url('https://i.imgur.com/XBM3Aew.png') no-repeat;
+  background: url('https://res.cloudinary.com/dnvsynb1c/image/upload/v1655555622/Frame_2_yi1hab.jpg')
+    no-repeat;
   background-size: cover;
   height: 700px;
 }

@@ -324,8 +324,24 @@ export default function Vehicles() {
           <div className='pb-64'>
             <div className='p-48 border-bottom'>
               <div className='pb-24'>
+                <div className='small-title pb-8'>Vehicle Pic</div>
+                <div>
+                  <a href={selectedVehicle.upload_images[0]} target='_blank'>
+                    View Image
+                  </a>
+                </div>
+              </div>
+              <div className='pb-24'>
                 <div className='small-title pb-8'>Registeration Number</div>
                 <div>{selectedVehicle.registeration_number}</div>
+              </div>
+              <div className='pb-24'>
+                <div className='small-title pb-8'>Registeration Document</div>
+                <div>
+                  <a href={selectedVehicle.upload_documents[0]} target='_blank'>
+                    View Image
+                  </a>
+                </div>
               </div>
               <div className='pb-24'>
                 <div className='small-title pb-8'>Make</div>

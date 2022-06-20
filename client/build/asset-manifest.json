@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.55b25064.css",
-    "main.js": "/static/js/main.e1b7a26d.js",
+    "main.css": "/static/css/main.c4f3aff6.css",
+    "main.js": "/static/js/main.bce0c6cb.js",
     "static/media/not-selected.svg": "/static/media/not-selected.33307d1d3c8daccbe257e01d7485d6ad.svg",
     "static/media/404.svg": "/static/media/404.eb79317198d1611b3c544982bf4fe97e.svg",
     "static/media/Instagram.svg": "/static/media/Instagram.7c53a2b500bd13cfdca7871298d3b1c4.svg",
@@ -30,11 +30,11 @@
     "static/media/chev-down.svg": "/static/media/chev-down.293d7ea943e066361882a9ebec793a18.svg",
     "static/media/line.svg": "/static/media/line.a927e977a18b52d808ebaf346124f3cd.svg",
     "static/media/unchecked.svg": "/static/media/unchecked.59d1008acc2ea9c7c1cd78365c340506.svg",
-    "main.55b25064.css.map": "/static/css/main.55b25064.css.map",
-    "main.e1b7a26d.js.map": "/static/js/main.e1b7a26d.js.map"
+    "main.c4f3aff6.css.map": "/static/css/main.c4f3aff6.css.map",
+    "main.bce0c6cb.js.map": "/static/js/main.bce0c6cb.js.map"
   },
   "entrypoints": [
-    "static/css/main.55b25064.css",
-    "static/js/main.e1b7a26d.js"
+    "static/css/main.c4f3aff6.css",
+    "static/js/main.bce0c6cb.js"
   ]
 }

@@ -29,6 +29,8 @@ export default function ({ closeModal }) {
   };
   const [formValues, setFormValues] = useState(initialData);
   const [formErrors, setFormErrors] = useState({});
+  const [pics, setPics] = useState('');
+  const [docs, setDocs] = useState('');
 
   const validate = (vehicle) => {
     const errors = {};
@@ -50,8 +52,8 @@ export default function ({ closeModal }) {
       chasis_number: formValues.chasis_number,
       engine_number: formValues.engine_number,
       insurance_policy: formValues.insurance_policy,
-      upload_documents: formValues.upload_documents,
-      upload_images: formValues.upload_images,
+      upload_documents: docs,
+      upload_images: pics,
       client: {
         id: user.company_id,
         name: user.company_name,
@@ -59,6 +61,7 @@ export default function ({ closeModal }) {
       approved_by: '0',
       rejected_by: '0',
     };
+    console.log(vehicle);
     const res = await axios.post('/vehicles', vehicle);
     if (
       res.data.status === 'no' &&
@@ -97,6 +100,22 @@ export default function ({ closeModal }) {
     if (formErrors[name]) {
       setFormErrors({ ...formErrors, [name]: '' });
     }
+  };
+
+  const upload = (files, type) => {
+    const formData = new FormData();
+    formData.append('file', files[0]);
+    formData.append('upload_preset', 'juggernaut');
+
+    axios
+      .post('https://api.cloudinary.com/v1_1/dnvsynb1c/image/upload', formData)
+      .then((Response) => {
+        if (type === 'pic') {
+          setPics(Response.data.url);
+        } else {
+          setDocs(Response.data.url);
+        }
+      });
   };
 
   return (
@@ -254,6 +273,62 @@ export default function ({ closeModal }) {
               <div className='flex pb-24'>
                 <div className='full-width pr-16'>
                   <div className='text-left head-label pb-8'>
+                    Vehicle Picture
+                    <sup>
+                      <span className='red ten'> ✸</span>
+                    </sup>
+                  </div>
+                  <input
+                    name='upload_images'
+                    value={formValues.upload_images}
+                    type='file'
+                    placeholder='Vehicle Picture'
+                    onChange={(event) => {
+                      upload(event.target.files, 'pic');
+                    }}
+                    className='full-width'
+                    multiple
+                    accept='image/png, image/jpg, image/jpeg'
+                  />
+                  <p
+                    className={
+                      formErrors.upload_images ? 'errorMessage' : 'hideMe'
+                    }
+                  >
+                    {formErrors.upload_images}
+                  </p>
+                </div>
+                <div className='full-width'>
+                  <div className='text-left head-label pb-8'>
+                    Registeration Document
+                    <sup>
+                      <span className='red ten'> ✸</span>
+                    </sup>
+                  </div>
+                  <input
+                    name='upload_documents'
+                    // value={formValues.upload_documents}
+                    type='file'
+                    placeholder='Registeration Documents'
+                    onChange={(event) => {
+                      upload(event.target.files, 'docs');
+                    }}
+                    className='full-width'
+                    multiple
+                    accept='image/png, image/jpg, image/jpeg'
+                  />
+                  <p
+                    className={
+                      formErrors.upload_documents ? 'errorMessage' : 'hideMe'
+                    }
+                  >
+                    {formErrors.upload_documents}
+                  </p>
+                </div>
+              </div>
+              <div className='flex pb-24'>
+                <div className='full-width pr-16'>
+                  <div className='text-left head-label pb-8'>
                     Engine Number
                     <sup>
                       <span className='red ten'> ✸</span>
@@ -300,58 +375,6 @@ export default function ({ closeModal }) {
                 </div>
               </div>
 
-              <div className='flex pb-24'>
-                <div className='full-width pr-16'>
-                  <div className='text-left head-label pb-8'>
-                    Vehicle Pictures
-                    <sup>
-                      <span className='red ten'> ✸</span>
-                    </sup>
-                  </div>
-                  <input
-                    name='upload_images'
-                    value={formValues.upload_images}
-                    type='file'
-                    placeholder='Vehicle Picture'
-                    onChange={handleChange}
-                    className='full-width'
-                    multiple
-                    accept='image/png, image/jpg, image/jpeg'
-                  />
-                  <p
-                    className={
-                      formErrors.upload_images ? 'errorMessage' : 'hideMe'
-                    }
-                  >
-                    {formErrors.upload_images}
-                  </p>
-                </div>
-                <div className='full-width'>
-                  <div className='text-left head-label pb-8'>
-                    Registeration Documents
-                    <sup>
-                      <span className='red ten'> ✸</span>
-                    </sup>
-                  </div>
-                  <input
-                    name='upload_documents'
-                    value={formValues.upload_documents}
-                    type='file'
-                    placeholder='Registeration Documents'
-                    onChange={handleChange}
-                    className='full-width'
-                    multiple
-                    accept='document/pdf'
-                  />
-                  <p
-                    className={
-                      formErrors.upload_documents ? 'errorMessage' : 'hideMe'
-                    }
-                  >
-                    {formErrors.upload_documents}
-                  </p>
-                </div>
-              </div>
               <input type='submit' value='Submit' className='primary-button' />
             </form>
           </div>
