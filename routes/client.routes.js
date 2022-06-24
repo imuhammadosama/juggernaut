@@ -15,12 +15,11 @@ router.post('/', async (req, res) => {
   console.log(req.body.type);
   const lastClient = await Client.find({}).sort({ _id: -1 }).limit(1);
   const lastId = parseInt(lastClient[0].id.slice(2));
-  console.log(lastClient);
   const uniqueId = lastId + 1;
   const carrierId = `JC${uniqueId}`;
   const businessId = `JB${uniqueId}`;
   let typeId = '';
-  if (req.body.type === 'Client') {
+  if (req.body.type === 'Carrier') {
     typeId = carrierId;
   } else {
     typeId = businessId;
