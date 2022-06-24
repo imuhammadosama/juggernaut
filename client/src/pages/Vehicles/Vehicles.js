@@ -280,6 +280,7 @@ export default function Vehicles() {
               'trailer_axle',
               'chasis_number',
               'status',
+              '',
             ]}
             titles={[
               'Registeration #',
@@ -289,6 +290,7 @@ export default function Vehicles() {
               'Chasis Number',
               'Status',
               '',
+              'Carrier',
               'Manage',
             ]}
             buttons={[

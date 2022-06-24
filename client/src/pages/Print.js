@@ -413,7 +413,7 @@ const Print = ({ closePrintModal, selectedLoad, printType }) => {
                         <div className='flex full-width pl-16 column flex-one text-center'>
                           <div className='flex '>
                             <div className=''>
-                              Shipper ID: <b>{load.carrier_id}</b>
+                              Carrier ID: <b>{load.carrier_id}</b>
                             </div>
                             <div className='pt-8'></div>
                           </div>

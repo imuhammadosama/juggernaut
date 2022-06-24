@@ -1473,7 +1473,8 @@ const Loads = () => {
                   </div>
                 </div>
               </div>
-            ) : selectedLoad.status === 'Completed' ? (
+            ) : selectedLoad.status === 'Completed' &&
+              user.type !== 'Carrier' ? (
               <div className='border-bottom py-16'>
                 <div className='flex flex-item'>
                   Load Invoice

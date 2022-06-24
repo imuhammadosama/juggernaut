@@ -47,6 +47,13 @@ export default function Table({
             <td>{item[names[4]]}</td>
             <td>{item[names[5]]}</td>
             <td>{item[names[6]]}</td>
+            {page === 'vehicles' ? (
+              <td>
+                <span className='id-tag'>{item.client.name}</span>
+              </td>
+            ) : (
+              ''
+            )}
             {actions ? (
               <td>
                 {actions.map((button, index) => (
