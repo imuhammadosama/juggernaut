@@ -47,13 +47,13 @@ export default function Users() {
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 1;
+  const usersPerPage = 10;
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
   const [currentClientPage, setCurrentClientPage] = useState(1);
-  const clientsPerPage = 1;
+  const clientsPerPage = 10;
   const indexOfLastClient = currentClientPage * clientsPerPage;
   const indexOfFirstClient = indexOfLastClient - clientsPerPage;
   const currentClients = clients.slice(indexOfFirstClient, indexOfLastClient);
