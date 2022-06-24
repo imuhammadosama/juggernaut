@@ -35,6 +35,7 @@ router.get('/billingInvoice', async (req, res) => {
     res.json({ message: error, status: 'no' });
   }
 });
+// get carrier load
 router.get('/business/:businessId', async (req, res) => {
   try {
     const result = await Load.find().sort({ _id: -1 });
@@ -351,5 +352,7 @@ router.post('/', async (req, res) => {
     res.json({ message: error, status: 'no' });
   }
 });
+
+router.route('/').delete(async (req, res) => await Load.deleteMany({}));
 
 export default router;

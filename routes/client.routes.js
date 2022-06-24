@@ -107,4 +107,6 @@ router.put('/blacklist/:clientId', async (req, res) => {
   }
 });
 
+router.route('/').delete(async (req, res) => await Client.deleteMany({}));
+
 export default router;

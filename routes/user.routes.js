@@ -145,9 +145,6 @@ router.route('/billingandinvoice').get(async (req, res) => {
   }
 });
 
-router.route('/').delete(async (req, res) => {
-  const deletedUsers = await User.deleteMany({});
-  res.json(deletedUsers);
-});
+router.route('/').delete(async (req, res) => await User.deleteMany({}));
 
 export default router;

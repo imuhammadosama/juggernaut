@@ -657,3 +657,7 @@ textarea {
 .poppins {
   font-family: 'Poppins';
 }
+
+.completed {
+  color: var(--completed);
+}

@@ -110,4 +110,6 @@ router.route('/').post(async (req, res) => {
   }
 });
 
+router.route('/').delete(async (req, res) => await Driver.deleteMany({}));
+
 export default router;

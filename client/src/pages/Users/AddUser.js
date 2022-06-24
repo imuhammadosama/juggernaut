@@ -112,19 +112,7 @@ export default function AddUser({ closeModal }) {
     ) {
       setFormErrors({ ...formErrors, email: 'Email already used!' });
     } else if (res.data.status === 'ok') {
-      closeModal(false);
-      console.log(res);
-      setFormValues(initialData);
-      setFormErrors({});
-      toast.success(res.data.message, {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
+      window.location.reload(false);
     }
   }
 

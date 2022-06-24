@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c4f3aff6.css",
-    "main.js": "/static/js/main.bce0c6cb.js",
+    "main.css": "/static/css/main.a792dd36.css",
+    "main.js": "/static/js/main.9f48c3df.js",
     "static/media/not-selected.svg": "/static/media/not-selected.33307d1d3c8daccbe257e01d7485d6ad.svg",
     "static/media/404.svg": "/static/media/404.eb79317198d1611b3c544982bf4fe97e.svg",
     "static/media/Instagram.svg": "/static/media/Instagram.7c53a2b500bd13cfdca7871298d3b1c4.svg",
@@ -25,16 +25,16 @@
     "static/media/pharmaceutical.svg": "/static/media/pharmaceutical.3deb6738bbd5af7a302dbafdcc745618.svg",
     "static/media/search-icon.svg": "/static/media/search-icon.7c4c691db27e4dd97109c36a14e2e5bd.svg",
     "static/media/general-goods.svg": "/static/media/general-goods.ed324fe7db22ac7f3c415864026c3483.svg",
-    "index.html": "/index.html",
     "static/media/checked.svg": "/static/media/checked.7168939ef396cfa95bfb7791270e9edb.svg",
+    "index.html": "/index.html",
     "static/media/chev-down.svg": "/static/media/chev-down.293d7ea943e066361882a9ebec793a18.svg",
     "static/media/line.svg": "/static/media/line.a927e977a18b52d808ebaf346124f3cd.svg",
     "static/media/unchecked.svg": "/static/media/unchecked.59d1008acc2ea9c7c1cd78365c340506.svg",
-    "main.c4f3aff6.css.map": "/static/css/main.c4f3aff6.css.map",
-    "main.bce0c6cb.js.map": "/static/js/main.bce0c6cb.js.map"
+    "main.a792dd36.css.map": "/static/css/main.a792dd36.css.map",
+    "main.9f48c3df.js.map": "/static/js/main.9f48c3df.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4f3aff6.css",
-    "static/js/main.bce0c6cb.js"
+    "static/css/main.a792dd36.css",
+    "static/js/main.9f48c3df.js"
   ]
 }

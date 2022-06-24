@@ -572,6 +572,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                     <div>
                       <input
                         type='datetime-local'
+                        min={new Date().toISOString().slice(0, -8)}
                         onChange={(value) =>
                           updateState(value, 'Origin Date & Time')
                         }
@@ -908,7 +909,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
                               Select a Trailer
                             </option>
                             <option value='Container'>Container</option>
-                            <option value='Tanked'>Tanker</option>
+                            <option value='Tanker'>Tanker</option>
                             <option value='Flat-bed'>Flat-bed</option>
                             <option value='Cement Truck'>Cement Truck</option>
                             <option value='Reefer Truck'>Reefer Truck</option>

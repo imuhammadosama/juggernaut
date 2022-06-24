@@ -60,6 +60,7 @@ const Loads = () => {
   const indexOfLastLoad = currentPage * loadsPerPage;
   const indexOfFirstLoad = indexOfLastLoad - loadsPerPage;
   const currentLoads = loads.slice(indexOfFirstLoad, indexOfLastLoad);
+  const [loadType, setLoadType] = useState('');
 
   // Search
   const [search, setSearch] = useState(false);
@@ -76,28 +77,6 @@ const Loads = () => {
     }
     return 'Not Expired';
   }
-
-  // Filter loads
-  const handleOriginFilter = async (e) => {
-    setFilters({ ...filters, origin: e.target.value });
-    if (e.target.value !== 'All') {
-      const res = await axios.get(`/loads/origin/${e.target.value}`);
-      setLoads(res.data.data);
-    } else {
-      setLoads(preLoads);
-    }
-  };
-
-  // Filter loads
-  const handleDestinationFilter = async (e) => {
-    setFilters({ ...filters, destination: e.target.value });
-    if (e.target.value !== 'All') {
-      const res = await axios.get(`/loads/destination/${e.target.value}`);
-      setLoads(res.data.data);
-    } else {
-      setLoads(preLoads);
-    }
-  };
 
   const handleCarrierFilter = async (e) => {
     console.log(e.target.value);
@@ -121,26 +100,89 @@ const Loads = () => {
   };
 
   // Filter loads
-  const handleVehicleFilter = async (e) => {
-    console.log(e.target.value);
-    setFilters({ ...filters, vehicle: e.target.value });
-    if (e.target.value !== 'All') {
-      const res = await axios.get(`/loads/vehicle/${e.target.value}`);
-      setLoads(res.data.data);
+  const handleOriginFilter = async (e) => {
+    if (user.type === 'Business' || user.type === 'Carrier') {
+      if (e.target.value !== 'All') {
+        setLoads(
+          preLoads.filter((load) => load.origin.address.city === e.target.value)
+        );
+      } else {
+        setLoads(preLoads);
+      }
     } else {
-      setLoads(preLoads);
+      setFilters({ ...filters, origin: e.target.value });
+      if (e.target.value !== 'All') {
+        const res = await axios.get(`/loads/origin/${e.target.value}`);
+        setLoads(res.data.data);
+      } else {
+        setLoads(preLoads);
+      }
+    }
+  };
+
+  // Filter loads
+  const handleDestinationFilter = async (e) => {
+    if (user.type === 'Business' || user.type === 'Carrier') {
+      if (e.target.value !== 'All') {
+        setLoads(
+          preLoads.filter(
+            (load) => load.destination.address.city === e.target.value
+          )
+        );
+      } else {
+        setLoads(preLoads);
+      }
+    } else {
+      setFilters({ ...filters, destination: e.target.value });
+      if (e.target.value !== 'All') {
+        const res = await axios.get(`/loads/destination/${e.target.value}`);
+        setLoads(res.data.data);
+      } else {
+        setLoads(preLoads);
+      }
+    }
+  };
+
+  // Filter loads
+  const handleVehicleFilter = async (e) => {
+    if (user.type === 'Business' || user.type === 'Carrier') {
+      if (e.target.value !== 'All') {
+        setLoads(
+          preLoads.filter(
+            (load) => load.details.trailer_type === e.target.value
+          )
+        );
+      } else {
+        setLoads(preLoads);
+      }
+    } else {
+      console.log(e.target.value);
+      setFilters({ ...filters, vehicle: e.target.value });
+      if (e.target.value !== 'All') {
+        const res = await axios.get(`/loads/vehicle/${e.target.value}`);
+        setLoads(res.data.data);
+      } else {
+        setLoads(preLoads);
+      }
     }
   };
 
   // Filter loads
   const handleComodityFilter = async (e) => {
-    console.log(e.target.value);
-    setFilters({ ...filters, commodity: e.target.value });
-    if (e.target.value !== 'All') {
-      const res = await axios.get(`/loads/commodity/${e.target.value}`);
-      setLoads(res.data.data);
+    if (user.type === 'Business' || user.type === 'Carrier') {
+      if (e.target.value !== 'All') {
+        setLoads(preLoads.filter((load) => load.commodity === e.target.value));
+      } else {
+        setLoads(preLoads);
+      }
     } else {
-      setLoads(preLoads);
+      setFilters({ ...filters, commodity: e.target.value });
+      if (e.target.value !== 'All') {
+        const res = await axios.get(`/loads/commodity/${e.target.value}`);
+        setLoads(res.data.data);
+      } else {
+        setLoads(preLoads);
+      }
     }
   };
 
@@ -160,9 +202,9 @@ const Loads = () => {
           ? await axios.get('/loads/billingInvoice')
           : user.type === 'Business'
           ? // Add Carrier ID
-            await axios.get(`loads/business/${user.company}`)
+            await axios.get(`loads/business/${user.company_id}`)
           : user.type === 'Carrier'
-          ? await axios.get(`/loads/carrier/${user.company}`)
+          ? await axios.get(`/loads/carrier/${user.company_id}`)
           : // Add Carrier ID
             await axios.get('/loads');
       const l = res.data.data;
@@ -338,6 +380,7 @@ const Loads = () => {
   }
 
   const filterPending = () => {
+    setLoadType('Cancelled Loads');
     setSelectedLoad(false);
     setSelectedFilter('pending');
     const pendingLoads = preLoads.filter((load) => load.status === 'Pending');
@@ -345,6 +388,7 @@ const Loads = () => {
   };
 
   const filterActive = () => {
+    setLoadType('Cancelled Loads');
     setSelectedLoad(false);
     setSelectedFilter('active');
     const activeLoads = preLoads.filter((load) => load.status === 'Active');
@@ -352,6 +396,7 @@ const Loads = () => {
   };
 
   const filterDispatched = () => {
+    setLoadType('Cancelled Loads');
     setSelectedLoad(false);
     setSelectedFilter('dispatched');
     const dispatchedLoads = preLoads.filter(
@@ -361,6 +406,7 @@ const Loads = () => {
   };
 
   const filterCompleted = () => {
+    setLoadType('Cancelled Loads');
     setSelectedLoad(false);
     setSelectedFilter('completed');
     const completedLoads = preLoads.filter(
@@ -434,9 +480,14 @@ const Loads = () => {
         </div> */}
         <div
           className='brand-bg uppercase bold text-center pt-8 pb-8 clickable'
-          onClick={() => filterCancelled()}
+          onClick={() => {
+            loadType === 'All Loads' ? setLoads(preLoads) : filterCancelled();
+            loadType === 'All Loads'
+              ? setLoadType('Cancelled Loads')
+              : setLoadType('All Loads');
+          }}
         >
-          Cancelled Loads
+          {loadType === 'All Loads' ? 'All Loads' : 'Cancelled Loads'}
         </div>
         {user.type === 'Business' || user.type === 'Super Admin' ? (
           <div className='p-16 border-bottom-white flex flex-item bg-white border-right-grey'>
@@ -481,40 +532,44 @@ const Loads = () => {
               })}
           </select>
         </div>
-        <div className='p-16 border-bottom-white'>
-          <div className='bold pb-16'>Clients</div>
-          <div className='small-title pb-8'>Business</div>
-          <select
-            style={{ backgroundColor: 'White' }}
-            className='mb-24 full-width'
-            onChange={handleBusinessFilter}
-          >
-            <option value='All'>All</option>
-            {preLoads
-              .map((load) => load.business_name)
-              .filter((value, index, self) => self.indexOf(value) === index)
-              .map((location, index) => {
-                return <option key={index}>{location}</option>;
-              })}
-          </select>
-          <div className='small-title pb-8'>Carrier</div>
-          <select
-            style={{ backgroundColor: 'White' }}
-            className='mb-24 full-width'
-            onChange={handleCarrierFilter}
-          >
-            <option value='All'>All</option>
-            {preLoads
-              .map((load) => load.carrier_name)
-              .filter(
-                (value, index, self) =>
-                  self.indexOf(value) === index && value !== 'Not set yet!'
-              )
-              .map((location, index) => {
-                return <option key={index}>{location}</option>;
-              })}
-          </select>
-        </div>
+        {user.type === 'Business' || user.type === 'Carrier' ? (
+          <div></div>
+        ) : (
+          <div className='p-16 border-bottom-white'>
+            <div className='bold pb-16'>Clients</div>
+            <div className='small-title pb-8'>Business</div>
+            <select
+              style={{ backgroundColor: 'White' }}
+              className='mb-24 full-width'
+              onChange={handleBusinessFilter}
+            >
+              <option value='All'>All</option>
+              {preLoads
+                .map((load) => load.business_name)
+                .filter((value, index, self) => self.indexOf(value) === index)
+                .map((location, index) => {
+                  return <option key={index}>{location}</option>;
+                })}
+            </select>
+            <div className='small-title pb-8'>Carrier</div>
+            <select
+              style={{ backgroundColor: 'White' }}
+              className='mb-24 full-width'
+              onChange={handleCarrierFilter}
+            >
+              <option value='All'>All</option>
+              {preLoads
+                .map((load) => load.carrier_name)
+                .filter(
+                  (value, index, self) =>
+                    self.indexOf(value) === index && value !== 'Not set yet!'
+                )
+                .map((location, index) => {
+                  return <option key={index}>{location}</option>;
+                })}
+            </select>
+          </div>
+        )}
         <div className='p-16 border-bottom-white'>
           <div className='bold pb-16'>Vehicle</div>
           <input
@@ -767,16 +822,6 @@ const Loads = () => {
                 </div>
               </div>
             </div>
-
-            <div className='flex-item'>
-              <Dropdown
-                items={[
-                  { name: 'Print All', function: handlePrintSelected },
-                  { name: 'Print Selected', function: handlePrintSelected },
-                ]}
-                title={{ name: 'Print', class: 'droper clickable' }}
-              />
-            </div>
           </div>
           {loads.length === 0 ? (
             <div className='text-center'>
@@ -896,6 +941,8 @@ const Loads = () => {
                     <td>
                       {load.status === 'Cancelled' ? (
                         <p className='pending uppercase'>Cancelled</p>
+                      ) : load.status === 'Completed' ? (
+                        <p className='completed uppercase'>Completed</p>
                       ) : (
                         <button
                           className='secondary-button'
@@ -944,15 +991,6 @@ const Loads = () => {
                   {search ? searchMessage : ''}
                 </div>
               </div>
-            </div>
-
-            <div className='flex-item'>
-              <Dropdown
-                items={[
-                  { name: 'Print Selected', function: handlePrintSelected },
-                ]}
-                title={{ name: 'Print', class: 'droper clickable' }}
-              />
             </div>
           </div>
           <div>

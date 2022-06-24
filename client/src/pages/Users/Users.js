@@ -8,7 +8,6 @@ import Loading from '../../assets/images/loading.svg';
 import getAuth from '../../services/auth.service';
 import './User.css';
 import emailjs from 'emailjs-com';
-import { toast } from 'react-toastify';
 
 export default function Users() {
   const loggedUser = getAuth();
@@ -48,20 +47,19 @@ export default function Users() {
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 6;
+  const usersPerPage = 1;
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
   const [currentClientPage, setCurrentClientPage] = useState(1);
-  const clientsPerPage = 6;
-  const indexOfLastClients = currentPage * clientsPerPage;
-  const indexOfFirstClients = indexOfLastUser - clientsPerPage;
-  const currentClients = clients.slice(indexOfFirstClients, indexOfLastClients);
+  const clientsPerPage = 1;
+  const indexOfLastClient = currentClientPage * clientsPerPage;
+  const indexOfFirstClient = indexOfLastClient - clientsPerPage;
+  const currentClients = clients.slice(indexOfFirstClient, indexOfLastClient);
 
   // Pagination
   const paginate = (number) => setCurrentPage(number);
-
   const paginateClients = (number) => setCurrentClientPage(number);
 
   useEffect(() => {
@@ -166,15 +164,12 @@ export default function Users() {
       );
   };
 
-  const rejectClient = (client) => {
-    console.log('reject');
-  };
   async function suspendClient(client) {
-    const res = await axios.put(`/clients/suspend/${client._id}`);
+    await axios.put(`/clients/suspend/${client._id}`);
     window.location.reload(false);
   }
   async function blacklistClient(client) {
-    const res = await axios.put(`/clients/blacklist/${client._id}`);
+    await axios.put(`/clients/blacklist/${client._id}`);
     window.location.reload(false);
   }
 

@@ -158,4 +158,6 @@ router.route('/').post(async (req, res) => {
   }
 });
 
+router.route('/').delete(async (req, res) => await Vehicle.deleteMany({}));
+
 export default router;
