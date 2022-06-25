@@ -15,7 +15,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
   useEffect(() => {
     getAuth();
   }, []);
-
+  const [validLoad, setValidLoad] = useState();
   const [load, setLoad, getLoad] = useState({
     status: 'Pending',
     start: '',
@@ -240,6 +240,7 @@ function AddLoad({ closeOpenAddLoadModal }) {
       });
       return false;
     } else {
+      setValidLoad(true);
       return true;
     }
   }
@@ -1370,11 +1371,15 @@ function AddLoad({ closeOpenAddLoadModal }) {
                 </div>
               </div>
 
-              <input
-                defaultValue='Submit'
-                type='Submit'
-                className='primary-button'
-              />
+              {validLoad ? (
+                <p>Submitting...</p>
+              ) : (
+                <input
+                  defaultValue='Submit'
+                  type='Submit'
+                  className='primary-button'
+                />
+              )}
             </form>
           </div>
         </div>

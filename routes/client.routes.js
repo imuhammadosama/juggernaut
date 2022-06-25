@@ -12,10 +12,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log(req.body.type);
   const lastClient = await Client.find({}).sort({ _id: -1 }).limit(1);
-  const lastId = parseInt(lastClient[0].id.slice(2));
-  const uniqueId = lastId + 1;
+  const uniqueId =
+    lastClient.length === 0 ? 10000 : parseInt(lastClient[0].id.slice(2)) + 1;
   const carrierId = `JC${uniqueId}`;
   const businessId = `JB${uniqueId}`;
   let typeId = '';

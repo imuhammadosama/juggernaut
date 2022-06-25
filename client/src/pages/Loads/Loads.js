@@ -1609,7 +1609,7 @@ const Loads = () => {
               <div className='border-bottom px-32 py-16'>
                 <div className='flex'>
                   <div className='details-left'>
-                    <p className='small-title'>Amount set</p>
+                    <p className='small-title'>Amount set By</p>
                     <p className='id-tag'>{`ID - ${selectedLoad.amount_set_by}`}</p>
                   </div>
                   <div className='details-right'></div>

@@ -274,12 +274,11 @@ router.get('/active/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const lastLoad = await Load.find({}).sort({ _id: -1 }).limit(1);
-
-  const lastId = parseInt(lastLoad[0].id.slice(2));
-  const uniqueId = lastId + 1;
+  const uniqueId =
+    lastLoad.length === 0 ? 10000 : parseInt(lastLoad[0].id.slice(2)) + 1;
 
   const load = new Load({
-    id: `JD${uniqueId}`,
+    id: `JL${uniqueId}`,
     status: req.body.status,
     start: new Date(),
     amount: 0,

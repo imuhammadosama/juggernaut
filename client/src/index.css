@@ -113,19 +113,27 @@ h1 {
   text-decoration: none;
   text-align: center;
 }
-.disabled-button {
-  display: none;
-}
 
 .primary-button:hover,
 .secondary-button:hover {
   transform: translateY(-1.5px);
   box-shadow: rgba(0, 0, 0, 0.3) 0 4px 12px;
 }
-
-.primary-button:active {
-  transform: translateY(1.5px);
-  box-shadow: none;
+.disabled-button {
+  pointer-events: none;
+  width: fit-content;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  background: var(--primary);
+  padding: 5px 24px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
 .secondary-button {
