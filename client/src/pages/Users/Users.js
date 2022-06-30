@@ -145,6 +145,12 @@ export default function Users() {
     });
   }
 
+  async function rejectClient(client) {
+    await axios.delete(`/clients/${client._id}`).then(async (response) => {
+      window.location.reload();
+    });
+  }
+
   // Send Email
   const sendEmail = (email, password) => {
     console.log('Send Email is Working');
@@ -391,6 +397,11 @@ export default function Users() {
                   name: 'Accept',
                   class: 'primary-button',
                   onClick: acceptClient,
+                },
+                {
+                  name: 'Reject',
+                  class: 'secondary-button',
+                  onClick: rejectClient,
                 },
               ]}
               selectedItem={selectedClient}

@@ -105,6 +105,16 @@ router.put('/blacklist/:clientId', async (req, res) => {
   }
 });
 
+router.delete('/:clientId', async (req, res) => {
+  try {
+    console.log(req.body);
+    const data = await Client.deleteOne({ _id: req.params.clientId });
+    res.json({ message: 'Client has been deleted!', status: 'ok', data });
+  } catch (error) {
+    res.json({ message: error, status: 'no' });
+  }
+});
+
 router.route('/').delete(async (req, res) => await Client.deleteMany({}));
 
 export default router;

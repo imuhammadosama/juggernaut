@@ -119,6 +119,9 @@ h1 {
   transform: translateY(-1.5px);
   box-shadow: rgba(0, 0, 0, 0.3) 0 4px 12px;
 }
+.primary-button:hover {
+  background-color: var(--brand);
+}
 .disabled-button {
   pointer-events: none;
   width: fit-content;
