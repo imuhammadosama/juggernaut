@@ -42,7 +42,21 @@ export default function ({ closeModal }) {
 
     return errors;
   };
-
+  function formatPhoneNumber(value) {
+    if (!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if (phoneNumberLength < 11) {
+      if (phoneNumberLength <= 4) {
+        return phoneNumber;
+      }
+      return `${phoneNumber.slice(0, 4)}-${phoneNumber.slice(4)}`;
+    }
+    return `${phoneNumber.slice(0, 4)}-${phoneNumber.slice(
+      4,
+      7
+    )}-${phoneNumber.slice(7, 11)}`;
+  }
   async function registerDriver(e) {
     e.preventDefault();
     setFormErrors(validate(formValues));
@@ -64,7 +78,6 @@ export default function ({ closeModal }) {
       approved_by: formValues.approved_by,
       rejected_by: formValues.rejected_by,
     };
-    console.log(driver);
     const res = await axios.post('/drivers', driver);
     if (
       res.data.status === 'no' &&
@@ -95,7 +108,8 @@ export default function ({ closeModal }) {
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
+    let val = name === 'phone' ? formatPhoneNumber(value) : value;
+    setFormValues({ ...formValues, [name]: val });
     console.log(e.target.value);
     if (!e.target.value) {
       setFormErrors({ ...formErrors, [name]: `Field is required` });
@@ -215,11 +229,12 @@ export default function ({ closeModal }) {
                   <input
                     name='phone'
                     value={formValues.phone}
-                    type='number'
-                    placeholder='0000-000-000-0000'
+                    type='text'
+                    placeholder='Phone'
                     onChange={handleChange}
                     className='full-width'
                   />
+
                   <p className={formErrors.phone ? 'errorMessage' : 'hideMe'}>
                     {formErrors.phone}
                   </p>

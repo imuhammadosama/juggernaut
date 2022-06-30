@@ -82,9 +82,9 @@ export default function NavDropdown(props) {
         {openEditModal && (
           <EditUser closeOpenEditModal={setOpenEditModal} userId={user._id} />
         )}
-        <button onClick={myNewFunction} className='navdropbtn'>
+        <a onClick={myNewFunction} className='navdropbtn'>
           Welcome! {user.name}
-        </button>
+        </a>
         <div id='myNavDropdown' className='navdropdown-content'>
           <Link to='/loads'>Loads</Link>
           {user.type === 'Management' || user.type === 'Super Admin' ? (

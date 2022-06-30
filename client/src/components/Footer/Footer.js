@@ -32,7 +32,7 @@ export default function Footer() {
         <div className='footer-column'>
           <div className='footer-title'>QuickLinks</div>
           <div className='footer-description'>
-            <li>Home</li>
+            <li onClick={() => window.location.href('/about')}>Home</li>
             <li>About us</li>
             <li>Businesses</li>
             <li>Career</li>
@@ -76,7 +76,7 @@ export default function Footer() {
         </div>
         <div>
           <a
-            href='https://linkedin.com/in/juggernautpkofficial'
+            href='https://linkedin.com/company/juggernautpkofficial'
             target='_blank'
           >
             <img src={Linkedin} />

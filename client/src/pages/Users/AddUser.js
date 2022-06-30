@@ -76,7 +76,21 @@ export default function AddUser({ closeModal }) {
     }
     return errors;
   };
-
+  function formatPhoneNumber(value) {
+    if (!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if (phoneNumberLength < 11) {
+      if (phoneNumberLength <= 4) {
+        return phoneNumber;
+      }
+      return `${phoneNumber.slice(0, 4)}-${phoneNumber.slice(4)}`;
+    }
+    return `${phoneNumber.slice(0, 4)}-${phoneNumber.slice(
+      4,
+      7
+    )}-${phoneNumber.slice(7, 11)}`;
+  }
   async function registerUser(e) {
     e.preventDefault();
     setFormErrors(validate(formValues));
@@ -119,7 +133,11 @@ export default function AddUser({ closeModal }) {
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value, placeholder } = e.target;
-    setFormValues({ ...formValues, [name]: value });
+    let val =
+      name === 'phone' || name === 'emergencyPhone'
+        ? formatPhoneNumber(value)
+        : value;
+    setFormValues({ ...formValues, [name]: val });
     if (!e.target.value) {
       setFormErrors({ ...formErrors, [name]: `${placeholder} is required` });
     }
@@ -210,7 +228,7 @@ export default function AddUser({ closeModal }) {
                   <input
                     name='phone'
                     value={formValues.phone}
-                    type='number'
+                    type='text'
                     placeholder='Phone'
                     onChange={handleChange}
                     className='full-width'
@@ -468,7 +486,7 @@ export default function AddUser({ closeModal }) {
               <input
                 name='emergencyPhone'
                 value={formValues.emergencyPhone}
-                type='number'
+                type='text'
                 placeholder='Emergency Phone'
                 onChange={handleChange}
                 pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'

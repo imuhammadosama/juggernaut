@@ -8,6 +8,7 @@ toast.configure();
 
 function Register({ closeModal, type }) {
   const url = `/clients`;
+  const [buttonClicked, setButtonClicked] = useState();
   const [client, setClient] = useState({
     id: '',
     status: '',
@@ -60,8 +61,25 @@ function Register({ closeModal, type }) {
     }
   });
 
+  function formatPhoneNumber(value) {
+    if (!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if (phoneNumberLength < 11) {
+      if (phoneNumberLength <= 4) {
+        return phoneNumber;
+      }
+      return `${phoneNumber.slice(0, 4)}-${phoneNumber.slice(4)}`;
+    }
+    return `${phoneNumber.slice(0, 4)}-${phoneNumber.slice(
+      4,
+      7
+    )}-${phoneNumber.slice(7, 11)}`;
+  }
+
   async function registerUser(event) {
     event.preventDefault();
+    setButtonClicked(true);
     await axios
       .post(url, client)
       .then((response) => {
@@ -121,7 +139,7 @@ function Register({ closeModal, type }) {
           : client.authorize_person_name,
       authorize_person_phone:
         field === 'Authorize Person Phone'
-          ? value.target.value
+          ? formatPhoneNumber(value.target.value)
           : client.authorize_person_phone,
 
       commodity: client.commodity,
@@ -304,10 +322,10 @@ function Register({ closeModal, type }) {
                   </div>
                   <input
                     value={client.authorize_person_phone || ''}
-                    onChange={(value) =>
-                      updateState(value, 'Authorize Person Phone')
-                    }
-                    type='number'
+                    onChange={(value) => {
+                      updateState(value, 'Authorize Person Phone');
+                    }}
+                    type='text'
                     placeholder='Phone'
                     className='full-width'
                   />
@@ -345,11 +363,15 @@ function Register({ closeModal, type }) {
               </div>
               <br />
 
-              <input
-                type='submit'
-                value='Register'
-                className='primary-button'
-              />
+              {buttonClicked ? (
+                <p>Registering...</p>
+              ) : (
+                <input
+                  type='submit'
+                  value='Register'
+                  className='primary-button'
+                />
+              )}
             </form>
           </div>
         </div>
@@ -518,7 +540,7 @@ function Register({ closeModal, type }) {
                     onChange={(value) =>
                       updateState(value, 'Authorize Person Phone')
                     }
-                    type='number'
+                    type='text'
                     placeholder='Phone'
                     className='full-width'
                   />
@@ -556,11 +578,15 @@ function Register({ closeModal, type }) {
               </div>
               <br />
 
-              <input
-                type='submit'
-                value='Register'
-                className='primary-button'
-              />
+              {buttonClicked ? (
+                <p>Registering...</p>
+              ) : (
+                <input
+                  type='submit'
+                  value='Register'
+                  className='primary-button'
+                />
+              )}
             </form>
           </div>
         </div>

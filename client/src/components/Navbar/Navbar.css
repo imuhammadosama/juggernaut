@@ -86,3 +86,7 @@
   text-decoration: none;
   color: black;
 }
+
+.navdropbtn:hover {
+  text-decoration: underline;
+}
